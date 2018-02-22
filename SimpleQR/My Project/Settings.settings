@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="windowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">525, 398</Value>
+    </Setting>
+    <Setting Name="biggerWindowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">424, 424</Value>
+    </Setting>
+    <Setting Name="useSSL" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="boolShowScreenshotTip" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
