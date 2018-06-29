@@ -44,6 +44,8 @@ Partial Class frmDecoded
         Me.txtResults.Location = New System.Drawing.Point(12, 25)
         Me.txtResults.Multiline = True
         Me.txtResults.Name = "txtResults"
+        Me.txtResults.ReadOnly = True
+        Me.txtResults.BackColor = System.Drawing.SystemColors.Window
         Me.txtResults.Size = New System.Drawing.Size(432, 74)
         Me.txtResults.TabIndex = 1
         '
