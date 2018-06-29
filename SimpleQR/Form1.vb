@@ -410,6 +410,9 @@ Public Class Form1
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             Dim decoder As New ZXing.BarcodeReader
             decoder.Options.TryHarder = True
+            decoder.Options.UseCode39ExtendedMode = True
+            decoder.Options.UseCode39RelaxedExtendedMode = True
+            decoder.Options.PureBarcode = True
             decoder.TryInverted = True
             decoder.AutoRotate = True
 
