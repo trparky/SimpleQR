@@ -130,6 +130,7 @@ Partial Class Form1
         Me.qrCodeImage.Location = New System.Drawing.Point(12, 152)
         Me.qrCodeImage.Name = "qrCodeImage"
         Me.qrCodeImage.Size = New System.Drawing.Size(200, 200)
+        Me.qrCodeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.qrCodeImage.TabIndex = 0
         Me.qrCodeImage.TabStop = False
         '
