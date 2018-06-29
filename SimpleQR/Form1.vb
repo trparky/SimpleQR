@@ -404,7 +404,7 @@ Public Class Form1
 
     Private Sub btnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
         OpenFileDialog1.Title = "Open QRCode Image to File"
-        OpenFileDialog1.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
+        OpenFileDialog1.Filter = "All Supported Image Formats|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.wmf|PNG Image|*.png|JPEG Image|*.jpg;*.jpeg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
         OpenFileDialog1.FileName = ""
 
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
