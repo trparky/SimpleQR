@@ -6,28 +6,9 @@ Public Class Form1
     Private Const programFileZIPSHA1URL = "www.toms-world.org/download/SimpleQR.zip.sha1"
     Private Const programFileNameInZIP As String = "SimpleQR.exe"
 
-    Private Const webSiteURL As String = "www.toms-world.org/blog/simpleqr"
-    Private Const programCodeName As String = "simpleqr"
     Private Const programUpdateCheckerXMLFile As String = "www.toms-world.org/updates/simpleqr_update.xml"
-    Private Const programName As String = "SimpleQR"
 
     Private boolWinXP As Boolean = False
-
-    Private Function transformURL(strURLInput As String) As String
-        If strURLInput.Trim.ToLower.StartsWith("http") = False Then
-            If My.Settings.useSSL = True Then
-                If boolWinXP = True Then
-                    Return "http://" & strURLInput
-                Else
-                    Return "https://" & strURLInput
-                End If
-            Else
-                Return "http://" & strURLInput
-            End If
-        Else
-            Return strURLInput
-        End If
-    End Function
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Control.CheckForIllegalCrossThreadCalls = False
@@ -238,7 +219,7 @@ Public Class Form1
         Return BitConverter.ToString(Output).ToLower().Replace("-", "").Trim
     End Function
 
-    Private Sub downloadAndPerformUpdate(Optional ByVal outputText As Boolean = False)
+    Private Sub downloadAndPerformUpdate()
         Try
             Dim fileInfo As New IO.FileInfo(Application.ExecutablePath)
             Dim newExecutableName As String = fileInfo.Name & ".new.exe"
@@ -397,9 +378,6 @@ Public Class Form1
         stringBuilder.AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
 
         MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, "About")
-
-        version = Nothing
-        stringBuilder = Nothing
     End Sub
 
     Private Sub btnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
@@ -433,7 +411,6 @@ Public Class Form1
                 End If
 
                 bitMap.Dispose()
-                bitMap = Nothing
             End If
         End If
     End Sub
@@ -487,7 +464,6 @@ Public Class Form1
             End If
 
             imgScreenShot.Dispose()
-            imgScreenShot = Nothing
         End If
     End Sub
 
