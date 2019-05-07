@@ -183,6 +183,7 @@ Partial Class Form1
         '
         'btnCreateTOTP
         '
+        Me.btnCreateTOTP.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnCreateTOTP.Location = New System.Drawing.Point(419, 300)
         Me.btnCreateTOTP.Name = "btnCreateTOTP"
         Me.btnCreateTOTP.Size = New System.Drawing.Size(126, 23)
