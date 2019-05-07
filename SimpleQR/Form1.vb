@@ -490,4 +490,18 @@ Public Class Form1
             imgScreenShot = Nothing
         End If
     End Sub
+
+    Private Sub BtnCreateTOTP_Click(sender As Object, e As EventArgs) Handles btnCreateTOTP.Click
+        Dim createTOTPInstance As New Create_TOTP_QRCode With {.StartPosition = FormStartPosition.CenterParent}
+        createTOTPInstance.ShowDialog()
+
+        If createTOTPInstance.boolCreateQRCode Then
+            Dim strQRCodeData As String = "otpauth://totp/" & createTOTPInstance.serviceName
+            If Not String.IsNullOrWhiteSpace(createTOTPInstance.accountName) Then strQRCodeData &= ":" & createTOTPInstance.accountName
+            strQRCodeData &= "?secret=" & createTOTPInstance.secret
+            If Not String.IsNullOrWhiteSpace(createTOTPInstance.issuer) Then strQRCodeData &= "&issuer=" & createTOTPInstance.issuer
+
+            txtTextToEncode.Text = strQRCodeData
+        End If
+    End Sub
 End Class

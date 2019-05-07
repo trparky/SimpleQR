@@ -37,6 +37,7 @@ Partial Class Form1
         Me.btnShowBigger = New System.Windows.Forms.Button()
         Me.chkUseSSL = New System.Windows.Forms.CheckBox()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
+        Me.btnCreateTOTP = New System.Windows.Forms.Button()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,7 +50,7 @@ Partial Class Form1
         Me.txtTextToEncode.MaxLength = 2950
         Me.txtTextToEncode.Multiline = True
         Me.txtTextToEncode.Name = "txtTextToEncode"
-        Me.txtTextToEncode.Size = New System.Drawing.Size(509, 56)
+        Me.txtTextToEncode.Size = New System.Drawing.Size(527, 56)
         Me.txtTextToEncode.TabIndex = 2
         '
         'Label1
@@ -180,11 +181,21 @@ Partial Class Form1
         Me.btnDecodeFromScreenShot.Text = "Decode from Screen Shot"
         Me.btnDecodeFromScreenShot.UseVisualStyleBackColor = True
         '
+        'btnCreateTOTP
+        '
+        Me.btnCreateTOTP.Location = New System.Drawing.Point(419, 300)
+        Me.btnCreateTOTP.Name = "btnCreateTOTP"
+        Me.btnCreateTOTP.Size = New System.Drawing.Size(126, 23)
+        Me.btnCreateTOTP.TabIndex = 14
+        Me.btnCreateTOTP.Text = "Create TOTP QRCode"
+        Me.btnCreateTOTP.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(530, 359)
+        Me.ClientSize = New System.Drawing.Size(551, 365)
+        Me.Controls.Add(Me.btnCreateTOTP)
         Me.Controls.Add(Me.btnDecodeFromScreenShot)
         Me.Controls.Add(Me.chkUseSSL)
         Me.Controls.Add(Me.btnShowBigger)
@@ -199,7 +210,7 @@ Partial Class Form1
         Me.Controls.Add(Me.qrCodeImage)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(546, 398)
+        Me.MinimumSize = New System.Drawing.Size(559, 398)
         Me.Name = "Form1"
         Me.Text = "SimpleQR"
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).EndInit()
@@ -221,4 +232,5 @@ Partial Class Form1
     Friend WithEvents btnShowBigger As Button
     Friend WithEvents chkUseSSL As CheckBox
     Friend WithEvents btnDecodeFromScreenShot As Button
+    Friend WithEvents btnCreateTOTP As Button
 End Class

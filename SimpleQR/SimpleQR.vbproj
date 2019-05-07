@@ -94,6 +94,12 @@
     <Compile Include="Bigger QRCode Image.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Create TOTP QRCode.Designer.vb">
+      <DependentUpon>Create TOTP QRCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Create TOTP QRCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Decoded QRCode Image Results.Designer.vb">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
     </Compile>
@@ -151,6 +157,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Bigger QRCode Image.resx">
       <DependentUpon>Bigger QRCode Image.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Create TOTP QRCode.resx">
+      <DependentUpon>Create TOTP QRCode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Decoded QRCode Image Results.resx">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
