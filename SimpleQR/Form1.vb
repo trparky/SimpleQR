@@ -19,11 +19,6 @@ Public Class Form1
                                                                  IO.File.Delete(Application.ExecutablePath & ".new.exe")
                                                              End Sub)
             newFileDeleterThread.Start()
-
-            'Dim updaterExecutableRemoverThread As New Threading.Thread(AddressOf updaterExecutableRemover)
-            'updaterExecutableRemoverThread.Name = "updater.exe Remover Thread"
-            'updaterExecutableRemoverThread.Priority = Threading.ThreadPriority.Lowest
-            'updaterExecutableRemoverThread.Start()
         End If
 
         If Environment.OSVersion.ToString.Contains("5.1") Or Environment.OSVersion.ToString.Contains("5.2") Then
@@ -43,17 +38,6 @@ Public Class Form1
     End Sub
 
     Sub generateQRCodeImage(text As String)
-        'Dim qrCodeEncoder As ThoughtWorks.QRCode.Codec.QRCodeEncoder = New ThoughtWorks.QRCode.Codec.QRCodeEncoder()
-        'qrCodeEncoder.QRCodeEncodeMode = ThoughtWorks.QRCode.Codec.QRCodeEncoder.ENCODE_MODE.BYTE
-        'qrCodeEncoder.QRCodeScale = 5 '5
-        'qrCodeEncoder.QRCodeVersion = 5 '5
-        'qrCodeEncoder.QRCodeErrorCorrect = ThoughtWorks.QRCode.Codec.QRCodeEncoder.ERROR_CORRECTION.M
-
-        'Dim image As Bitmap = qrCodeEncoder.Encode(text)
-        'image = ResizeImage(image, 200, 200)
-
-        'qrCodeImage.Image = image
-
         Try
             Dim writer As New ZXing.BarcodeWriter
             writer.Options.Width = 500
@@ -163,13 +147,6 @@ Public Class Form1
             MsgBox("Image Saved.", MsgBoxStyle.Information, "Image Saved")
         End If
     End Sub
-
-    'Private Declare Function InternetGetConnectedState Lib "wininet.dll" (ByRef dwflags As Long, ByVal dwReserved As Long) As Long
-
-    'Public Function checkForInternetConnection() As Boolean
-    '    Dim LFlags As Long
-    '    Return InternetGetConnectedState(LFlags, 0&)
-    'End Function
 
     Private Function checkForInternetConnection() As Boolean
         Return My.Computer.Network.IsAvailable
@@ -300,7 +277,6 @@ Public Class Form1
         If checkForInternetConnection() = False Then
             MsgBox("No Internet connection detected.", MsgBoxStyle.Information, Me.Text)
         Else
-            'Debug.WriteLine("internet connection detected")
             Try
                 Dim version() As String = Application.ProductVersion.Split(".".ToCharArray) ' Gets the program version
 
@@ -326,7 +302,6 @@ Public Class Form1
                 End If
             Catch ex As Exception
                 ' Ok, we crashed but who cares.  We give an error message.
-                'MsgBox("Error while checking for new version.", MsgBoxStyle.Information, Me.Text)
             Finally
                 btnCheckForUpdates.Enabled = True
             End Try
@@ -345,7 +320,6 @@ Public Class Form1
 
     Private Sub createPleaseWaitWindow(message As String, Optional ByVal openDialog As Boolean = False)
         Try
-            'Dim pleaseWaitWindowThread As New Threading.Thread(Sub()
             frmPleaseWait = New Please_Wait With {
                 .StartPosition = FormStartPosition.CenterParent
             }
@@ -358,11 +332,6 @@ Public Class Form1
                 pleaseWaitWindowThread = New Threading.Thread(AddressOf openPleaseWaitWindow)
                 pleaseWaitWindowThread.Start()
             End If
-            'windowInstances.frmPleaseWait.ShowDialog()
-            'End Sub)
-
-            'pleaseWaitWindowThread.Name = "Please Wait Window Thread"
-            'pleaseWaitWindowThread.Start()
         Catch ex As Exception
         End Try
     End Sub
