@@ -32,24 +32,6 @@ Namespace My
                 End If
             End If
         End Sub
-        'Private Sub MyApplication_Startup(sender As Object, e As ApplicationServices.StartupEventArgs) Handles Me.Startup
-        '    AddHandler AppDomain.CurrentDomain.AssemblyResolve, AddressOf ResolveAssemblies ' Loads embedded libraries.
-        'End Sub
-
-        'Private Function ResolveAssemblies(sender As Object, e As System.ResolveEventArgs) As Reflection.Assembly
-        '    Dim desiredAssembly = New Reflection.AssemblyName(e.Name)
-
-        '    'Debug.WriteLine("desiredAssembly.Name = " & desiredAssembly.Name)
-
-        '    ' For each of the DLLs you need to include in your program, you need to add these two lines that look like this.
-        '    ' Then add the DLL to your Project as a resource and set the Build Action of it to "Embedded Resource".
-        '    If desiredAssembly.Name = "ThoughtWorks.QRCode" Then
-        '        'Debug.WriteLine("loaded embedded SmoothProgressBar")
-        '        Return Reflection.Assembly.Load(My.Resources.ThoughtWorks_QRCode) ' Replace with your assembly's resource name
-        '    Else
-        '        Return Nothing
-        '    End If
-        'End Function
     End Class
 End Namespace
 
