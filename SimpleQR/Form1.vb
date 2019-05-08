@@ -32,9 +32,6 @@ Public Class Form1
         End If
 
         Me.Size = My.Settings.windowSize
-
-        Dim t As httpHelper = createNewHTTPHelperObject()
-        t.dispose()
     End Sub
 
     Sub generateQRCodeImage(text As String)
