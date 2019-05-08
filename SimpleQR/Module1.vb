@@ -94,20 +94,11 @@ Module ScreenSnipper
 
         If doesPIDExist(PID) Then
             killProcess(PID)
-            'Else
-            'debug.writeline(" Process Killed.")
         End If
     End Sub
 
     Public Sub searchForProcessAndKillIt(strFileName As String, boolFullFilePathPassed As Boolean)
-        Dim fullFileName As String
-
-        If boolFullFilePathPassed Then
-            fullFileName = strFileName
-        Else
-            fullFileName = New IO.FileInfo(strFileName).FullName
-        End If
-
+        Dim fullFileName As String = If(boolFullFilePathPassed, strFileName, New IO.FileInfo(strFileName).FullName)
         Dim wmiQuery As String = String.Format("Select ExecutablePath, ProcessId FROM Win32_Process WHERE ExecutablePath = '{0}'", fullFileName.addSlashes())
         Dim searcher As New Management.ManagementObjectSearcher("root\CIMV2", wmiQuery)
 
@@ -115,8 +106,6 @@ Module ScreenSnipper
             For Each queryObj As Management.ManagementObject In searcher.Get()
                 killProcess(Integer.Parse(queryObj("ProcessId").ToString))
             Next
-
-            'debug.writeline("All processes killed... Update process can continue.")
         Catch ex3 As Runtime.InteropServices.COMException
         Catch err As Management.ManagementException
             ' Does nothing
