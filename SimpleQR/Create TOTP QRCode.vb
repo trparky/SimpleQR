@@ -4,6 +4,14 @@
     Public Property secret As String
     Public Property issuer As String
     Public Property boolCreateQRCode As Boolean = False
+    Public Property type As authType
+    Public Property period As Short
+    Public Property digits As Short
+
+    Enum authType As Short
+        totp = 0
+        hotp = 1
+    End Enum
 
     Private Sub txtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
@@ -74,7 +82,24 @@
         secret = txtSecret.Text.Trim
         issuer = txtIssuer.Text.Trim
 
+        If radTOTP.Checked Then
+            type = authType.totp
+        Else
+            type = authType.hotp
+        End If
+
+        If Not Short.TryParse(txtPeriod.Text, period) Then MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+        If Not Short.TryParse(txtDigits.Text, digits) Then MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+
         Me.Close()
         boolCreateQRCode = True
+    End Sub
+
+    Private Sub RadTOTP_CheckedChanged(sender As Object, e As EventArgs) Handles radTOTP.CheckedChanged
+        txtPeriod.Enabled = True
+    End Sub
+
+    Private Sub RadHOTP_CheckedChanged(sender As Object, e As EventArgs) Handles radHOTP.CheckedChanged
+        txtPeriod.Enabled = False
     End Sub
 End Class

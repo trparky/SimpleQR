@@ -472,10 +472,23 @@ Public Class Form1
         createTOTPInstance.ShowDialog()
 
         If createTOTPInstance.boolCreateQRCode Then
-            Dim strQRCodeData As String = "otpauth://totp/" & createTOTPInstance.serviceName
-            If Not String.IsNullOrWhiteSpace(createTOTPInstance.accountName) Then strQRCodeData &= ":" & createTOTPInstance.accountName
-            strQRCodeData &= "?secret=" & createTOTPInstance.secret
-            If Not String.IsNullOrWhiteSpace(createTOTPInstance.issuer) Then strQRCodeData &= "&issuer=" & createTOTPInstance.issuer
+            Dim strQRCodeData As String
+
+            If createTOTPInstance.type = Create_TOTP_QRCode.authType.hotp Then
+                strQRCodeData = String.Concat("otpauth://hotp/", createTOTPInstance.serviceName)
+            Else
+                strQRCodeData = String.Concat("otpauth://totp/", createTOTPInstance.serviceName)
+            End If
+
+            If Not String.IsNullOrWhiteSpace(createTOTPInstance.accountName) Then strQRCodeData = String.Concat(strQRCodeData, ":", createTOTPInstance.accountName)
+            strQRCodeData = String.Concat(strQRCodeData, "?secret=", createTOTPInstance.secret)
+            If Not String.IsNullOrWhiteSpace(createTOTPInstance.issuer) Then strQRCodeData = String.Concat(strQRCodeData, "&issuer=", createTOTPInstance.issuer)
+
+            If createTOTPInstance.type = Create_TOTP_QRCode.authType.totp And createTOTPInstance.period <> 30 Then
+                strQRCodeData = String.Concat(strQRCodeData, "&period=", createTOTPInstance.period.ToString)
+            End If
+
+            If createTOTPInstance.digits <> 6 Then strQRCodeData = String.Concat(strQRCodeData, "&digits=", createTOTPInstance.digits.ToString)
 
             txtTextToEncode.Text = strQRCodeData
         End If
