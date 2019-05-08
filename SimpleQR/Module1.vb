@@ -223,12 +223,7 @@ Module ScreenSnipper
     Public Function areWeAnAdministrator() As Boolean
         Try
             Dim principal As WindowsPrincipal = New WindowsPrincipal(WindowsIdentity.GetCurrent())
-
-            If principal.IsInRole(WindowsBuiltInRole.Administrator) = True Then
-                Return True
-            Else
-                Return False
-            End If
+            Return If(principal.IsInRole(WindowsBuiltInRole.Administrator), True, False)
         Catch ex As Exception
             Return False
         End Try
