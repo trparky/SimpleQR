@@ -39,12 +39,10 @@ Module ScreenSnipper
         End Try
     End Function
 
-    Private versionInfo As String() = Application.ProductVersion.Split(".")
-    Private shortMajor As Short = Short.Parse(versionInfo(versionPieces.major).Trim)
-    Private shortMinor As Short = Short.Parse(versionInfo(versionPieces.minor).Trim)
-    Private shortBuild As Short = Short.Parse(versionInfo(versionPieces.build).Trim)
+    Private ReadOnly versionInfo As String() = Application.ProductVersion.Split(".")
+    Private ReadOnly shortBuild As Short = Short.Parse(versionInfo(versionPieces.build).Trim)
 
-    Private versionStringWithoutBuild As String = String.Format("{0}.{1}", versionInfo(versionPieces.major), versionInfo(versionPieces.minor))
+    Private ReadOnly versionStringWithoutBuild As String = String.Format("{0}.{1}", versionInfo(versionPieces.major), versionInfo(versionPieces.minor))
 
     ''' <summary>This parses the XML updata data and determines if an update is needed.</summary>
     ''' <param name="xmlData">The XML data from the web site.</param>
