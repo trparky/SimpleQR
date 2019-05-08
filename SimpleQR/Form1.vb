@@ -25,7 +25,7 @@ Public Class Form1
             boolWinXP = True
         End If
 
-        If boolWinXP = False Then
+        If Not boolWinXP Then
             chkUseSSL.Checked = My.Settings.useSSL
         Else
             chkUseSSL.Visible = False
@@ -274,7 +274,7 @@ Public Class Form1
     Sub userInitiatedCheckForUpdates()
         btnCheckForUpdates.Enabled = False
 
-        If checkForInternetConnection() = False Then
+        If Not checkForInternetConnection() Then
             MsgBox("No Internet connection detected.", MsgBoxStyle.Information, Me.Text)
         Else
             Try
