@@ -167,10 +167,12 @@ Public Class Form1
             If boolGiveUserAnErrorMessage Then MsgBox("There was an error downloading the checksum verification file. Update process aborted.", MsgBoxStyle.Critical, "Restore Point Creator")
             Return False
         Else
+            Dim regexObject As New Regex("([a-zA-Z0-9]{40})")
+
             ' Checks to see if we have a valid SHA1 file.
-            If Regex.IsMatch(checksumFromWeb, "([a-zA-Z0-9]{40})") Then
+            If regexObject.IsMatch(checksumFromWeb) Then
                 ' Now that we have a valid SHA1 file we need to parse out what we want.
-                checksumFromWeb = Regex.Match(checksumFromWeb, "([a-zA-Z0-9]{40})").Groups(1).Value().ToLower.Trim()
+                checksumFromWeb = regexObject.Match(checksumFromWeb).Groups(1).Value().ToLower.Trim()
 
                 ' Now we do the actual checksum verification by passing the name of the file to the SHA160() function
                 ' which calculates the checksum of the file on disk. We then compare it to the checksum from the web.
