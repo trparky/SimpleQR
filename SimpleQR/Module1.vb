@@ -238,6 +238,20 @@ Module ScreenSnipper
         Return canIWriteThere(New IO.FileInfo(Application.ExecutablePath).DirectoryName)
     End Function
 
+    Private Function randomString(length As Integer) As String
+        Dim random As Random = New Random()
+        Dim builder As New Text.StringBuilder()
+        Dim ch As Char
+        Dim legalCharacters As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+
+        For cntr As Integer = 0 To length
+            ch = legalCharacters.Substring(random.Next(0, legalCharacters.Length), 1)
+            builder.Append(ch)
+        Next
+
+        Return builder.ToString()
+    End Function
+
     Private Function canIWriteThere(folderPath As String) As Boolean
         ' We make sure we get valid folder path by taking off the leading slash.
         If folderPath.EndsWith("\") Then
@@ -250,8 +264,9 @@ Module ScreenSnipper
 
         If checkByFolderACLs(folderPath) = True Then
             Try
-                IO.File.Create(IO.Path.Combine(folderPath, "test.txt"), 1, IO.FileOptions.DeleteOnClose).Close()
-                If IO.File.Exists(IO.Path.Combine(folderPath, "test.txt")) Then IO.File.Delete(IO.Path.Combine(folderPath, "test.txt"))
+                Dim strRandomFileName As String = randomString(15) & ".txt"
+                IO.File.Create(IO.Path.Combine(folderPath, strRandomFileName), 1, IO.FileOptions.DeleteOnClose).Close()
+                If IO.File.Exists(IO.Path.Combine(folderPath, strRandomFileName)) Then IO.File.Delete(IO.Path.Combine(folderPath, strRandomFileName))
                 Return True
             Catch ex As Exception
                 Return False
