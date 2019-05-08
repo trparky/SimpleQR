@@ -14,7 +14,7 @@ Namespace My
             If My.Application.CommandLineArgs.Count = 1 Then
                 Dim commandLineArgument As String = My.Application.CommandLineArgs(0).ToLower.Trim
 
-                If commandLineArgument = "-update" Then
+                If commandLineArgument.Equals("-update", StringComparison.OrdinalIgnoreCase) Then
                     Dim currentProcessFileName As String = New IO.FileInfo(Windows.Forms.Application.ExecutablePath).Name
 
                     If currentProcessFileName.caseInsensitiveContains(".new.exe", True) Then
