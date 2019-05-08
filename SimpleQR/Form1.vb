@@ -221,10 +221,7 @@ Public Class Form1
             If boolWinXP Then
                 Process.Start(newExecutableName, "-update")
             Else
-                Dim startInfo As New ProcessStartInfo With {
-                    .FileName = newExecutableName,
-                    .Arguments = "-update"
-                }
+                Dim startInfo As New ProcessStartInfo With {.FileName = newExecutableName, .Arguments = "-update"}
                 If Not canIWriteToTheCurrentDirectory() Then startInfo.Verb = "runas"
                 Process.Start(startInfo)
                 Process.GetCurrentProcess.Kill()
@@ -320,9 +317,7 @@ Public Class Form1
 
     Private Sub createPleaseWaitWindow(message As String, Optional ByVal openDialog As Boolean = False)
         Try
-            frmPleaseWait = New Please_Wait With {
-                .StartPosition = FormStartPosition.CenterParent
-            }
+            frmPleaseWait = New Please_Wait With {.StartPosition = FormStartPosition.CenterParent}
             frmPleaseWait.lblLabel.Text = message
             frmPleaseWait.lblLabelText = message
             frmPleaseWait.Icon = Me.Icon
@@ -389,10 +384,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnShowBigger_Click(sender As Object, e As EventArgs) Handles btnShowBigger.Click
-        Dim biggerImage As New bigImage With {
-            .textToEncode = txtTextToEncode.Text,
-            .Icon = Me.Icon
-        }
+        Dim biggerImage As New bigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
         biggerImage.Show()
     End Sub
 
@@ -406,10 +398,7 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
         If My.Settings.boolShowScreenshotTip Then
-            Dim tipWindow As New Tip With {
-                .Icon = Me.Icon,
-                .StartPosition = FormStartPosition.CenterScreen
-            }
+            Dim tipWindow As New Tip With {.Icon = Me.Icon, .StartPosition = FormStartPosition.CenterScreen}
             tipWindow.ShowDialog()
         End If
 
