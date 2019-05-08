@@ -13,7 +13,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Control.CheckForIllegalCrossThreadCalls = False
 
-        If IO.File.Exists(Application.ExecutablePath & ".new.exe") = True Then
+        If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
                                                                  searchForProcessAndKillIt(Application.ExecutablePath & ".new.exe", False)
                                                                  IO.File.Delete(Application.ExecutablePath & ".new.exe")

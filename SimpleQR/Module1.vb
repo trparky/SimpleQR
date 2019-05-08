@@ -14,7 +14,7 @@ Module ScreenSnipper
     <Extension()>
     Public Function caseInsensitiveContains(haystack As String, needle As String, Optional boolDoEscaping As Boolean = False) As Boolean
         Try
-            If boolDoEscaping = True Then needle = Regex.Escape(needle)
+            If boolDoEscaping Then needle = Regex.Escape(needle)
             Return Regex.IsMatch(haystack, needle, RegexOptions.IgnoreCase)
         Catch ex As Exception
             Return False
@@ -102,7 +102,7 @@ Module ScreenSnipper
     Public Sub searchForProcessAndKillIt(strFileName As String, boolFullFilePathPassed As Boolean)
         Dim fullFileName As String
 
-        If boolFullFilePathPassed = True Then
+        If boolFullFilePathPassed Then
             fullFileName = strFileName
         Else
             fullFileName = New IO.FileInfo(strFileName).FullName
@@ -187,8 +187,8 @@ Module ScreenSnipper
 
         httpHelper.setURLPreProcessor = Function(ByVal strURLInput As String) As String
                                             Try
-                                                If strURLInput.Trim.ToLower.StartsWith("http") = False Then
-                                                    If My.Settings.useSSL = True Then
+                                                If Not strURLInput.Trim.ToLower.StartsWith("http") Then
+                                                    If My.Settings.useSSL Then
                                                         Debug.WriteLine("The setURLPreProcessor code transformed """ & strURLInput & """ to ""https://" & strURLInput & """.")
                                                         Return "https://" & strURLInput
                                                     Else
@@ -251,11 +251,11 @@ Module ScreenSnipper
             folderPath = folderPath.Substring(0, folderPath.Length - 1)
         End If
 
-        If String.IsNullOrEmpty(folderPath) = True Or IO.Directory.Exists(folderPath) = False Then
+        If String.IsNullOrEmpty(folderPath) Or Not IO.Directory.Exists(folderPath) Then
             Return False
         End If
 
-        If checkByFolderACLs(folderPath) = True Then
+        If checkByFolderACLs(folderPath) Then
             Try
                 Dim strRandomFileName As String = randomString(15) & ".txt"
                 IO.File.Create(IO.Path.Combine(folderPath, strRandomFileName), 1, IO.FileOptions.DeleteOnClose).Close()
