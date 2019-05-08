@@ -19,9 +19,7 @@ Public Class Form1
             newFileDeleterThread.Start()
         End If
 
-        If Environment.OSVersion.ToString.Contains("5.1") Or Environment.OSVersion.ToString.Contains("5.2") Then
-            boolWinXP = True
-        End If
+        If Environment.OSVersion.ToString.Contains("5.1") Or Environment.OSVersion.ToString.Contains("5.2") Then boolWinXP = True
 
         If Not boolWinXP Then
             chkUseSSL.Checked = My.Settings.useSSL
