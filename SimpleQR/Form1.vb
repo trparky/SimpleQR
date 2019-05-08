@@ -5,9 +5,7 @@ Public Class Form1
     Private Const programFileZIPURL = "www.toms-world.org/download/SimpleQR.zip"
     Private Const programFileZIPSHA1URL = "www.toms-world.org/download/SimpleQR.zip.sha1"
     Private Const programFileNameInZIP As String = "SimpleQR.exe"
-
     Private Const programUpdateCheckerXMLFile As String = "www.toms-world.org/updates/simpleqr_update.xml"
-
     Private boolWinXP As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
