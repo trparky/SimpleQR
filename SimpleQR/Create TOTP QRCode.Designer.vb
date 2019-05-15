@@ -225,6 +225,8 @@ Partial Class Create_TOTP_QRCode
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtServiceName)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "Create_TOTP_QRCode"
         Me.Text = "Create TOTP QRCode"
         Me.ResumeLayout(False)
