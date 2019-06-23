@@ -116,6 +116,7 @@
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="HTTPHelper.vb" />
     <Compile Include="Module1.vb" />
+    <Compile Include="NativeMethod.vb" />
     <Compile Include="ScreenSnipper.vb">
       <SubType>Form</SubType>
     </Compile>
