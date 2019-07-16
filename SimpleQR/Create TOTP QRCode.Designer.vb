@@ -91,11 +91,12 @@ Partial Class Create_TOTP_QRCode
         '
         'txtSecret
         '
-        Me.txtSecret.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.txtSecret.ForeColor = System.Drawing.Color.Gray
         Me.txtSecret.Location = New System.Drawing.Point(95, 145)
         Me.txtSecret.Name = "txtSecret"
         Me.txtSecret.Size = New System.Drawing.Size(215, 20)
         Me.txtSecret.TabIndex = 9
+        Me.txtSecret.Text = "Required"
         '
         'Label4
         '

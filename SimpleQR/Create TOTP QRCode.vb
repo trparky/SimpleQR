@@ -68,7 +68,7 @@
     End Sub
 
     Private Sub BtnCreateQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateQRCode.Click
-        If String.IsNullOrWhiteSpace(txtSecret.Text) Then
+        If txtSecret.Text.Equals("Required", StringComparison.OrdinalIgnoreCase) Then
             MsgBox("You must provide a secret, that's what is used to generate the digits required for your authenticator.", MsgBoxStyle.Critical, Me.Text)
             Exit Sub
         End If
@@ -101,5 +101,23 @@
 
     Private Sub RadHOTP_CheckedChanged(sender As Object, e As EventArgs) Handles radHOTP.CheckedChanged
         txtPeriod.Enabled = False
+    End Sub
+
+    Private Sub txtSecret_Click(sender As Object, e As EventArgs) Handles txtSecret.Click
+        If txtSecret.Text.Equals("Required") Then
+            txtSecret.Text = Nothing
+            txtSecret.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtSecret_Leave(sender As Object, e As EventArgs) Handles txtSecret.Leave
+        If String.IsNullOrWhiteSpace(txtSecret.Text) Then
+            txtSecret.Text = "Required"
+            txtSecret.ForeColor = Color.Gray
+        End If
+    End Sub
+
+    Private Sub txtSecret_TextChanged(sender As Object, e As EventArgs) Handles txtSecret.TextChanged
+        If Not txtSecret.Text.Equals("Required") Then txtSecret.ForeColor = Color.Black
     End Sub
 End Class
