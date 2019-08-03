@@ -29,15 +29,15 @@ Module ScreenSnipper
     ''' <summary>This parses the XML updata data and determines if an update is needed.</summary>
     ''' <param name="xmlData">The XML data from the web site.</param>
     ''' <returns>A Boolean value indicating if the program has been updated or not.</returns>
-    Public Function processUpdateXMLData(ByVal xmlData As String) As Boolean
+    Public Function processUpdateXMLData(ByVal xmlData As String, ByRef remoteVersion As String, ByRef remoteBuild As String) As Boolean
         Try
             Dim xmlDocument As New XmlDocument() ' First we create an XML Document Object.
             xmlDocument.Load(New IO.StringReader(xmlData)) ' Now we try and parse the XML data.
 
             Dim xmlNode As XmlNode = xmlDocument.SelectSingleNode("/xmlroot")
 
-            Dim remoteVersion As String = xmlNode.SelectSingleNode("version").InnerText.Trim
-            Dim remoteBuild As String = xmlNode.SelectSingleNode("build").InnerText.Trim
+            remoteVersion = xmlNode.SelectSingleNode("version").InnerText.Trim
+            remoteBuild = xmlNode.SelectSingleNode("build").InnerText.Trim
             Dim shortRemoteBuild As Short
 
             ' This checks to see if current version and the current build matches that of the remote values in the XML document.

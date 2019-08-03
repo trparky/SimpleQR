@@ -275,16 +275,22 @@ Public Class Form1
                 Dim majorVersion As Short = Short.Parse(version(0))
                 Dim minorVersion As Short = Short.Parse(version(1))
                 Dim buildVersion As Short = Short.Parse(version(2))
+                Dim remoteVersion As String = Nothing
+                Dim remoteBuild As String = Nothing
 
                 Dim httpHelper As httpHelper = createNewHTTPHelperObject()
 
                 Dim xmlData As String = Nothing
 
                 If httpHelper.getWebData(programUpdateCheckerXMLFile, xmlData, False) = True Then
-                    If processUpdateXMLData(xmlData) Then
-                        createPleaseWaitWindow("Downloading update... Please Wait.")
-                        downloadAndPerformUpdate()
-                        openPleaseWaitWindow()
+                    If processUpdateXMLData(xmlData, remoteVersion, remoteBuild) Then
+                        If MsgBox("Are you sure you want to download the newest version of " & Me.Text & "?" & vbCrLf & vbCrLf & "The new version is " & remoteVersion & " Build " & remoteBuild & ".", MsgBoxStyle.Question + vbYesNo, Me.Text) = MsgBoxResult.Yes Then
+                            createPleaseWaitWindow("Downloading update... Please Wait.")
+                            downloadAndPerformUpdate()
+                            openPleaseWaitWindow()
+                        Else
+                            MsgBox("You have chosen not to update to the newest version.", MsgBoxStyle.Information, Me.Text)
+                        End If
                     Else
                         MsgBox("You already have the latest version.", MsgBoxStyle.Information, Me.Text)
                     End If
