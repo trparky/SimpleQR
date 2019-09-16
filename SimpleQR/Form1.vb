@@ -9,8 +9,6 @@ Public Class Form1
     Private boolWinXP As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Control.CheckForIllegalCrossThreadCalls = False
-
         If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
                                                                  searchForProcessAndKillIt(Application.ExecutablePath & ".new.exe", False)
@@ -264,7 +262,7 @@ Public Class Form1
     End Function
 
     Sub userInitiatedCheckForUpdates()
-        btnCheckForUpdates.Enabled = False
+        Invoke(Sub() btnCheckForUpdates.Enabled = False)
 
         If Not checkForInternetConnection() Then
             MsgBox("No Internet connection detected.", MsgBoxStyle.Information, Me.Text)
@@ -295,13 +293,13 @@ Public Class Form1
                         MsgBox("You already have the latest version.", MsgBoxStyle.Information, Me.Text)
                     End If
                 Else
-                    btnCheckForUpdates.Enabled = True
+                    Invoke(Sub() btnCheckForUpdates.Enabled = True)
                     MsgBox("There was an error checking for updates.", MsgBoxStyle.Information, Me.Text)
                 End If
             Catch ex As Exception
                 ' Ok, we crashed but who cares.  We give an error message.
             Finally
-                btnCheckForUpdates.Enabled = True
+                Invoke(Sub() btnCheckForUpdates.Enabled = True)
             End Try
         End If
     End Sub
