@@ -31,11 +31,13 @@ Public Class Form1
     Sub generateQRCodeImage(text As String)
         Try
             Dim writer As New ZXing.BarcodeWriter
-            writer.Options.Width = 500
-            writer.Options.Height = 500
-            writer.Options.PureBarcode = True
-            writer.Options.Margin = 0
-            writer.Format = ZXing.BarcodeFormat.QR_CODE
+            With writer
+                .Options.Width = 500
+                .Options.Height = 500
+                .Options.PureBarcode = True
+                .Options.Margin = 0
+                .Format = ZXing.BarcodeFormat.QR_CODE
+            End With
             qrCodeImage.Image = ResizeImage(writer.Write(text), 200, 200)
         Catch ex As ZXing.WriterException
             MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, Me.Text)
@@ -44,7 +46,6 @@ Public Class Form1
 
     Public Overloads Shared Function ResizeImage(SourceImage As Image, TargetWidth As Int32, TargetHeight As Int32) As Bitmap
         Dim bmSource = New Bitmap(SourceImage)
-
         Return ResizeImage(bmSource, TargetWidth, TargetHeight)
     End Function
 
@@ -105,10 +106,12 @@ Public Class Form1
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        SaveFileDialog1.Title = "Save QRCode Image to File"
-        SaveFileDialog1.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
-        SaveFileDialog1.FileName = ""
-        SaveFileDialog1.OverwritePrompt = True
+        With SaveFileDialog1
+            .Title = "Save QRCode Image to File"
+            .Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
+            .FileName = ""
+            .OverwritePrompt = True
+        End With
 
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
             Dim fileFormat As Imaging.ImageFormat
@@ -129,12 +132,14 @@ Public Class Form1
             End If
 
             Dim writer As New ZXing.BarcodeWriter
-            writer.Options.PureBarcode = True
-            writer.Options.Margin = 0
-            writer.Options.Width = 500
-            writer.Options.Height = 500
-            writer.Format = ZXing.BarcodeFormat.QR_CODE
-            writer.Write(txtTextToEncode.Text).Save(SaveFileDialog1.FileName, fileFormat)
+            With writer
+                .Options.PureBarcode = True
+                .Options.Margin = 0
+                .Options.Width = 500
+                .Options.Height = 500
+                .Format = ZXing.BarcodeFormat.QR_CODE
+                .Write(txtTextToEncode.Text).Save(SaveFileDialog1.FileName, fileFormat)
+            End With
             MsgBox("Image Saved.", MsgBoxStyle.Information, "Image Saved")
         End If
     End Sub
@@ -317,12 +322,14 @@ Public Class Form1
     Private Sub createPleaseWaitWindow(message As String, Optional ByVal openDialog As Boolean = False)
         Try
             frmPleaseWait = New Please_Wait With {.StartPosition = FormStartPosition.CenterParent}
-            frmPleaseWait.lblLabel.Text = message
-            frmPleaseWait.lblLabelText = message
-            frmPleaseWait.Icon = Me.Icon
-            frmPleaseWait.TopMost = True
+            With frmPleaseWait
+                .lblLabel.Text = message
+                .lblLabelText = message
+                .Icon = Me.Icon
+                .TopMost = True
+            End With
 
-            If openDialog = True Then
+            If openDialog Then
                 pleaseWaitWindowThread = New Threading.Thread(AddressOf openPleaseWaitWindow)
                 pleaseWaitWindowThread.Start()
             End If
@@ -334,42 +341,50 @@ Public Class Form1
         Dim version() As String = Application.ProductVersion.Split(".".ToCharArray) ' Gets the program version
         Dim stringBuilder As New StringBuilder
 
-        stringBuilder.AppendLine(Me.Text)
-        stringBuilder.AppendLine("Written By Tom Parkison")
-        stringBuilder.AppendLine("Copyright Thomas Parkison 2012-2015.")
-        stringBuilder.AppendLine()
-        stringBuilder.AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
+        With stringBuilder
+            .AppendLine(Me.Text)
+            .AppendLine("Written By Tom Parkison")
+            .AppendLine("Copyright Thomas Parkison 2012-2015.")
+            .AppendLine()
+            .AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
+        End With
 
         MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, "About")
     End Sub
 
     Private Sub btnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
-        OpenFileDialog1.Title = "Open QRCode Image to File"
-        OpenFileDialog1.Filter = "All Supported Image Formats|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.wmf|PNG Image|*.png|JPEG Image|*.jpg;*.jpeg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
-        OpenFileDialog1.FileName = ""
+        With OpenFileDialog1
+            .Title = "Open QRCode Image to File"
+            .Filter = "All Supported Image Formats|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.wmf|PNG Image|*.png|JPEG Image|*.jpg;*.jpeg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
+            .FileName = ""
+        End With
 
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             Dim decoder As New ZXing.BarcodeReader
-            decoder.Options.TryHarder = True
-            decoder.Options.UseCode39ExtendedMode = True
-            decoder.Options.UseCode39RelaxedExtendedMode = True
-            decoder.Options.PureBarcode = True
-            decoder.TryInverted = True
-            decoder.AutoRotate = True
+
+            With decoder
+                .Options.TryHarder = True
+                .Options.UseCode39ExtendedMode = True
+                .Options.UseCode39RelaxedExtendedMode = True
+                .Options.PureBarcode = True
+                .TryInverted = True
+                .AutoRotate = True
+            End With
 
             Dim bitMap As New Bitmap(OpenFileDialog1.FileName)
 
             If bitMap IsNot Nothing Then
                 Dim result As ZXing.Result = decoder.Decode(bitMap)
-
                 qrCodeImage.Image = bitMap
 
                 If result Is Nothing Then
                     MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
                 Else
                     Dim results As New frmDecoded With {.Icon = Me.Icon}
-                    results.txtResults.Text = result.Text
-                    results.StartPosition = FormStartPosition.CenterParent
+                    With results
+                        .txtResults.Text = result.Text
+                        .StartPosition = FormStartPosition.CenterParent
+                    End With
                     results.ShowDialog()
                 End If
 
@@ -404,9 +419,11 @@ Public Class Form1
         Dim imgScreenShot As Image = SnippingTool.Snip()
 
         Dim decoder As New ZXing.BarcodeReader
-        decoder.Options.TryHarder = True
-        decoder.TryInverted = True
-        decoder.AutoRotate = True
+        With decoder
+            .Options.TryHarder = True
+            .TryInverted = True
+            .AutoRotate = True
+        End With
 
         If imgScreenShot IsNot Nothing Then
             Dim result As ZXing.Result = decoder.Decode(imgScreenShot)
@@ -415,8 +432,10 @@ Public Class Form1
                 MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
             Else
                 Dim results As New frmDecoded With {.Icon = Me.Icon}
-                results.txtResults.Text = result.Text
-                results.StartPosition = FormStartPosition.CenterParent
+                With results
+                    .txtResults.Text = result.Text
+                    .StartPosition = FormStartPosition.CenterParent
+                End With
                 results.ShowDialog()
             End If
 
