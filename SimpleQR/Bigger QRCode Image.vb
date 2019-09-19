@@ -4,12 +4,14 @@
     Sub generateImage()
         Try
             Dim writer As New ZXing.BarcodeWriter
-            writer.Options.Width = qrCodeImage.Size.Width
-            writer.Options.Height = qrCodeImage.Size.Height
-            writer.Options.PureBarcode = True
-            writer.Options.Margin = 0
-            writer.Format = ZXing.BarcodeFormat.QR_CODE
-            qrCodeImage.Image = writer.Write(textToEncode)
+            With writer
+                .Options.Width = qrCodeImage.Size.Width
+                .Options.Height = qrCodeImage.Size.Height
+                .Options.PureBarcode = True
+                .Options.Margin = 0
+                .Format = ZXing.BarcodeFormat.QR_CODE
+                qrCodeImage.Image = .Write(textToEncode)
+            End With
         Catch ex As ArgumentException
         Catch ex As Exception
         End Try
