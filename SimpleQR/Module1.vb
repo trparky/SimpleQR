@@ -211,27 +211,21 @@ Module ScreenSnipper
 
     Public Function createNewHTTPHelperObject() As httpHelper
         Dim httpHelper As New httpHelper With {.setUserAgent = createHTTPUserAgentHeaderString()}
-        httpHelper.addHTTPHeader("OPERATING_SYSTEM", getFullOSVersionString())
-        httpHelper.useHTTPCompression = True
-        httpHelper.setProxyMode = True
-        httpHelper.setHTTPTimeout = 60
+        With httpHelper
+            .addHTTPHeader("OPERATING_SYSTEM", getFullOSVersionString())
+            .useHTTPCompression = True
+            .setProxyMode = True
+            .setHTTPTimeout = 60
+        End With
 
         httpHelper.setURLPreProcessor = Function(ByVal strURLInput As String) As String
                                             Try
-                                                If Not strURLInput.Trim.ToLower.StartsWith("http") Then
-                                                    If My.Settings.useSSL Then
-                                                        Debug.WriteLine("The setURLPreProcessor code transformed """ & strURLInput & """ to ""https://" & strURLInput & """.")
-                                                        Return "https://" & strURLInput
-                                                    Else
-                                                        Debug.WriteLine("The setURLPreProcessor code transformed """ & strURLInput & """ to ""http://" & strURLInput & """.")
-                                                        Return "http://" & strURLInput
-                                                    End If
+                                                If Not strURLInput.Trim.StartsWith("http", StringComparison.OrdinalIgnoreCase) Then
+                                                    Return If(My.Settings.useSSL, "https://", "http://") & strURLInput
                                                 Else
-                                                    Debug.WriteLine("The setURLPreProcessor code didn't have to do anything to the input """ & strURLInput & """.")
                                                     Return strURLInput
                                                 End If
                                             Catch ex As Exception
-                                                Debug.WriteLine("The setURLPreProcessor code errored out with an input of """ & strURLInput & """.")
                                                 Return strURLInput
                                             End Try
                                         End Function
