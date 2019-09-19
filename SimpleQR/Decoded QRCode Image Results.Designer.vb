@@ -46,13 +46,13 @@ Partial Class frmDecoded
         Me.txtResults.Name = "txtResults"
         Me.txtResults.ReadOnly = True
         Me.txtResults.BackColor = System.Drawing.SystemColors.Window
-        Me.txtResults.Size = New System.Drawing.Size(432, 74)
+        Me.txtResults.Size = New System.Drawing.Size(443, 74)
         Me.txtResults.TabIndex = 1
         '
         'btnClipboard
         '
         Me.btnClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClipboard.Location = New System.Drawing.Point(15, 105)
+        Me.btnClipboard.Location = New System.Drawing.Point(12, 106)
         Me.btnClipboard.Name = "btnClipboard"
         Me.btnClipboard.Size = New System.Drawing.Size(204, 23)
         Me.btnClipboard.TabIndex = 2
@@ -63,7 +63,7 @@ Partial Class frmDecoded
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(459, 135)
+        Me.ClientSize = New System.Drawing.Size(467, 141)
         Me.Controls.Add(Me.btnClipboard)
         Me.Controls.Add(Me.txtResults)
         Me.Controls.Add(Me.Label1)
