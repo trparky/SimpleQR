@@ -45,20 +45,20 @@ Public Class Form1
     End Sub
 
     Public Overloads Shared Function ResizeImage(SourceImage As Image, TargetWidth As Int32, TargetHeight As Int32) As Bitmap
-        Dim bmSource = New Bitmap(SourceImage)
+        Dim bmSource As New Bitmap(SourceImage)
         Return ResizeImage(bmSource, TargetWidth, TargetHeight)
     End Function
 
     Public Overloads Shared Function ResizeImage(bmSource As Bitmap, TargetWidth As Int32, TargetHeight As Int32) As Bitmap
         Dim bmDest As New Bitmap(TargetWidth, TargetHeight, Imaging.PixelFormat.Format32bppArgb)
 
-        Dim nSourceAspectRatio = bmSource.Width / bmSource.Height
-        Dim nDestAspectRatio = bmDest.Width / bmDest.Height
+        Dim nSourceAspectRatio As Integer = bmSource.Width / bmSource.Height
+        Dim nDestAspectRatio As Integer = bmDest.Width / bmDest.Height
 
-        Dim NewX = 0
-        Dim NewY = 0
-        Dim NewWidth = bmDest.Width
-        Dim NewHeight = bmDest.Height
+        Dim NewX As Integer = 0
+        Dim NewY As Integer = 0
+        Dim NewWidth As Integer = bmDest.Width
+        Dim NewHeight As Integer = bmDest.Height
 
         If nDestAspectRatio = nSourceAspectRatio Then
             'same ratio
