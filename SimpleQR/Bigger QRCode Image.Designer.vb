@@ -33,7 +33,7 @@ Partial Class bigImage
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.qrCodeImage.Location = New System.Drawing.Point(12, 12)
         Me.qrCodeImage.Name = "qrCodeImage"
-        Me.qrCodeImage.Size = New System.Drawing.Size(384, 361)
+        Me.qrCodeImage.Size = New System.Drawing.Size(392, 367)
         Me.qrCodeImage.TabIndex = 1
         Me.qrCodeImage.TabStop = False
         '
@@ -41,7 +41,7 @@ Partial Class bigImage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(408, 385)
+        Me.ClientSize = New System.Drawing.Size(416, 391)
         Me.Controls.Add(Me.qrCodeImage)
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(424, 424)
