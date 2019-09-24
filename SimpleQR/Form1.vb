@@ -469,4 +469,23 @@ Public Class Form1
             txtTextToEncode.Text = strQRCodeData
         End If
     End Sub
+
+    Private Sub BtnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
+        Dim createWiFiInstance As New Create_WiFi_QRCode With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
+        createWiFiInstance.ShowDialog()
+
+        If createWiFiInstance.boolCreateQRCode Then
+            Dim strQRCodeData As String = Nothing
+
+            If createWiFiInstance.netType = Create_WiFi_QRCode.networkType.open Then
+                strQRCodeData = String.Format("NONE WIFI:S:{0};T:nopass;P:;;", createWiFiInstance.strSSID)
+            ElseIf createWiFiInstance.netType = Create_WiFi_QRCode.networkType.wep Then
+                strQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", createWiFiInstance.strSSID, createWiFiInstance.strNetworkPassword)
+            ElseIf createWiFiInstance.netType = Create_WiFi_QRCode.networkType.wpa Then
+                strQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", createWiFiInstance.strSSID, createWiFiInstance.strNetworkPassword)
+            End If
+
+            txtTextToEncode.Text = strQRCodeData
+        End If
+    End Sub
 End Class
