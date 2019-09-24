@@ -444,7 +444,7 @@ Public Class Form1
     End Sub
 
     Private Sub BtnCreateTOTP_Click(sender As Object, e As EventArgs) Handles btnCreateTOTP.Click
-        Dim createTOTPInstance As New Create_TOTP_QRCode With {.StartPosition = FormStartPosition.CenterParent}
+        Dim createTOTPInstance As New Create_TOTP_QRCode With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
         createTOTPInstance.ShowDialog()
 
         If createTOTPInstance.boolCreateQRCode Then
