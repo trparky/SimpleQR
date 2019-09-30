@@ -75,12 +75,15 @@ Partial Class QRCode_Builder
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(3, 88)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(326, 239)
+        Me.TabControl1.Size = New System.Drawing.Size(326, 171)
         Me.TabControl1.TabIndex = 5
         '
         'TabPage1
@@ -97,7 +100,7 @@ Partial Class QRCode_Builder
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(318, 213)
+        Me.TabPage1.Size = New System.Drawing.Size(318, 145)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "WiFi"
         '
@@ -109,10 +112,10 @@ Partial Class QRCode_Builder
         Me.txtNetworkPassword.Size = New System.Drawing.Size(294, 20)
         Me.txtNetworkPassword.TabIndex = 17
         '
-        'btnCreateQRCode
+        'btnCreateWiFiQRCode
         '
         Me.btnCreateWiFiQRCode.Location = New System.Drawing.Point(8, 117)
-        Me.btnCreateWiFiQRCode.Name = "btnCreateQRCode"
+        Me.btnCreateWiFiQRCode.Name = "btnCreateWiFiQRCode"
         Me.btnCreateWiFiQRCode.Size = New System.Drawing.Size(296, 23)
         Me.btnCreateWiFiQRCode.TabIndex = 16
         Me.btnCreateWiFiQRCode.Text = "Create WiFi QRCode"
@@ -196,7 +199,7 @@ Partial Class QRCode_Builder
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(318, 213)
+        Me.TabPage2.Size = New System.Drawing.Size(318, 145)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TOTP"
         '
@@ -343,7 +346,7 @@ Partial Class QRCode_Builder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(329, 334)
+        Me.ClientSize = New System.Drawing.Size(329, 266)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.line)
         Me.Controls.Add(Me.Label5)

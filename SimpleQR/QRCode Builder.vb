@@ -1,8 +1,4 @@
 ﻿Public Class QRCode_Builder
-    Private Sub QRCode_Builder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
     Public Property boolCreateQRCode As Boolean = False
     Public Property strQRCodeData As String
 
@@ -157,14 +153,14 @@
         Dim nettype As networkType
 
         If radioNone.Checked Then
-            netType = networkType.open
+            nettype = networkType.open
         ElseIf radioWEP.Checked Then
-            netType = networkType.wep
+            nettype = networkType.wep
         ElseIf radioWPA.Checked Then
-            netType = networkType.wpa
+            nettype = networkType.wpa
         End If
 
-        If String.IsNullOrWhiteSpace(txtNetworkPassword.Text) And (netType = networkType.wep Or netType = networkType.wpa) Then
+        If String.IsNullOrWhiteSpace(txtNetworkPassword.Text) And (nettype = networkType.wep Or nettype = networkType.wpa) Then
             MsgBox("You must provide a network password if you choose either WEP or WPA/WPA2.", MsgBoxStyle.Critical, Me.Text)
             Exit Sub
         End If
@@ -182,5 +178,13 @@
 
         Me.Close()
         boolCreateQRCode = True
+    End Sub
+
+    Private Sub TabControl1_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles TabControl1.Selecting
+        If e.TabPageIndex = 0 Then
+            Size = New Size(335, 297)
+        ElseIf e.TabPageIndex = 1 Then
+            Size = New Size(335, 365)
+        End If
     End Sub
 End Class
