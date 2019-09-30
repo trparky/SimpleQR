@@ -37,8 +37,7 @@ Partial Class Form1
         Me.btnShowBigger = New System.Windows.Forms.Button()
         Me.chkUseSSL = New System.Windows.Forms.CheckBox()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
-        Me.btnCreateTOTP = New System.Windows.Forms.Button()
-        Me.btnCreateWiFiQRCode = New System.Windows.Forms.Button()
+        Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -51,7 +50,7 @@ Partial Class Form1
         Me.txtTextToEncode.MaxLength = 2950
         Me.txtTextToEncode.Multiline = True
         Me.txtTextToEncode.Name = "txtTextToEncode"
-        Me.txtTextToEncode.Size = New System.Drawing.Size(633, 56)
+        Me.txtTextToEncode.Size = New System.Drawing.Size(503, 56)
         Me.txtTextToEncode.TabIndex = 2
         '
         'Label1
@@ -67,7 +66,7 @@ Partial Class Form1
         '
         Me.lblLength.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblLength.AutoSize = True
-        Me.lblLength.Location = New System.Drawing.Point(563, 74)
+        Me.lblLength.Location = New System.Drawing.Point(433, 74)
         Me.lblLength.Name = "lblLength"
         Me.lblLength.Size = New System.Drawing.Size(52, 13)
         Me.lblLength.TabIndex = 5
@@ -182,32 +181,21 @@ Partial Class Form1
         Me.btnDecodeFromScreenShot.Text = "Decode from Screen Shot"
         Me.btnDecodeFromScreenShot.UseVisualStyleBackColor = True
         '
-        'btnCreateTOTP
+        'btnQRCodeBuilder
         '
-        Me.btnCreateTOTP.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnCreateTOTP.Location = New System.Drawing.Point(419, 300)
-        Me.btnCreateTOTP.Name = "btnCreateTOTP"
-        Me.btnCreateTOTP.Size = New System.Drawing.Size(126, 23)
-        Me.btnCreateTOTP.TabIndex = 14
-        Me.btnCreateTOTP.Text = "Create TOTP QRCode"
-        Me.btnCreateTOTP.UseVisualStyleBackColor = True
-        '
-        'btnCreateWiFiQRCode
-        '
-        Me.btnCreateWiFiQRCode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnCreateWiFiQRCode.Location = New System.Drawing.Point(524, 271)
-        Me.btnCreateWiFiQRCode.Name = "btnCreateWiFiQRCode"
-        Me.btnCreateWiFiQRCode.Size = New System.Drawing.Size(121, 23)
-        Me.btnCreateWiFiQRCode.TabIndex = 15
-        Me.btnCreateWiFiQRCode.Text = "Create WiFi QRCode"
-        Me.btnCreateWiFiQRCode.UseVisualStyleBackColor = True
+        Me.btnQRCodeBuilder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(419, 300)
+        Me.btnQRCodeBuilder.Name = "btnQRCodeBuilder"
+        Me.btnQRCodeBuilder.Size = New System.Drawing.Size(99, 23)
+        Me.btnQRCodeBuilder.TabIndex = 16
+        Me.btnQRCodeBuilder.Text = "QRCode Builder"
+        Me.btnQRCodeBuilder.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(657, 365)
-        Me.Controls.Add(Me.btnCreateTOTP)
+        Me.ClientSize = New System.Drawing.Size(527, 365)
         Me.Controls.Add(Me.btnDecodeFromScreenShot)
         Me.Controls.Add(Me.chkUseSSL)
         Me.Controls.Add(Me.btnShowBigger)
@@ -220,10 +208,10 @@ Partial Class Form1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtTextToEncode)
         Me.Controls.Add(Me.qrCodeImage)
-        Me.Controls.Add(Me.btnCreateWiFiQRCode)
+        Me.Controls.Add(Me.btnQRCodeBuilder)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MinimumSize = New System.Drawing.Size(665, 398)
+        Me.MinimumSize = New System.Drawing.Size(535, 398)
         Me.Name = "Form1"
         Me.Text = "SimpleQR"
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).EndInit()
@@ -245,6 +233,5 @@ Partial Class Form1
     Friend WithEvents btnShowBigger As Button
     Friend WithEvents chkUseSSL As CheckBox
     Friend WithEvents btnDecodeFromScreenShot As Button
-    Friend WithEvents btnCreateTOTP As Button
-    Friend WithEvents btnCreateWiFiQRCode As Button
+    Friend WithEvents btnQRCodeBuilder As Button
 End Class

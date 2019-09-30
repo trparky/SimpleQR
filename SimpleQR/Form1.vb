@@ -443,49 +443,9 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub BtnCreateTOTP_Click(sender As Object, e As EventArgs) Handles btnCreateTOTP.Click
-        Dim createTOTPInstance As New Create_TOTP_QRCode With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
-        createTOTPInstance.ShowDialog()
-
-        If createTOTPInstance.boolCreateQRCode Then
-            Dim strQRCodeData As String
-
-            If createTOTPInstance.type = Create_TOTP_QRCode.authType.hotp Then
-                strQRCodeData = String.Concat("otpauth://hotp/", createTOTPInstance.serviceName)
-            Else
-                strQRCodeData = String.Concat("otpauth://totp/", createTOTPInstance.serviceName)
-            End If
-
-            If Not String.IsNullOrWhiteSpace(createTOTPInstance.accountName) Then strQRCodeData = String.Concat(strQRCodeData, ":", createTOTPInstance.accountName)
-            strQRCodeData = String.Concat(strQRCodeData, "?secret=", createTOTPInstance.secret)
-            If Not String.IsNullOrWhiteSpace(createTOTPInstance.issuer) Then strQRCodeData = String.Concat(strQRCodeData, "&issuer=", createTOTPInstance.issuer)
-
-            If createTOTPInstance.type = Create_TOTP_QRCode.authType.totp And createTOTPInstance.period <> 30 Then
-                strQRCodeData = String.Concat(strQRCodeData, "&period=", createTOTPInstance.period.ToString)
-            End If
-
-            If createTOTPInstance.digits <> 6 Then strQRCodeData = String.Concat(strQRCodeData, "&digits=", createTOTPInstance.digits.ToString)
-
-            txtTextToEncode.Text = strQRCodeData
-        End If
-    End Sub
-
-    Private Sub BtnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
-        Dim createWiFiInstance As New Create_WiFi_QRCode With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
-        createWiFiInstance.ShowDialog()
-
-        If createWiFiInstance.boolCreateQRCode Then
-            Dim strQRCodeData As String = Nothing
-
-            If createWiFiInstance.netType = Create_WiFi_QRCode.networkType.open Then
-                strQRCodeData = String.Format("NONE WIFI:S:{0};T:nopass;P:;;", createWiFiInstance.strSSID)
-            ElseIf createWiFiInstance.netType = Create_WiFi_QRCode.networkType.wep Then
-                strQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", createWiFiInstance.strSSID, createWiFiInstance.strNetworkPassword)
-            ElseIf createWiFiInstance.netType = Create_WiFi_QRCode.networkType.wpa Then
-                strQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", createWiFiInstance.strSSID, createWiFiInstance.strNetworkPassword)
-            End If
-
-            txtTextToEncode.Text = strQRCodeData
-        End If
+    Private Sub btnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
+        Dim QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
+        QRCodeBuilderInstance.ShowDialog()
+        If QRCodeBuilderInstance.boolCreateQRCode Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
     End Sub
 End Class

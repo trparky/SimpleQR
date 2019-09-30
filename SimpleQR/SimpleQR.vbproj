@@ -94,18 +94,6 @@
     <Compile Include="Bigger QRCode Image.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Create TOTP QRCode.Designer.vb">
-      <DependentUpon>Create TOTP QRCode.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Create TOTP QRCode.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Create WiFi QRCode.Designer.vb">
-      <DependentUpon>Create WiFi QRCode.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Create WiFi QRCode.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Decoded QRCode Image Results.Designer.vb">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
     </Compile>
@@ -123,6 +111,12 @@
     <Compile Include="HTTPHelper.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="NativeMethod.vb" />
+    <Compile Include="QRCode Builder.Designer.vb">
+      <DependentUpon>QRCode Builder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="QRCode Builder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ScreenSnipper.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -165,17 +159,14 @@
     <EmbeddedResource Include="Bigger QRCode Image.resx">
       <DependentUpon>Bigger QRCode Image.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Create TOTP QRCode.resx">
-      <DependentUpon>Create TOTP QRCode.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Create WiFi QRCode.resx">
-      <DependentUpon>Create WiFi QRCode.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Decoded QRCode Image Results.resx">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QRCode Builder.resx">
+      <DependentUpon>QRCode Builder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScreenSnipper.resx">
       <DependentUpon>ScreenSnipper.vb</DependentUpon>
