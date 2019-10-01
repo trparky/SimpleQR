@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /simpleqr_update.xml.lnk
+/SimpleQR/My Project/AssemblyInfo.vb
