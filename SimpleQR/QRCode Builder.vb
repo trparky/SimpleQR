@@ -169,7 +169,7 @@
         Dim strNetworkPassword As String = txtNetworkPassword.Text.Trim
 
         If nettype = networkType.open Then
-            strQRCodeData = String.Format("NONE WIFI:S:{0};T:nopass;P:;;", strSSID)
+            strQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", strSSID)
         ElseIf nettype = networkType.wep Then
             strQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", strSSID, strNetworkPassword)
         ElseIf nettype = networkType.wpa Then
