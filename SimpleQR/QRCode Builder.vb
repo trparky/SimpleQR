@@ -1,6 +1,5 @@
 ﻿Public Class QRCode_Builder
-    Public Property boolCreateQRCode As Boolean = False
-    Public Property strQRCodeData As String
+    Public Property strQRCodeData As String = Nothing
 
     Private Sub txtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
@@ -124,7 +123,6 @@
         If digits <> 6 Then strQRCodeData = String.Concat(strQRCodeData, "&digits=", digits.ToString)
 
         Me.Close()
-        boolCreateQRCode = True
     End Sub
 
     Private Sub btnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
@@ -142,7 +140,6 @@
         End If
 
         Me.Close()
-        boolCreateQRCode = True
     End Sub
 
     Private Sub TabControl1_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles TabControl1.Selecting
