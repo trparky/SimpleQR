@@ -2,11 +2,6 @@
     Public Property boolCreateQRCode As Boolean = False
     Public Property strQRCodeData As String
 
-    Enum authType As Short
-        totp = 0
-        hotp = 1
-    End Enum
-
     Private Sub txtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
             txtServiceName.Text = Nothing
@@ -110,37 +105,26 @@
         If txtIssuer.Text.Equals("ex: Microsoft") Then txtIssuer.Text = Nothing
         If txtAccountName.Text.Equals("ex: someone@somedomain.com") Then txtAccountName.Text = Nothing
 
-        Dim serviceName As String = txtServiceName.Text.Trim
-        Dim accountName As String = txtAccountName.Text.Trim
-        Dim secret As String = txtSecret.Text.Trim
-        Dim issuer As String = txtIssuer.Text.Trim
-        Dim type As authType
         Dim period, digits As Short
-
-        If radTOTP.Checked Then
-            type = authType.totp
-        Else
-            type = authType.hotp
-        End If
 
         If Not Short.TryParse(txtPeriod.Text, period) Then MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
         If Not Short.TryParse(txtDigits.Text, digits) Then MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
 
-        Me.Close()
-        boolCreateQRCode = True
-
         strQRCodeData = "otpauth://"
-        strQRCodeData &= If(type = authType.hotp, "hotp", "totp") & "/" & serviceName
+        strQRCodeData &= If(radHOTP.Checked, "hotp", "totp") & "/" & txtServiceName.Text.Trim
 
-        If Not String.IsNullOrWhiteSpace(accountName) Then strQRCodeData = String.Concat(strQRCodeData, ":", accountName)
-        strQRCodeData = String.Concat(strQRCodeData, "?secret=", secret)
-        If Not String.IsNullOrWhiteSpace(issuer) Then strQRCodeData = String.Concat(strQRCodeData, "&issuer=", issuer)
+        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then strQRCodeData = String.Concat(strQRCodeData, ":", txtAccountName.Text.Trim)
+        strQRCodeData = String.Concat(strQRCodeData, "?secret=", txtSecret.Text.Trim)
+        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then strQRCodeData = String.Concat(strQRCodeData, "&issuer=", txtIssuer.Text.Trim)
 
-        If type = authType.totp And period <> 30 Then
+        If radTOTP.Checked And period <> 30 Then
             strQRCodeData = String.Concat(strQRCodeData, "&period=", period.ToString)
         End If
 
         If digits <> 6 Then strQRCodeData = String.Concat(strQRCodeData, "&digits=", digits.ToString)
+
+        Me.Close()
+        boolCreateQRCode = True
     End Sub
 
     Private Sub btnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
