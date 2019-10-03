@@ -7,12 +7,6 @@
         hotp = 1
     End Enum
 
-    Enum networkType As Short
-        open = 0
-        wep = 1
-        wpa = 2
-    End Enum
-
     Private Sub txtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
             txtServiceName.Text = Nothing
@@ -150,30 +144,17 @@
     End Sub
 
     Private Sub btnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
-        Dim nettype As networkType
-
-        If radioNone.Checked Then
-            nettype = networkType.open
-        ElseIf radioWEP.Checked Then
-            nettype = networkType.wep
-        ElseIf radioWPA.Checked Then
-            nettype = networkType.wpa
-        End If
-
-        If String.IsNullOrWhiteSpace(txtNetworkPassword.Text) And (nettype = networkType.wep Or nettype = networkType.wpa) Then
+        If String.IsNullOrWhiteSpace(txtNetworkPassword.Text) And (radioWEP.Checked Or radioWPA.Checked) Then
             MsgBox("You must provide a network password if you choose either WEP or WPA/WPA2.", MsgBoxStyle.Critical, Me.Text)
             Exit Sub
         End If
 
-        Dim strSSID As String = txtSSID.Text.Trim
-        Dim strNetworkPassword As String = txtNetworkPassword.Text.Trim
-
-        If nettype = networkType.open Then
-            strQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", strSSID)
-        ElseIf nettype = networkType.wep Then
-            strQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", strSSID, strNetworkPassword)
-        ElseIf nettype = networkType.wpa Then
-            strQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", strSSID, strNetworkPassword)
+        If radioNone.Checked Then
+            strQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", txtSSID.Text.Trim)
+        ElseIf radioWEP.Checked Then
+            strQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
+        ElseIf radioWPA.Checked Then
+            strQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
         End If
 
         Me.Close()
