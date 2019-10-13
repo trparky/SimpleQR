@@ -69,12 +69,6 @@ Module ScreenSnipper
                     Return True
                 End If
             End If
-        Catch ex As XPath.XPathException
-            ' Something went wrong so we return a False value.
-            Return False
-        Catch ex As XmlException
-            ' Something went wrong so we return a False value.
-            Return False
         Catch ex As Exception
             ' Something went wrong so we return a False value.
             Return False
