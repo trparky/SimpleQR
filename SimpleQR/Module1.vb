@@ -42,18 +42,32 @@ Module ScreenSnipper
 
             ' This checks to see if current version and the current build matches that of the remote values in the XML document.
             If remoteVersion.Equals(versionStringWithoutBuild) And remoteBuild.Equals(shortBuild.ToString) Then
-                If Short.TryParse(remoteBuild, shortRemoteBuild) And remoteVersion.Equals(versionStringWithoutBuild) Then
-                    If shortRemoteBuild < shortBuild Then
-                        ' This is weird, the remote build is less than the current build. Something went wrong. So to be safe we're going to return a False value indicating that there is no update to download. Better to be safe.
-                        Return False
-                    End If
-                End If
-
-                ' OK, they match so there's no update to download and update to therefore we return a False value.
+                ' Both the remoteVersion and the remoteBuild equals that of the current version,
+                ' therefore we return a False value indicating no update is required.
                 Return False
             Else
-                ' We return a True value indicating that there is a new version to download and install.
-                Return True
+                ' First we do a check of the version, if it's not equal we simply return a True value.
+                If Not remoteVersion.Equals(versionStringWithoutBuild) Then
+                    ' We return a True value indicating that there is a new version to download and install.
+                    Return True
+                Else
+                    ' Now let's do some sanity checks here. 
+                    If Short.TryParse(remoteBuild, shortRemoteBuild) Then
+                        If shortRemoteBuild < shortBuild Then
+                            ' This is weird, the remote build is less than the current build. Something went wrong. So to be safe we're going to return a False value indicating that there is no update to download. Better to be safe.
+                            Return False
+                        ElseIf shortRemoteBuild.Equals(shortBuild) Then
+                            ' The build numbers match, therefore therefore we return a False value.
+                            Return False
+                        End If
+                    Else
+                        ' Something went wrong, we couldn't parse the value of the remoteBuild number so we return a False value.
+                        Return False
+                    End If
+
+                    ' We return a True value indicating that there is a new version to download and install.
+                    Return True
+                End If
             End If
         Catch ex As XPath.XPathException
             ' Something went wrong so we return a False value.
