@@ -285,8 +285,10 @@ Public Class Form1
 
                 Dim xmlData As String = Nothing
 
-                If httpHelper.getWebData(programUpdateCheckerXMLFile, xmlData, False) = True Then
-                    If processUpdateXMLData(xmlData, remoteVersion, remoteBuild) Then
+                If httpHelper.getWebData(programUpdateCheckerXMLFile, xmlData, False) Then
+                    Dim response As processUpdateXMLResponse = processUpdateXMLData(xmlData, remoteVersion, remoteBuild)
+
+                    If response = processUpdateXMLResponse.newVersion Then
                         If MsgBox("Are you sure you want to download the newest version of " & Me.Text & "?" & vbCrLf & vbCrLf & "The new version is " & remoteVersion & " Build " & remoteBuild & ".", MsgBoxStyle.Question + vbYesNo, Me.Text) = MsgBoxResult.Yes Then
                             createPleaseWaitWindow("Downloading update... Please Wait.")
                             downloadAndPerformUpdate()
@@ -294,7 +296,11 @@ Public Class Form1
                         Else
                             MsgBox("You have chosen not to update to the newest version.", MsgBoxStyle.Information, Me.Text)
                         End If
-                    Else
+                    ElseIf response = processUpdateXMLResponse.parseError Or response = processUpdateXMLResponse.exceptionError Then
+                        MsgBox("There was an error when trying to parse response from server.", MsgBoxStyle.Critical, Me.Text)
+                    ElseIf response = processUpdateXMLResponse.newerVersionThanWebSite Then
+                        MsgBox("This is weird, you have a version that's newer than what's listed on the web site.", MsgBoxStyle.Information, Me.Text)
+                    ElseIf response = processUpdateXMLResponse.noUpdateNeeded Then
                         MsgBox("You already have the latest version.", MsgBoxStyle.Information, Me.Text)
                     End If
                 Else
