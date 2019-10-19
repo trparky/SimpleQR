@@ -189,9 +189,10 @@ Public Class Form1
         End If
     End Function
 
-    Private Function SHA160(ByRef memoryStream As IO.MemoryStream) As String
-        Dim Output As Byte() = (New Security.Cryptography.SHA1CryptoServiceProvider).ComputeHash(memoryStream)
-        Return BitConverter.ToString(Output).ToLower().Replace("-", "").Trim
+    Private Shared Function SHA160(ByRef memoryStream As IO.MemoryStream) As String
+        Using SHA1Engine As New Security.Cryptography.SHA1CryptoServiceProvider
+            Return BitConverter.ToString(SHA1Engine.ComputeHash(memoryStream)).ToLower().Replace("-", "").Trim
+        End Using
     End Function
 
     Private Sub downloadAndPerformUpdate()
