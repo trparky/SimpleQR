@@ -16,7 +16,7 @@
         Dim rect As Rectangle = Me.ClientRectangle
 
         ' Calculate area for drawing the progress.
-        rect.Width = rect.Width * percent
+        rect.Width *= percent
 
         ' Draw the progress meter.
         g.FillRectangle(brush, rect)
@@ -104,11 +104,11 @@
 
             ' Use a new value to calculate the rectangle for progress.
             percent = (val - min) / (max - min)
-            newValueRect.Width = newValueRect.Width * percent
+            newValueRect.Width *= percent
 
             ' Use an old value to calculate the rectangle for progress.
             percent = (oldValue - min) / (max - min)
-            oldValueRect.Width = oldValueRect.Width * percent
+            oldValueRect.Width *= percent
 
             Dim updateRect As Rectangle = New Rectangle()
 
