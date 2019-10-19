@@ -451,8 +451,9 @@ Public Class Form1
     End Sub
 
     Private Sub btnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
-        Dim QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
-        QRCodeBuilderInstance.ShowDialog()
-        If Not String.IsNullOrEmpty(QRCodeBuilderInstance.strQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
+        Using QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
+            QRCodeBuilderInstance.ShowDialog()
+            If Not String.IsNullOrEmpty(QRCodeBuilderInstance.strQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
+        End Using
     End Sub
 End Class
