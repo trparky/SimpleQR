@@ -34,10 +34,6 @@ Module Search_for_Process_and_Kill_it
 
     Private Sub searchForProcessAndKillIt(fileName As String)
         Dim fullFileName As String = New FileInfo(fileName).FullName
-        'Dim PID As Integer
-
-        Debug.WriteLine("Killing all processes that belong to parent executable file.  Please Wait.")
-        'Console.WriteLine(String.Format("SELECT * FROM Win32_Process WHERE ExecutablePath = '{0}'", fullFileName.Replace("\", "\\")))
 
         Using searcher As New ManagementObjectSearcher("root\CIMV2", "SELECT * FROM Win32_Process")
             Try
@@ -51,7 +47,6 @@ Module Search_for_Process_and_Kill_it
 
                 Debug.WriteLine("All processes killed... Update process can continue.")
             Catch err As ManagementException
-                ' Does nothing
             End Try
         End Using
     End Sub
