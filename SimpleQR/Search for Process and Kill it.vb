@@ -39,21 +39,21 @@ Module Search_for_Process_and_Kill_it
         Debug.WriteLine("Killing all processes that belong to parent executable file.  Please Wait.")
         'Console.WriteLine(String.Format("SELECT * FROM Win32_Process WHERE ExecutablePath = '{0}'", fullFileName.Replace("\", "\\")))
 
-        Dim searcher As New ManagementObjectSearcher("root\CIMV2", "SELECT * FROM Win32_Process")
-
-        Try
-            For Each queryObj As ManagementObject In searcher.Get()
-                If queryObj("ExecutablePath") IsNot Nothing Then
-                    If queryObj("ExecutablePath") = fullFileName Then
-                        killProcess(Integer.Parse(queryObj("ProcessId").ToString))
+        Using searcher As New ManagementObjectSearcher("root\CIMV2", "SELECT * FROM Win32_Process")
+            Try
+                For Each queryObj As ManagementObject In searcher.Get()
+                    If queryObj("ExecutablePath") IsNot Nothing Then
+                        If queryObj("ExecutablePath") = fullFileName Then
+                            killProcess(Integer.Parse(queryObj("ProcessId").ToString))
+                        End If
                     End If
-                End If
-            Next
+                Next
 
-            Debug.WriteLine("All processes killed... Update process can continue.")
-        Catch err As ManagementException
-            ' Does nothing
-        End Try
+                Debug.WriteLine("All processes killed... Update process can continue.")
+            Catch err As ManagementException
+                ' Does nothing
+            End Try
+        End Using
     End Sub
 
     Sub lookForFileKillItAndDeleteIt(file As String)
