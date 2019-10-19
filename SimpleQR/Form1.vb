@@ -405,8 +405,9 @@ Public Class Form1
     End Sub
 
     Private Sub btnShowBigger_Click(sender As Object, e As EventArgs) Handles btnShowBigger.Click
-        Dim biggerImage As New bigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
-        biggerImage.Show()
+        Using biggerImage As New bigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
+            biggerImage.ShowDialog()
+        End Using
     End Sub
 
     Private Sub Form1_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
