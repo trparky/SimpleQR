@@ -77,14 +77,4 @@
         If keyData = Keys.Escape Then Me.DialogResult = DialogResult.Cancel
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
-
-    Private Sub InitializeComponent()
-        Me.SuspendLayout()
-        '
-        'SnippingTool
-        '
-        Me.ClientSize = New System.Drawing.Size(284, 261)
-        Me.Name = "SnippingTool"
-        Me.ResumeLayout(False)
-    End Sub
 End Class
