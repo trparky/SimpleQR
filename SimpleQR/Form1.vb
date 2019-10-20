@@ -297,6 +297,8 @@ Public Class Form1
                         Else
                             MsgBox("You have chosen not to update to the newest version.", MsgBoxStyle.Information, Me.Text)
                         End If
+                    ElseIf response = processUpdateXMLResponse.noUpdateNeeded Then
+                        MsgBox("You already have the latest version, there is no need to update this program.", MsgBoxStyle.Information, Me.Text)
                     ElseIf response = processUpdateXMLResponse.parseError Or response = processUpdateXMLResponse.exceptionError Then
                         MsgBox("There was an error when trying to parse response from server.", MsgBoxStyle.Critical, Me.Text)
                     ElseIf response = processUpdateXMLResponse.newerVersionThanWebSite Then
