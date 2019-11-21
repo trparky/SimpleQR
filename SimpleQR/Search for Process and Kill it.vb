@@ -3,15 +3,9 @@ Imports System.Management
 
 Module Search_for_Process_and_Kill_it
     Private Function doesPIDExist(PID As Integer) As Boolean
-        Dim searcher As New ManagementObjectSearcher("root\CIMV2", String.Format("SELECT * FROM Win32_Process WHERE ProcessId={0}", PID))
-
-        If searcher.Get.Count = 0 Then
-            searcher.Dispose()
-            Return False
-        Else
-            searcher.Dispose()
-            Return True
-        End If
+        Using searcher As New ManagementObjectSearcher("root\CIMV2", String.Format("SELECT * FROM Win32_Process WHERE ProcessId={0}", PID))
+            Return If(searcher.Get.Count = 0, False, True)
+        End Using
     End Function
 
     Private Sub killProcess(PID As Integer)
@@ -32,7 +26,7 @@ Module Search_for_Process_and_Kill_it
         End If
     End Sub
 
-    Private Sub searchForProcessAndKillIt(fileName As String)
+    Public Sub searchForProcessAndKillIt(fileName As String)
         Dim fullFileName As String = New FileInfo(fileName).FullName
 
         Using searcher As New ManagementObjectSearcher("root\CIMV2", "SELECT * FROM Win32_Process")
@@ -49,12 +43,5 @@ Module Search_for_Process_and_Kill_it
             Catch err As ManagementException
             End Try
         End Using
-    End Sub
-
-    Sub lookForFileKillItAndDeleteIt(file As String)
-        If System.IO.File.Exists(file) = True Then
-            searchForProcessAndKillIt(file)
-            System.IO.File.Delete(file)
-        End If
     End Sub
 End Module

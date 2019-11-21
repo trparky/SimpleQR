@@ -2,29 +2,16 @@
 Imports System.Text
 
 Public Class Form1
-    Private Const programFileZIPURL = "www.toms-world.org/download/SimpleQR.zip"
-    Private Const programFileZIPSHA1URL = "www.toms-world.org/download/SimpleQR.zip.sha1"
-    Private Const programFileNameInZIP As String = "SimpleQR.exe"
-    Private Const programUpdateCheckerXMLFile As String = "www.toms-world.org/updates/simpleqr_update.xml"
-    Private boolWinXP As Boolean = False
-
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
-                                                                 searchForProcessAndKillIt(Application.ExecutablePath & ".new.exe", False)
+                                                                 searchForProcessAndKillIt(Application.ExecutablePath & ".new.exe")
                                                                  IO.File.Delete(Application.ExecutablePath & ".new.exe")
                                                              End Sub)
             newFileDeleterThread.Start()
         End If
 
-        If Environment.OSVersion.ToString.Contains("5.1") Or Environment.OSVersion.ToString.Contains("5.2") Then boolWinXP = True
-
-        If Not boolWinXP Then
-            chkUseSSL.Checked = My.Settings.useSSL
-        Else
-            chkUseSSL.Visible = False
-        End If
-
+        chkUseSSL.Checked = My.Settings.useSSL
         Me.Size = My.Settings.windowSize
     End Sub
 
@@ -144,206 +131,15 @@ Public Class Form1
         End If
     End Sub
 
-    Private Function checkForInternetConnection() As Boolean
-        Return My.Computer.Network.IsAvailable
-    End Function
-
-    Function convertLineFeeds(input As String) As String
-        ' Checks to see if the file is in Windows linefeed format or UNIX linefeed format.
-        If input.Contains(vbCrLf) Then
-            Return input ' It's in Windows linefeed format so we return the output as is.
-        Else
-            Return input.Replace(vbLf, vbCrLf) ' It's in UNIX linefeed format so we have to convert it to Windows before we return the output.
-        End If
-    End Function
-
-    Private Function verifyChecksum(ByVal urlOfChecksumFile As String, ByRef memoryStream As IO.MemoryStream, ByVal boolGiveUserAnErrorMessage As Boolean) As Boolean
-        Dim checksumFromWeb As String = Nothing
-
-        Dim httpHelper As httpHelper = createNewHTTPHelperObject()
-
-        If Not httpHelper.getWebData(urlOfChecksumFile, checksumFromWeb, False) Then
-            If boolGiveUserAnErrorMessage Then MsgBox("There was an error downloading the checksum verification file. Update process aborted.", MsgBoxStyle.Critical, "Restore Point Creator")
-            Return False
-        Else
-            Dim regexObject As New Regex("([a-zA-Z0-9]{40})")
-
-            ' Checks to see if we have a valid SHA1 file.
-            If regexObject.IsMatch(checksumFromWeb) Then
-                ' Now that we have a valid SHA1 file we need to parse out what we want.
-                checksumFromWeb = regexObject.Match(checksumFromWeb).Groups(1).Value().ToLower.Trim()
-
-                ' Now we do the actual checksum verification by passing the name of the file to the SHA160() function
-                ' which calculates the checksum of the file on disk. We then compare it to the checksum from the web.
-                If SHA160(memoryStream).Equals(checksumFromWeb, StringComparison.OrdinalIgnoreCase) Then
-                    Return True ' OK, things are good; the file passed checksum verification so we return True.
-                Else
-                    ' The checksums don't match. Oops.
-                    If boolGiveUserAnErrorMessage Then MsgBox("There was an error in the download, checksums don't match. Update process aborted.", MsgBoxStyle.Critical, "Restore Point Creator")
-                    Return False
-                End If
-            Else
-                If boolGiveUserAnErrorMessage Then MsgBox("Invalid SHA1 file detected. Update process aborted.", MsgBoxStyle.Critical, "Restore Point Creator")
-                Return False
-            End If
-        End If
-    End Function
-
-    Private Shared Function SHA160(ByRef memoryStream As IO.MemoryStream) As String
-        Using SHA1Engine As New Security.Cryptography.SHA1CryptoServiceProvider
-            Return BitConverter.ToString(SHA1Engine.ComputeHash(memoryStream)).ToLower().Replace("-", "").Trim
-        End Using
-    End Function
-
-    Private Sub downloadAndPerformUpdate()
-        Try
-            Dim fileInfo As New IO.FileInfo(Application.ExecutablePath)
-            Dim newExecutableName As String = fileInfo.Name & ".new.exe"
-            Dim httpHelper As httpHelper = createNewHTTPHelperObject()
-
-            Using memoryStream As New IO.MemoryStream
-                If Not httpHelper.downloadFile(programFileZIPURL, memoryStream, False) Then
-                    MsgBox("There was an error while downloading required files.", MsgBoxStyle.Critical, "SimpleQR")
-                    Exit Sub
-                End If
-
-                If Not verifyChecksum(programFileZIPSHA1URL, memoryStream, True) Then Exit Sub
-
-                fileInfo = Nothing
-                memoryStream.Position = 0
-
-                Using zipFileObject As New IO.Compression.ZipArchive(memoryStream)
-                    extractFileFromZIPFile(zipFileObject, programFileNameInZIP, newExecutableName)
-                End Using
-            End Using
-
-            If boolWinXP Then
-                Process.Start(newExecutableName, "-update")
-            Else
-                Dim startInfo As New ProcessStartInfo With {.FileName = newExecutableName, .Arguments = "-update"}
-                If Not canIWriteToTheCurrentDirectory() Then startInfo.Verb = "runas"
-                Process.Start(startInfo)
-                Process.GetCurrentProcess.Kill()
-            End If
-
-            Me.Close()
-            Application.Exit()
-        Catch ex As Exception
-            MsgBox(ex.Message & ex.StackTrace)
-        End Try
-    End Sub
-
-    Private Sub extractFileFromZIPFile(ByRef zipFileObject As IO.Compression.ZipArchive, fileToExtract As String, fileToWriteExtractedFileTo As String)
-        Dim zipFileEntryObject As IO.Compression.ZipArchiveEntry = zipFileObject.GetEntry(fileToExtract)
-
-        If zipFileEntryObject IsNot Nothing Then
-            Using fileStream As New IO.FileStream(fileToWriteExtractedFileTo, IO.FileMode.Create)
-                zipFileEntryObject.Open.CopyTo(fileStream)
-            End Using
-        End If
-    End Sub
-
     Private Sub btnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
-        Dim userInitiatedCheckForUpdatesThread As New Threading.Thread(AddressOf userInitiatedCheckForUpdates) With {
+        Dim userInitiatedCheckForUpdatesThread As New Threading.Thread(Sub()
+                                                                           Dim g As New Check_for_Update_Stuff(Me)
+                                                                           g.checkForUpdates()
+                                                                       End Sub) With {
             .Name = "User Initiated Check For Updates Thread",
             .Priority = Threading.ThreadPriority.Lowest
         }
         userInitiatedCheckForUpdatesThread.Start()
-    End Sub
-
-    ''' <summary>Converts a Dictionary of Strings into a String ready to be POSTed to a URL.</summary>
-    ''' <param name="postData">A Dictionary(Of String, String) containing the data needed to by POSTed to a web server.</param>
-    ''' <returns>Returns a String value containing the POST data.</returns>
-    Function getPostDataString(postData As Dictionary(Of String, String)) As String
-        Dim postDataString As String = ""
-        For Each entry As KeyValuePair(Of String, String) In postData
-            postDataString &= entry.Key.Trim & "=" & Web.HttpUtility.UrlEncode(entry.Value.Trim) & "&"
-        Next
-
-        If postDataString.EndsWith("&") Then
-            postDataString = postDataString.Substring(0, postDataString.Length - 1)
-        End If
-
-        Return postDataString
-    End Function
-
-    Sub userInitiatedCheckForUpdates()
-        Invoke(Sub() btnCheckForUpdates.Enabled = False)
-
-        If Not checkForInternetConnection() Then
-            MsgBox("No Internet connection detected.", MsgBoxStyle.Information, Me.Text)
-        Else
-            Try
-                Dim version() As String = Application.ProductVersion.Split(".".ToCharArray) ' Gets the program version
-
-                Dim majorVersion As Short = Short.Parse(version(0))
-                Dim minorVersion As Short = Short.Parse(version(1))
-                Dim buildVersion As Short = Short.Parse(version(2))
-                Dim remoteVersion As String = Nothing
-                Dim remoteBuild As String = Nothing
-
-                Dim httpHelper As httpHelper = createNewHTTPHelperObject()
-
-                Dim xmlData As String = Nothing
-
-                If httpHelper.getWebData(programUpdateCheckerXMLFile, xmlData, False) Then
-                    Dim response As processUpdateXMLResponse = processUpdateXMLData(xmlData, remoteVersion, remoteBuild)
-
-                    If response = processUpdateXMLResponse.newVersion Then
-                        If MsgBox("Are you sure you want to download the newest version of " & Me.Text & "?" & vbCrLf & vbCrLf & "The new version is " & remoteVersion & " Build " & remoteBuild & ".", MsgBoxStyle.Question + vbYesNo, Me.Text) = MsgBoxResult.Yes Then
-                            createPleaseWaitWindow("Downloading update... Please Wait.")
-                            downloadAndPerformUpdate()
-                            openPleaseWaitWindow()
-                        Else
-                            MsgBox("You have chosen not to update to the newest version.", MsgBoxStyle.Information, Me.Text)
-                        End If
-                    ElseIf response = processUpdateXMLResponse.noUpdateNeeded Then
-                        MsgBox("You already have the latest version, there is no need to update this program.", MsgBoxStyle.Information, Me.Text)
-                    ElseIf response = processUpdateXMLResponse.parseError Or response = processUpdateXMLResponse.exceptionError Then
-                        MsgBox("There was an error when trying to parse response from server.", MsgBoxStyle.Critical, Me.Text)
-                    ElseIf response = processUpdateXMLResponse.newerVersionThanWebSite Then
-                        MsgBox("This is weird, you have a version that's newer than what's listed on the web site.", MsgBoxStyle.Information, Me.Text)
-                    ElseIf response = processUpdateXMLResponse.noUpdateNeeded Then
-                        MsgBox("You already have the latest version.", MsgBoxStyle.Information, Me.Text)
-                    End If
-                Else
-                    Invoke(Sub() btnCheckForUpdates.Enabled = True)
-                    MsgBox("There was an error checking for updates.", MsgBoxStyle.Information, Me.Text)
-                End If
-            Catch ex As Exception
-                ' Ok, we crashed but who cares.  We give an error message.
-            Finally
-                Invoke(Sub() btnCheckForUpdates.Enabled = True)
-            End Try
-        End If
-    End Sub
-
-    Private frmPleaseWait As Please_Wait
-    Private pleaseWaitWindowThread As Threading.Thread
-
-    Private Sub openPleaseWaitWindow()
-        Try
-            frmPleaseWait.ShowDialog()
-        Catch ex As Exception
-        End Try
-    End Sub
-
-    Private Sub createPleaseWaitWindow(message As String, Optional ByVal openDialog As Boolean = False)
-        Try
-            frmPleaseWait = New Please_Wait With {.StartPosition = FormStartPosition.CenterParent}
-            With frmPleaseWait
-                .lblLabel.Text = message
-                .lblLabelText = message
-                .Icon = Me.Icon
-                .TopMost = True
-            End With
-
-            If openDialog Then
-                pleaseWaitWindowThread = New Threading.Thread(AddressOf openPleaseWaitWindow)
-                pleaseWaitWindowThread.Start()
-            End If
-        Catch ex As Exception
-        End Try
     End Sub
 
     Private Sub btnAbout_Click(sender As Object, e As EventArgs) Handles btnAbout.Click

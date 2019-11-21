@@ -13,27 +13,8 @@ Namespace My
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             If My.Application.CommandLineArgs.Count = 1 Then
                 Dim commandLineArgument As String = My.Application.CommandLineArgs(0).Trim
-
-                If commandLineArgument.Equals("-update", StringComparison.OrdinalIgnoreCase) Then
-                    Dim currentProcessFileName As String = New IO.FileInfo(Windows.Forms.Application.ExecutablePath).Name
-
-                    If currentProcessFileName.caseInsensitiveContains(".new.exe", True) Then
-                        Dim mainEXEName As String = Regex.Replace(currentProcessFileName, Regex.Escape(".new.exe"), "", RegexOptions.IgnoreCase)
-
-                        searchForProcessAndKillIt(mainEXEName, False)
-
-                        IO.File.Delete(mainEXEName)
-                        IO.File.Copy(currentProcessFileName, mainEXEName)
-
-                        Process.Start(New ProcessStartInfo With {.FileName = mainEXEName})
-                        Process.GetCurrentProcess.Kill()
-                    Else
-                        MsgBox("The environment is not ready for an update. This process will now terminate.", MsgBoxStyle.Critical, "SimpleQR")
-                        Process.GetCurrentProcess.Kill()
-                    End If
-                End If
+                If commandLineArgument.Equals("-update", StringComparison.OrdinalIgnoreCase) Then doUpdateAtStartup()
             End If
         End Sub
     End Class
 End Namespace
-

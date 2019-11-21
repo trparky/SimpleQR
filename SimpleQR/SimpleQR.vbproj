@@ -94,6 +94,7 @@
     <Compile Include="Bigger QRCode Image.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Check for Update Stuff.vb" />
     <Compile Include="Decoded QRCode Image Results.Designer.vb">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
     </Compile>
@@ -109,8 +110,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="HTTPHelper.vb" />
-    <Compile Include="Module1.vb" />
-    <Compile Include="NativeMethod.vb" />
+    <Compile Include="StringExtensions.vb" />
     <Compile Include="QRCode Builder.Designer.vb">
       <DependentUpon>QRCode Builder.vb</DependentUpon>
     </Compile>
@@ -134,12 +134,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Please Wait.designer.vb">
-      <DependentUpon>Please Wait.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Please Wait.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Search for Process and Kill it.vb" />
     <Compile Include="SmoothProgressBar.designer.vb">
@@ -176,9 +170,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Please Wait.resx">
-      <DependentUpon>Please Wait.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SmoothProgressBar.resx">
       <DependentUpon>SmoothProgressBar.vb</DependentUpon>
