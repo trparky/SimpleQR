@@ -14,7 +14,7 @@ Module StringExtensions
         Return Regex.Replace(source, replace, replaceWith, RegexOptions.IgnoreCase)
     End Function
 
-    ''' <summary>This function uses a RegEx search to do a case-insensitive search. This function operates a lot like Contains().</summary>
+    ''' <summary>This function uses an IndexOf call to do a case-insensitive search. This function operates a lot like Contains().</summary>
     ''' <param name="needle">The String containing what you want to search for.</param>
     ''' <return>Returns a Boolean value.</return>
     <Extension()>
