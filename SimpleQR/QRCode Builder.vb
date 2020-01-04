@@ -106,8 +106,14 @@
 
         Dim period, digits As Short
 
-        If Not Short.TryParse(txtPeriod.Text, period) Then MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
-        If Not Short.TryParse(txtDigits.Text, digits) Then MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+        If Not Short.TryParse(txtPeriod.Text, period) Then
+            MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+            Exit Sub
+        End If
+        If Not Short.TryParse(txtDigits.Text, digits) Then
+            MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+            Exit Sub
+        End If
 
         strQRCodeData = "otpauth://"
         strQRCodeData &= If(radHOTP.Checked, "hotp", "totp") & "/" & txtServiceName.Text.Trim
