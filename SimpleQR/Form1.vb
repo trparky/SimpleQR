@@ -80,12 +80,10 @@ Public Class Form1
         If txtTextToEncode.TextLength = 0 Then
             qrCodeImage.Image = Nothing
             btnSave.Enabled = False
-            btnShowBigger.Enabled = False
         Else
             Try
                 generateQRCodeImage(txtTextToEncode.Text)
                 btnSave.Enabled = True
-                btnShowBigger.Enabled = True
             Catch ex As IndexOutOfRangeException
                 MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, Me.Text)
             End Try
@@ -202,12 +200,6 @@ Public Class Form1
         Clipboard.SetImage(qrCodeImage.Image)
     End Sub
 
-    Private Sub btnShowBigger_Click(sender As Object, e As EventArgs) Handles btnShowBigger.Click
-        Using biggerImage As New bigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
-            biggerImage.ShowDialog()
-        End Using
-    End Sub
-
     Private Sub Form1_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
         My.Settings.windowSize = Me.Size
     End Sub
@@ -253,6 +245,19 @@ Public Class Form1
         Using QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
             QRCodeBuilderInstance.ShowDialog()
             If Not String.IsNullOrEmpty(QRCodeBuilderInstance.strQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
+        End Using
+    End Sub
+
+    Private Sub ContextMenuStrip_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip.Opening
+        If String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
+            e.Cancel = True
+            Exit Sub
+        End If
+    End Sub
+
+    Private Sub menuItemShowBiggerImage_Click(sender As Object, e As EventArgs) Handles menuItemShowBiggerImage.Click
+        Using biggerImage As New bigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
+            biggerImage.ShowDialog()
         End Using
     End Sub
 End Class

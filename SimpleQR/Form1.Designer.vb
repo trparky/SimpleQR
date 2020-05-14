@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.txtTextToEncode = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -32,13 +33,15 @@ Partial Class Form1
         Me.btnCheckForUpdates = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.qrCodeImage = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.menuItemShowBiggerImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.btnClipboard = New System.Windows.Forms.Button()
-        Me.btnShowBigger = New System.Windows.Forms.Button()
         Me.chkUseSSL = New System.Windows.Forms.CheckBox()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
         Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtTextToEncode
@@ -77,7 +80,7 @@ Partial Class Form1
         Me.btnDecode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnDecode.Image = Global.SimpleQR.My.Resources.Resources.Browse
         Me.btnDecode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDecode.Location = New System.Drawing.Point(218, 271)
+        Me.btnDecode.Location = New System.Drawing.Point(218, 249)
         Me.btnDecode.Name = "btnDecode"
         Me.btnDecode.Size = New System.Drawing.Size(148, 23)
         Me.btnDecode.TabIndex = 9
@@ -90,7 +93,7 @@ Partial Class Form1
         Me.btnAbout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAbout.Image = Global.SimpleQR.My.Resources.Resources.info_blue
         Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAbout.Location = New System.Drawing.Point(439, 329)
+        Me.btnAbout.Location = New System.Drawing.Point(439, 307)
         Me.btnAbout.Name = "btnAbout"
         Me.btnAbout.Size = New System.Drawing.Size(61, 23)
         Me.btnAbout.TabIndex = 8
@@ -103,7 +106,7 @@ Partial Class Form1
         Me.btnCheckForUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnCheckForUpdates.Image = Global.SimpleQR.My.Resources.Resources.refresh
         Me.btnCheckForUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCheckForUpdates.Location = New System.Drawing.Point(313, 329)
+        Me.btnCheckForUpdates.Location = New System.Drawing.Point(313, 307)
         Me.btnCheckForUpdates.Name = "btnCheckForUpdates"
         Me.btnCheckForUpdates.Size = New System.Drawing.Size(120, 23)
         Me.btnCheckForUpdates.TabIndex = 7
@@ -117,7 +120,7 @@ Partial Class Form1
         Me.btnSave.Enabled = False
         Me.btnSave.Image = Global.SimpleQR.My.Resources.Resources.save
         Me.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSave.Location = New System.Drawing.Point(218, 329)
+        Me.btnSave.Location = New System.Drawing.Point(218, 307)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(89, 23)
         Me.btnSave.TabIndex = 6
@@ -128,12 +131,25 @@ Partial Class Form1
         'qrCodeImage
         '
         Me.qrCodeImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.qrCodeImage.ContextMenuStrip = Me.ContextMenuStrip
         Me.qrCodeImage.Location = New System.Drawing.Point(12, 152)
         Me.qrCodeImage.Name = "qrCodeImage"
         Me.qrCodeImage.Size = New System.Drawing.Size(200, 200)
         Me.qrCodeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.qrCodeImage.TabIndex = 0
         Me.qrCodeImage.TabStop = False
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemShowBiggerImage})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(177, 26)
+        '
+        'menuItemShowBiggerImage
+        '
+        Me.menuItemShowBiggerImage.Name = "menuItemShowBiggerImage"
+        Me.menuItemShowBiggerImage.Size = New System.Drawing.Size(176, 22)
+        Me.menuItemShowBiggerImage.Text = "&Show Bigger Image"
         '
         'OpenFileDialog1
         '
@@ -142,29 +158,18 @@ Partial Class Form1
         'btnClipboard
         '
         Me.btnClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClipboard.Location = New System.Drawing.Point(218, 300)
+        Me.btnClipboard.Location = New System.Drawing.Point(218, 278)
         Me.btnClipboard.Name = "btnClipboard"
         Me.btnClipboard.Size = New System.Drawing.Size(195, 23)
         Me.btnClipboard.TabIndex = 10
         Me.btnClipboard.Text = "Copy Image to Windows Clipboard"
         Me.btnClipboard.UseVisualStyleBackColor = True
         '
-        'btnShowBigger
-        '
-        Me.btnShowBigger.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnShowBigger.Enabled = False
-        Me.btnShowBigger.Location = New System.Drawing.Point(218, 242)
-        Me.btnShowBigger.Name = "btnShowBigger"
-        Me.btnShowBigger.Size = New System.Drawing.Size(116, 23)
-        Me.btnShowBigger.TabIndex = 11
-        Me.btnShowBigger.Text = "Show Bigger Image"
-        Me.btnShowBigger.UseVisualStyleBackColor = True
-        '
         'chkUseSSL
         '
         Me.chkUseSSL.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.chkUseSSL.AutoSize = True
-        Me.chkUseSSL.Location = New System.Drawing.Point(218, 219)
+        Me.chkUseSSL.Location = New System.Drawing.Point(220, 336)
         Me.chkUseSSL.Name = "chkUseSSL"
         Me.chkUseSSL.Size = New System.Drawing.Size(280, 17)
         Me.chkUseSSL.TabIndex = 12
@@ -174,7 +179,7 @@ Partial Class Form1
         'btnDecodeFromScreenShot
         '
         Me.btnDecodeFromScreenShot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(372, 271)
+        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(372, 249)
         Me.btnDecodeFromScreenShot.Name = "btnDecodeFromScreenShot"
         Me.btnDecodeFromScreenShot.Size = New System.Drawing.Size(146, 23)
         Me.btnDecodeFromScreenShot.TabIndex = 13
@@ -184,7 +189,7 @@ Partial Class Form1
         'btnQRCodeBuilder
         '
         Me.btnQRCodeBuilder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(419, 300)
+        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(419, 278)
         Me.btnQRCodeBuilder.Name = "btnQRCodeBuilder"
         Me.btnQRCodeBuilder.Size = New System.Drawing.Size(99, 23)
         Me.btnQRCodeBuilder.TabIndex = 16
@@ -198,7 +203,6 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(527, 365)
         Me.Controls.Add(Me.btnDecodeFromScreenShot)
         Me.Controls.Add(Me.chkUseSSL)
-        Me.Controls.Add(Me.btnShowBigger)
         Me.Controls.Add(Me.btnClipboard)
         Me.Controls.Add(Me.btnDecode)
         Me.Controls.Add(Me.btnAbout)
@@ -215,6 +219,7 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "SimpleQR"
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -230,8 +235,9 @@ Partial Class Form1
     Friend WithEvents btnDecode As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents btnClipboard As System.Windows.Forms.Button
-    Friend WithEvents btnShowBigger As Button
     Friend WithEvents chkUseSSL As CheckBox
     Friend WithEvents btnDecodeFromScreenShot As Button
     Friend WithEvents btnQRCodeBuilder As Button
+    Friend Shadows WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents menuItemShowBiggerImage As ToolStripMenuItem
 End Class
