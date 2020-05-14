@@ -37,10 +37,10 @@ Class Check_for_Update_Stuff
     Private Const programUpdateCheckerXMLFile As String = "www.toms-world.org/updates/simpleqr_update.xml"
 
     Public windowObject As Form1
-    Public Shared versionInfo As String() = Application.ProductVersion.Split(".")
-    Private shortBuild As Short = Short.Parse(versionInfo(versionPieces.build).Trim)
-    Public Shared versionString As String = String.Format("{0}.{1} Build {2}", versionInfo(0), versionInfo(1), versionInfo(2))
-    Private versionStringWithoutBuild As String = String.Format("{0}.{1}", versionInfo(versionPieces.major), versionInfo(versionPieces.minor))
+    Public Shared ReadOnly versionInfo As String() = Application.ProductVersion.Split(".")
+    Private ReadOnly shortBuild As Short = Short.Parse(versionInfo(versionPieces.build).Trim)
+    Public Shared ReadOnly versionString As String = String.Format("{0}.{1} Build {2}", versionInfo(0), versionInfo(1), versionInfo(2))
+    Private ReadOnly versionStringWithoutBuild As String = String.Format("{0}.{1}", versionInfo(versionPieces.major), versionInfo(versionPieces.minor))
 
     Public Sub New(inputWindowObject As Form1)
         windowObject = inputWindowObject
