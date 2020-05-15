@@ -260,4 +260,8 @@ Public Class Form1
             biggerImage.ShowDialog()
         End Using
     End Sub
+
+    Private Sub txtTextToEncode_KeyUp(sender As Object, e As KeyEventArgs) Handles txtTextToEncode.KeyUp
+        If e.KeyCode = Keys.Back And String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then Media.SystemSounds.Exclamation.Play()
+    End Sub
 End Class
