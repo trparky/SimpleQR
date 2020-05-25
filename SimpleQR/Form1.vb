@@ -174,25 +174,23 @@ Public Class Form1
                 .AutoRotate = True
             End With
 
-            Dim bitMap As New Bitmap(OpenFileDialog1.FileName)
+            Using bitMap As New Bitmap(OpenFileDialog1.FileName)
+                If bitMap IsNot Nothing Then
+                    Dim result As ZXing.Result = decoder.Decode(bitMap)
+                    qrCodeImage.Image = bitMap
 
-            If bitMap IsNot Nothing Then
-                Dim result As ZXing.Result = decoder.Decode(bitMap)
-                qrCodeImage.Image = bitMap
-
-                If result Is Nothing Then
-                    MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
-                Else
-                    Dim results As New frmDecoded With {.Icon = Me.Icon}
-                    With results
-                        .txtResults.Text = result.Text
-                        .StartPosition = FormStartPosition.CenterParent
-                    End With
-                    results.ShowDialog()
+                    If result Is Nothing Then
+                        MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+                    Else
+                        Dim results As New frmDecoded With {.Icon = Me.Icon}
+                        With results
+                            .txtResults.Text = result.Text
+                            .StartPosition = FormStartPosition.CenterParent
+                        End With
+                        results.ShowDialog()
+                    End If
                 End If
-
-                bitMap.Dispose()
-            End If
+            End Using
         End If
     End Sub
 
