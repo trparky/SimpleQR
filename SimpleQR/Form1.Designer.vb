@@ -40,6 +40,7 @@ Partial Class Form1
         Me.chkUseSSL = New System.Windows.Forms.CheckBox()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
         Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
+        Me.btnDecodeFromClipboard = New System.Windows.Forms.Button()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -196,6 +197,16 @@ Partial Class Form1
         Me.btnQRCodeBuilder.Text = "QRCode Builder"
         Me.btnQRCodeBuilder.UseVisualStyleBackColor = True
         '
+        'btnDecodeFromClipboard
+        '
+        Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(220, 220)
+        Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
+        Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(298, 23)
+        Me.btnDecodeFromClipboard.TabIndex = 17
+        Me.btnDecodeFromClipboard.Text = "Decode QRCode Image from Windows Clipboard"
+        Me.btnDecodeFromClipboard.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -213,6 +224,7 @@ Partial Class Form1
         Me.Controls.Add(Me.txtTextToEncode)
         Me.Controls.Add(Me.qrCodeImage)
         Me.Controls.Add(Me.btnQRCodeBuilder)
+        Me.Controls.Add(Me.btnDecodeFromClipboard)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(543, 404)
@@ -240,4 +252,5 @@ Partial Class Form1
     Friend WithEvents btnQRCodeBuilder As Button
     Friend Shadows WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents menuItemShowBiggerImage As ToolStripMenuItem
+    Friend WithEvents btnDecodeFromClipboard As Button
 End Class

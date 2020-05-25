@@ -264,4 +264,37 @@ Public Class Form1
     Private Sub txtTextToEncode_KeyUp(sender As Object, e As KeyEventArgs) Handles txtTextToEncode.KeyUp
         If e.KeyCode = Keys.Back And String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then Media.SystemSounds.Exclamation.Play()
     End Sub
+
+    Private Sub btnDecodeFromClipboard_Click(sender As Object, e As EventArgs) Handles btnDecodeFromClipboard.Click
+        Using possibleQRCodeImage As Image = Clipboard.GetImage()
+            If possibleQRCodeImage IsNot Nothing Then
+                Dim decoder As New ZXing.BarcodeReader
+
+                With decoder
+                    .Options.TryHarder = True
+                    .Options.UseCode39ExtendedMode = True
+                    .Options.UseCode39RelaxedExtendedMode = True
+                    .Options.PureBarcode = True
+                    .TryInverted = True
+                    .AutoRotate = True
+                End With
+
+                Dim result As ZXing.Result = decoder.Decode(possibleQRCodeImage)
+
+                If result Is Nothing Then
+                    MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+                Else
+                    qrCodeImage.Image = possibleQRCodeImage
+
+                    Dim results As New frmDecoded With {.Icon = Me.Icon}
+                    With results
+                        .txtResults.Text = result.Text
+                        .StartPosition = FormStartPosition.CenterParent
+                    End With
+
+                    results.ShowDialog()
+                End If
+            End If
+        End Using
+    End Sub
 End Class
