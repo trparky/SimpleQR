@@ -163,33 +163,8 @@ Public Class Form1
         End With
 
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim decoder As New ZXing.BarcodeReader
-
-            With decoder
-                .Options.TryHarder = True
-                .Options.UseCode39ExtendedMode = True
-                .Options.UseCode39RelaxedExtendedMode = True
-                .Options.PureBarcode = True
-                .TryInverted = True
-                .AutoRotate = True
-            End With
-
             Using bitMap As New Bitmap(OpenFileDialog1.FileName)
-                If bitMap IsNot Nothing Then
-                    Dim result As ZXing.Result = decoder.Decode(bitMap)
-                    qrCodeImage.Image = bitMap
-
-                    If result Is Nothing Then
-                        MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
-                    Else
-                        Dim results As New frmDecoded With {.Icon = Me.Icon}
-                        With results
-                            .txtResults.Text = result.Text
-                            .StartPosition = FormStartPosition.CenterParent
-                        End With
-                        results.ShowDialog()
-                    End If
-                End If
+                decodeFromImage(bitMap)
             End Using
         End If
     End Sub
@@ -265,34 +240,39 @@ Public Class Form1
 
     Private Sub btnDecodeFromClipboard_Click(sender As Object, e As EventArgs) Handles btnDecodeFromClipboard.Click
         Using possibleQRCodeImage As Image = Clipboard.GetImage()
-            If possibleQRCodeImage IsNot Nothing Then
-                Dim decoder As New ZXing.BarcodeReader
+            If possibleQRCodeImage IsNot Nothing Then decodeFromImage(possibleQRCodeImage)
+        End Using
+    End Sub
 
-                With decoder
-                    .Options.TryHarder = True
-                    .Options.UseCode39ExtendedMode = True
-                    .Options.UseCode39RelaxedExtendedMode = True
-                    .Options.PureBarcode = True
-                    .TryInverted = True
-                    .AutoRotate = True
+    Private Sub decodeFromImage(ByRef image As Bitmap)
+        Dim decoder As New ZXing.BarcodeReader
+
+        With decoder
+            .Options.TryHarder = True
+            .Options.UseCode39ExtendedMode = True
+            .Options.UseCode39RelaxedExtendedMode = True
+            .Options.PureBarcode = True
+            .TryInverted = True
+            .AutoRotate = True
+        End With
+
+        If image IsNot Nothing Then
+            Dim result As ZXing.Result = decoder.Decode(image)
+
+            If result Is Nothing Then
+                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+            Else
+                qrCodeImage.Image = image
+
+                Dim results As New frmDecoded With {.Icon = Me.Icon}
+
+                With results
+                    .txtResults.Text = result.Text
+                    .StartPosition = FormStartPosition.CenterParent
                 End With
 
-                Dim result As ZXing.Result = decoder.Decode(possibleQRCodeImage)
-
-                If result Is Nothing Then
-                    MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
-                Else
-                    qrCodeImage.Image = possibleQRCodeImage
-
-                    Dim results As New frmDecoded With {.Icon = Me.Icon}
-                    With results
-                        .txtResults.Text = result.Text
-                        .StartPosition = FormStartPosition.CenterParent
-                    End With
-
-                    results.ShowDialog()
-                End If
+                results.ShowDialog()
             End If
-        End Using
+        End If
     End Sub
 End Class
