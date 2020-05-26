@@ -154,6 +154,7 @@ Partial Class QRCode_Builder
         Me.radioWPA.Size = New System.Drawing.Size(86, 17)
         Me.radioWPA.TabIndex = 13
         Me.radioWPA.Text = "WPA/WPA2"
+        Me.ToolTip.SetToolTip(Me.radioWPA, "Highly Recommended!!!")
         Me.radioWPA.UseVisualStyleBackColor = True
         '
         'radioWEP
