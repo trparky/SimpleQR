@@ -126,9 +126,9 @@ Partial Class QRCode_Builder
         Me.lblNetworkPassword.AutoSize = True
         Me.lblNetworkPassword.Location = New System.Drawing.Point(5, 75)
         Me.lblNetworkPassword.Name = "lblNetworkPassword"
-        Me.lblNetworkPassword.Size = New System.Drawing.Size(96, 13)
+        Me.lblNetworkPassword.Size = New System.Drawing.Size(146, 13)
         Me.lblNetworkPassword.TabIndex = 15
-        Me.lblNetworkPassword.Text = "Network Password"
+        Me.lblNetworkPassword.Text = "Network Password (Disabled)"
         '
         'radioNone
         '

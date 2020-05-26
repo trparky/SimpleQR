@@ -58,14 +58,17 @@
     Private Sub radioNone_Click(sender As Object, e As EventArgs) Handles radioNone.Click
         txtNetworkPassword.Enabled = False
         txtNetworkPassword.Text = Nothing
+        lblNetworkPassword.Text = "Network Password (Disabled)"
     End Sub
 
     Private Sub radioWEP_Click(sender As Object, e As EventArgs) Handles radioWEP.Click
         txtNetworkPassword.Enabled = True
+        lblNetworkPassword.Text = "Network Password"
     End Sub
 
     Private Sub radioWPA_Click(sender As Object, e As EventArgs) Handles radioWPA.Click
         txtNetworkPassword.Enabled = True
+        lblNetworkPassword.Text = "Network Password"
     End Sub
 
     Private Sub RadTOTP_CheckedChanged(sender As Object, e As EventArgs) Handles radTOTP.CheckedChanged
