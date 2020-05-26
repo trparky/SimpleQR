@@ -22,6 +22,7 @@ Partial Class QRCode_Builder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(QRCode_Builder))
         Me.line = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -51,6 +52,7 @@ Partial Class QRCode_Builder
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtServiceName = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -160,6 +162,8 @@ Partial Class QRCode_Builder
         Me.radioWEP.Size = New System.Drawing.Size(50, 17)
         Me.radioWEP.TabIndex = 12
         Me.radioWEP.Text = "WEP"
+        Me.ToolTip.SetToolTip(Me.radioWEP, "WARNING!!!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This encryption setting for WiFi networks is HIGHLY not" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "recommende" &
+        "d. Please use WPA/WPA2 instead.")
         Me.radioWEP.UseVisualStyleBackColor = True
         '
         'txtSSID
@@ -392,4 +396,5 @@ Partial Class QRCode_Builder
     Friend WithEvents Label8 As Label
     Friend WithEvents txtServiceName As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents ToolTip As ToolTip
 End Class
