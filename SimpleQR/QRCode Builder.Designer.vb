@@ -142,6 +142,8 @@ Partial Class QRCode_Builder
         Me.radioNone.TabIndex = 14
         Me.radioNone.TabStop = True
         Me.radioNone.Text = "None/Open Network"
+        Me.ToolTip.SetToolTip(Me.radioNone, "WARNING!!!" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Leaving your network open without encryption will put" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "your network" &
+        " at risk of being hacked and/or exploited." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If at all possible, use WPA/WPA2.")
         Me.radioNone.UseVisualStyleBackColor = True
         '
         'radioWPA
