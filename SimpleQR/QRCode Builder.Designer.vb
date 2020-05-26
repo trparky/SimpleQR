@@ -116,6 +116,7 @@ Partial Class QRCode_Builder
         '
         'btnCreateWiFiQRCode
         '
+        Me.btnCreateWiFiQRCode.Enabled = False
         Me.btnCreateWiFiQRCode.Location = New System.Drawing.Point(8, 117)
         Me.btnCreateWiFiQRCode.Name = "btnCreateWiFiQRCode"
         Me.btnCreateWiFiQRCode.Size = New System.Drawing.Size(296, 23)

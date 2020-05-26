@@ -59,16 +59,19 @@
         txtNetworkPassword.Enabled = False
         txtNetworkPassword.Text = Nothing
         lblNetworkPassword.Text = "Network Password (Disabled)"
+        doNetworkSettingsValidation()
     End Sub
 
     Private Sub radioWEP_Click(sender As Object, e As EventArgs) Handles radioWEP.Click
         txtNetworkPassword.Enabled = True
         lblNetworkPassword.Text = "Network Password"
+        doNetworkSettingsValidation()
     End Sub
 
     Private Sub radioWPA_Click(sender As Object, e As EventArgs) Handles radioWPA.Click
         txtNetworkPassword.Enabled = True
         lblNetworkPassword.Text = "Network Password"
+        doNetworkSettingsValidation()
     End Sub
 
     Private Sub RadTOTP_CheckedChanged(sender As Object, e As EventArgs) Handles radTOTP.CheckedChanged
@@ -156,6 +159,25 @@
             Size = New Size(335, 297)
         ElseIf e.TabPageIndex = 1 Then
             Size = New Size(335, 365)
+        End If
+    End Sub
+
+    Private Sub txtSSID_TextChanged(sender As Object, e As EventArgs) Handles txtSSID.TextChanged
+        doNetworkSettingsValidation()
+    End Sub
+
+    Private Sub txtNetworkPassword_TextChanged(sender As Object, e As EventArgs) Handles txtNetworkPassword.TextChanged
+        doNetworkSettingsValidation()
+    End Sub
+
+    Private Sub doNetworkSettingsValidation()
+        btnCreateWiFiQRCode.Enabled = True
+
+        If String.IsNullOrWhiteSpace(txtSSID.Text) Then
+            btnCreateWiFiQRCode.Enabled = False
+        End If
+        If String.IsNullOrWhiteSpace(txtNetworkPassword.Text) And (radioWEP.Checked Or radioWPA.Checked) Then
+            btnCreateWiFiQRCode.Enabled = False
         End If
     End Sub
 End Class
