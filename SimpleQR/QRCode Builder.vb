@@ -138,11 +138,6 @@
     End Sub
 
     Private Sub btnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
-        If String.IsNullOrWhiteSpace(txtNetworkPassword.Text) And (radioWEP.Checked Or radioWPA.Checked) Then
-            MsgBox("You must provide a network password if you choose either WEP or WPA/WPA2.", MsgBoxStyle.Critical, Me.Text)
-            Exit Sub
-        End If
-
         If radioNone.Checked Then
             strQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", txtSSID.Text.Trim)
         ElseIf radioWEP.Checked Then
