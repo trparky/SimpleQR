@@ -29,7 +29,7 @@ Partial Class QRCode_Builder
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txtNetworkPassword = New System.Windows.Forms.TextBox()
         Me.btnCreateWiFiQRCode = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblNetworkPassword = New System.Windows.Forms.Label()
         Me.radioNone = New System.Windows.Forms.RadioButton()
         Me.radioWPA = New System.Windows.Forms.RadioButton()
         Me.radioWEP = New System.Windows.Forms.RadioButton()
@@ -91,7 +91,7 @@ Partial Class QRCode_Builder
         Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage1.Controls.Add(Me.txtNetworkPassword)
         Me.TabPage1.Controls.Add(Me.btnCreateWiFiQRCode)
-        Me.TabPage1.Controls.Add(Me.Label2)
+        Me.TabPage1.Controls.Add(Me.lblNetworkPassword)
         Me.TabPage1.Controls.Add(Me.radioNone)
         Me.TabPage1.Controls.Add(Me.radioWPA)
         Me.TabPage1.Controls.Add(Me.radioWEP)
@@ -121,14 +121,14 @@ Partial Class QRCode_Builder
         Me.btnCreateWiFiQRCode.Text = "Create WiFi QRCode"
         Me.btnCreateWiFiQRCode.UseVisualStyleBackColor = True
         '
-        'Label2
+        'lblNetworkPassword
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(5, 75)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 13)
-        Me.Label2.TabIndex = 15
-        Me.Label2.Text = "Network Password"
+        Me.lblNetworkPassword.AutoSize = True
+        Me.lblNetworkPassword.Location = New System.Drawing.Point(5, 75)
+        Me.lblNetworkPassword.Name = "lblNetworkPassword"
+        Me.lblNetworkPassword.Size = New System.Drawing.Size(96, 13)
+        Me.lblNetworkPassword.TabIndex = 15
+        Me.lblNetworkPassword.Text = "Network Password"
         '
         'radioNone
         '
@@ -371,7 +371,7 @@ Partial Class QRCode_Builder
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents txtNetworkPassword As TextBox
     Friend WithEvents btnCreateWiFiQRCode As Button
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblNetworkPassword As Label
     Friend WithEvents radioNone As RadioButton
     Friend WithEvents radioWPA As RadioButton
     Friend WithEvents radioWEP As RadioButton
