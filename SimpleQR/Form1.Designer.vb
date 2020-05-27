@@ -200,9 +200,9 @@ Partial Class Form1
         'btnDecodeFromClipboard
         '
         Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(220, 220)
+        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(218, 220)
         Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
-        Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(298, 23)
+        Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(300, 23)
         Me.btnDecodeFromClipboard.TabIndex = 17
         Me.btnDecodeFromClipboard.Text = "Decode QRCode Image from Windows Clipboard"
         Me.btnDecodeFromClipboard.UseVisualStyleBackColor = True
