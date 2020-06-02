@@ -82,8 +82,10 @@ Public Class Form1
             btnSave.Enabled = False
         Else
             Try
-                generateQRCodeImage(txtTextToEncode.Text)
-                btnSave.Enabled = True
+                If Not String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
+                    generateQRCodeImage(txtTextToEncode.Text)
+                    btnSave.Enabled = True
+                End If
             Catch ex As IndexOutOfRangeException
                 MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, Me.Text)
             End Try
