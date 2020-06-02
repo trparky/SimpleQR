@@ -262,8 +262,6 @@ Public Class Form1
             If result Is Nothing Then
                 MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
             Else
-                qrCodeImage.Image = image
-
                 Dim results As New frmDecoded With {.Icon = Me.Icon}
 
                 With results
