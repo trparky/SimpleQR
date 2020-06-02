@@ -222,7 +222,7 @@ Public Class Form1
     End Sub
 
     Private Sub ContextMenuStrip_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip.Opening
-        If String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
+        If qrCodeImage.Image Is Nothing Then
             e.Cancel = True
             Exit Sub
         End If
