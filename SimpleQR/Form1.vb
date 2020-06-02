@@ -219,7 +219,7 @@ Public Class Form1
     Private Sub btnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
         Using QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
             QRCodeBuilderInstance.ShowDialog()
-            If Not String.IsNullOrEmpty(QRCodeBuilderInstance.strQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
+            If Not String.IsNullOrWhiteSpace(QRCodeBuilderInstance.strQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
         End Using
     End Sub
 
