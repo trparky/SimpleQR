@@ -26,6 +26,7 @@ Public Class Form1
                 .Format = ZXing.BarcodeFormat.QR_CODE
             End With
             qrCodeImage.Image = ResizeImage(writer.Write(text), 200, 200)
+            btnClipboard.Enabled = True
         Catch ex As ZXing.WriterException
             MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, Me.Text)
         End Try
@@ -79,6 +80,7 @@ Public Class Form1
 
         If txtTextToEncode.TextLength = 0 Then
             qrCodeImage.Image = Nothing
+            btnClipboard.Enabled = False
             btnSave.Enabled = False
         Else
             Try

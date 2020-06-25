@@ -159,6 +159,7 @@ Partial Class Form1
         'btnClipboard
         '
         Me.btnClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnClipboard.Enabled = False
         Me.btnClipboard.Location = New System.Drawing.Point(216, 265)
         Me.btnClipboard.Name = "btnClipboard"
         Me.btnClipboard.Size = New System.Drawing.Size(195, 23)
