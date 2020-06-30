@@ -200,7 +200,7 @@ Partial Class Form1
         '
         'btnDecodeFromClipboard
         '
-        Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(216, 207)
         Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
         Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(300, 23)
