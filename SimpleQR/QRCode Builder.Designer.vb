@@ -271,6 +271,7 @@ Partial Class QRCode_Builder
         '
         'btnCreateTOTPQRCode
         '
+        Me.btnCreateTOTPQRCode.Enabled = False
         Me.btnCreateTOTPQRCode.Location = New System.Drawing.Point(3, 183)
         Me.btnCreateTOTPQRCode.Name = "btnCreateTOTPQRCode"
         Me.btnCreateTOTPQRCode.Size = New System.Drawing.Size(300, 23)

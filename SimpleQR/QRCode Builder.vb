@@ -6,6 +6,7 @@
             txtServiceName.Text = Nothing
             txtServiceName.ForeColor = Color.Black
         End If
+        btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
     Private Sub txtServiceName_Leave(sender As Object, e As EventArgs) Handles txtServiceName.Leave
@@ -13,10 +14,12 @@
             txtServiceName.Text = "ex: Microsoft"
             txtServiceName.ForeColor = Color.Gray
         End If
+        btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
     Private Sub txtServiceName_TextChanged(sender As Object, e As EventArgs) Handles txtServiceName.TextChanged
         If Not txtServiceName.Text.Equals("ex: Microsoft") Then txtServiceName.ForeColor = Color.Black
+        btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
     Private Sub txtAccountName_Click(sender As Object, e As EventArgs) Handles txtAccountName.Click
@@ -87,6 +90,7 @@
             txtSecret.Text = Nothing
             txtSecret.ForeColor = Color.Black
         End If
+        btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
     Private Sub txtSecret_Leave(sender As Object, e As EventArgs) Handles txtSecret.Leave
@@ -94,10 +98,12 @@
             txtSecret.Text = "Required"
             txtSecret.ForeColor = Color.Gray
         End If
+        btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
     Private Sub txtSecret_TextChanged(sender As Object, e As EventArgs) Handles txtSecret.TextChanged
         If Not txtSecret.Text.Equals("Required") Then txtSecret.ForeColor = Color.Black
+        btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
     Private Sub btnCreateTOTPQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateTOTPQRCode.Click
