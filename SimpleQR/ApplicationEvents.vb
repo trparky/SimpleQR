@@ -13,7 +13,7 @@ Namespace My
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             If My.Application.CommandLineArgs.Count = 1 Then
                 Dim commandLineArgument As String = My.Application.CommandLineArgs(0).Trim
-                If commandLineArgument.Equals("-update", StringComparison.OrdinalIgnoreCase) Then doUpdateAtStartup()
+                If commandLineArgument.Equals("-update", StringComparison.OrdinalIgnoreCase) Then DoUpdateAtStartup()
             End If
         End Sub
     End Class

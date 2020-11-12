@@ -5,7 +5,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
-                                                                 searchForProcessAndKillIt(Application.ExecutablePath & ".new.exe")
+                                                                 SearchForProcessAndKillIt(Application.ExecutablePath & ".new.exe")
                                                                  IO.File.Delete(Application.ExecutablePath & ".new.exe")
                                                              End Sub)
             newFileDeleterThread.Start()
@@ -15,7 +15,7 @@ Public Class Form1
         Me.Size = My.Settings.windowSize
     End Sub
 
-    Sub generateQRCodeImage(text As String)
+    Sub GenerateQRCodeImage(text As String)
         Try
             Dim writer As New ZXing.BarcodeWriter
             With writer
@@ -75,7 +75,7 @@ Public Class Form1
         Return bmDest
     End Function
 
-    Private Sub txtTextToEncode_TextChanged(sender As Object, e As EventArgs) Handles txtTextToEncode.TextChanged
+    Private Sub TxtTextToEncode_TextChanged(sender As Object, e As EventArgs) Handles txtTextToEncode.TextChanged
         lblLength.Text = "Length: " & txtTextToEncode.TextLength
 
         If txtTextToEncode.TextLength = 0 Then
@@ -85,7 +85,7 @@ Public Class Form1
         Else
             Try
                 If Not String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
-                    generateQRCodeImage(txtTextToEncode.Text)
+                    GenerateQRCodeImage(txtTextToEncode.Text)
                     btnSave.Enabled = True
                 End If
             Catch ex As IndexOutOfRangeException
@@ -94,7 +94,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         With SaveFileDialog1
             .Title = "Save QRCode Image to File"
             .Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
@@ -133,10 +133,10 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub btnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
+    Private Sub BtnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
         Dim userInitiatedCheckForUpdatesThread As New Threading.Thread(Sub()
                                                                            Dim g As New Check_for_Update_Stuff(Me)
-                                                                           g.checkForUpdates()
+                                                                           g.CheckForUpdates()
                                                                        End Sub) With {
             .Name = "User Initiated Check For Updates Thread",
             .Priority = Threading.ThreadPriority.Lowest
@@ -144,7 +144,7 @@ Public Class Form1
         userInitiatedCheckForUpdatesThread.Start()
     End Sub
 
-    Private Sub btnAbout_Click(sender As Object, e As EventArgs) Handles btnAbout.Click
+    Private Sub BtnAbout_Click(sender As Object, e As EventArgs) Handles btnAbout.Click
         Dim version() As String = Application.ProductVersion.Split(".".ToCharArray) ' Gets the program version
         Dim stringBuilder As New StringBuilder
 
@@ -159,7 +159,7 @@ Public Class Form1
         MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, "About")
     End Sub
 
-    Private Sub btnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
+    Private Sub BtnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
         With OpenFileDialog1
             .Title = "Open QRCode Image to File"
             .Filter = "All Supported Image Formats|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.wmf|PNG Image|*.png|JPEG Image|*.jpg;*.jpeg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
@@ -168,12 +168,12 @@ Public Class Form1
 
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             Using bitMap As New Bitmap(OpenFileDialog1.FileName)
-                decodeFromImage(bitMap)
+                DecodeFromImage(bitMap)
             End Using
         End If
     End Sub
 
-    Private Sub btnClipboard_Click(sender As Object, e As EventArgs) Handles btnClipboard.Click
+    Private Sub BtnClipboard_Click(sender As Object, e As EventArgs) Handles btnClipboard.Click
         Clipboard.SetImage(qrCodeImage.Image)
     End Sub
 
@@ -181,11 +181,11 @@ Public Class Form1
         My.Settings.windowSize = Me.Size
     End Sub
 
-    Private Sub chkUseSSL_Click(sender As Object, e As EventArgs) Handles chkUseSSL.Click
+    Private Sub ChkUseSSL_Click(sender As Object, e As EventArgs) Handles chkUseSSL.Click
         My.Settings.useSSL = chkUseSSL.Checked
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
+    Private Sub BtnDecodeFromScreenShot_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
         If My.Settings.boolShowScreenshotTip Then
             Dim tipWindow As New Tip With {.Icon = Me.Icon, .StartPosition = FormStartPosition.CenterScreen}
             tipWindow.ShowDialog()
@@ -218,10 +218,10 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub btnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
+    Private Sub BtnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
         Using QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
             QRCodeBuilderInstance.ShowDialog()
-            If Not String.IsNullOrWhiteSpace(QRCodeBuilderInstance.strQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.strQRCodeData
+            If Not String.IsNullOrWhiteSpace(QRCodeBuilderInstance.StrQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.StrQRCodeData
         End Using
     End Sub
 
@@ -232,23 +232,23 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub menuItemShowBiggerImage_Click(sender As Object, e As EventArgs) Handles menuItemShowBiggerImage.Click
-        Using biggerImage As New bigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
+    Private Sub MenuItemShowBiggerImage_Click(sender As Object, e As EventArgs) Handles menuItemShowBiggerImage.Click
+        Using biggerImage As New BigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
             biggerImage.ShowDialog()
         End Using
     End Sub
 
-    Private Sub txtTextToEncode_KeyUp(sender As Object, e As KeyEventArgs) Handles txtTextToEncode.KeyUp
+    Private Sub TxtTextToEncode_KeyUp(sender As Object, e As KeyEventArgs) Handles txtTextToEncode.KeyUp
         If e.KeyCode = Keys.Back And String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then Media.SystemSounds.Exclamation.Play()
     End Sub
 
-    Private Sub btnDecodeFromClipboard_Click(sender As Object, e As EventArgs) Handles btnDecodeFromClipboard.Click
+    Private Sub BtnDecodeFromClipboard_Click(sender As Object, e As EventArgs) Handles btnDecodeFromClipboard.Click
         Using possibleQRCodeImage As Image = Clipboard.GetImage()
-            If possibleQRCodeImage IsNot Nothing Then decodeFromImage(possibleQRCodeImage)
+            If possibleQRCodeImage IsNot Nothing Then DecodeFromImage(possibleQRCodeImage)
         End Using
     End Sub
 
-    Private Sub decodeFromImage(ByRef image As Bitmap)
+    Private Sub DecodeFromImage(ByRef image As Bitmap)
         Dim decoder As New ZXing.BarcodeReader
 
         With decoder

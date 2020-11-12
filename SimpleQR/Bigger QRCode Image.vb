@@ -1,7 +1,7 @@
-﻿Public Class bigImage
+﻿Public Class BigImage
     Public textToEncode As String
 
-    Sub generateImage()
+    Sub GenerateImage()
         Try
             Dim writer As New ZXing.BarcodeWriter
             With writer
@@ -17,16 +17,16 @@
         End Try
     End Sub
 
-    Private Sub bigImage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub BigImage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Size = My.Settings.biggerWindowSize
-        generateImage()
+        GenerateImage()
     End Sub
 
-    Private Sub bigImage_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        generateImage()
+    Private Sub BigImage_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        GenerateImage()
     End Sub
 
-    Private Sub bigImage_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
+    Private Sub BigImage_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
         My.Settings.biggerWindowSize = Me.Size
     End Sub
 End Class

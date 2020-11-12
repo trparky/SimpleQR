@@ -1,7 +1,7 @@
 ﻿Public Class QRCode_Builder
-    Public Property strQRCodeData As String = Nothing
+    Public Property StrQRCodeData As String = Nothing
 
-    Private Sub txtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
+    Private Sub TxtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
             txtServiceName.Text = Nothing
             txtServiceName.ForeColor = Color.Black
@@ -9,7 +9,7 @@
         btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
-    Private Sub txtServiceName_Leave(sender As Object, e As EventArgs) Handles txtServiceName.Leave
+    Private Sub TxtServiceName_Leave(sender As Object, e As EventArgs) Handles txtServiceName.Leave
         If String.IsNullOrWhiteSpace(txtServiceName.Text) Then
             txtServiceName.Text = "ex: Microsoft"
             txtServiceName.ForeColor = Color.Gray
@@ -17,64 +17,64 @@
         btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
-    Private Sub txtServiceName_TextChanged(sender As Object, e As EventArgs) Handles txtServiceName.TextChanged
+    Private Sub TxtServiceName_TextChanged(sender As Object, e As EventArgs) Handles txtServiceName.TextChanged
         If Not txtServiceName.Text.Equals("ex: Microsoft") Then txtServiceName.ForeColor = Color.Black
         btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
-    Private Sub txtAccountName_Click(sender As Object, e As EventArgs) Handles txtAccountName.Click
+    Private Sub TxtAccountName_Click(sender As Object, e As EventArgs) Handles txtAccountName.Click
         If txtAccountName.Text.Equals("ex: someone@somedomain.com") Then
             txtAccountName.Text = Nothing
             txtAccountName.ForeColor = Color.Black
         End If
     End Sub
 
-    Private Sub txtAccountName_Leave(sender As Object, e As EventArgs) Handles txtAccountName.Leave
+    Private Sub TxtAccountName_Leave(sender As Object, e As EventArgs) Handles txtAccountName.Leave
         If String.IsNullOrWhiteSpace(txtAccountName.Text) Then
             txtAccountName.Text = "ex: someone@somedomain.com"
             txtAccountName.ForeColor = Color.Gray
         End If
     End Sub
 
-    Private Sub txtAccountName_TextChanged(sender As Object, e As EventArgs) Handles txtAccountName.TextChanged
+    Private Sub TxtAccountName_TextChanged(sender As Object, e As EventArgs) Handles txtAccountName.TextChanged
         If Not txtAccountName.Text.Equals("ex: someone@somedomain.com") Then txtAccountName.ForeColor = Color.Black
     End Sub
 
-    Private Sub txtIssuer_Click(sender As Object, e As EventArgs) Handles txtIssuer.Click
+    Private Sub TxtIssuer_Click(sender As Object, e As EventArgs) Handles txtIssuer.Click
         If txtIssuer.Text.Equals("ex: Microsoft") Then
             txtIssuer.Text = Nothing
             txtIssuer.ForeColor = Color.Black
         End If
     End Sub
 
-    Private Sub txtIssuer_Leave(sender As Object, e As EventArgs) Handles txtIssuer.Leave
+    Private Sub TxtIssuer_Leave(sender As Object, e As EventArgs) Handles txtIssuer.Leave
         If String.IsNullOrWhiteSpace(txtIssuer.Text) Then
             txtIssuer.Text = "ex: Microsoft"
             txtIssuer.ForeColor = Color.Gray
         End If
     End Sub
 
-    Private Sub txtIssuer_TextChanged(sender As Object, e As EventArgs) Handles txtIssuer.TextChanged
+    Private Sub TxtIssuer_TextChanged(sender As Object, e As EventArgs) Handles txtIssuer.TextChanged
         If Not txtIssuer.Text.Equals("ex: Microsoft") Then txtIssuer.ForeColor = Color.Black
     End Sub
 
-    Private Sub radioNone_Click(sender As Object, e As EventArgs) Handles radioNone.Click
+    Private Sub RadioNone_Click(sender As Object, e As EventArgs) Handles radioNone.Click
         txtNetworkPassword.Enabled = False
         txtNetworkPassword.Text = Nothing
         lblNetworkPassword.Text = "Network Password (Disabled)"
-        doNetworkSettingsValidation()
+        DoNetworkSettingsValidation()
     End Sub
 
-    Private Sub radioWEP_Click(sender As Object, e As EventArgs) Handles radioWEP.Click
+    Private Sub RadioWEP_Click(sender As Object, e As EventArgs) Handles radioWEP.Click
         txtNetworkPassword.Enabled = True
         lblNetworkPassword.Text = "Network Password"
-        doNetworkSettingsValidation()
+        DoNetworkSettingsValidation()
     End Sub
 
-    Private Sub radioWPA_Click(sender As Object, e As EventArgs) Handles radioWPA.Click
+    Private Sub RadioWPA_Click(sender As Object, e As EventArgs) Handles radioWPA.Click
         txtNetworkPassword.Enabled = True
         lblNetworkPassword.Text = "Network Password"
-        doNetworkSettingsValidation()
+        DoNetworkSettingsValidation()
     End Sub
 
     Private Sub RadTOTP_CheckedChanged(sender As Object, e As EventArgs) Handles radTOTP.CheckedChanged
@@ -85,7 +85,7 @@
         txtPeriod.Enabled = False
     End Sub
 
-    Private Sub txtSecret_Click(sender As Object, e As EventArgs) Handles txtSecret.Click
+    Private Sub TxtSecret_Click(sender As Object, e As EventArgs) Handles txtSecret.Click
         If txtSecret.Text.Equals("Required") Then
             txtSecret.Text = Nothing
             txtSecret.ForeColor = Color.Black
@@ -93,7 +93,7 @@
         btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
-    Private Sub txtSecret_Leave(sender As Object, e As EventArgs) Handles txtSecret.Leave
+    Private Sub TxtSecret_Leave(sender As Object, e As EventArgs) Handles txtSecret.Leave
         If String.IsNullOrWhiteSpace(txtSecret.Text) Then
             txtSecret.Text = "Required"
             txtSecret.ForeColor = Color.Gray
@@ -101,12 +101,12 @@
         btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
-    Private Sub txtSecret_TextChanged(sender As Object, e As EventArgs) Handles txtSecret.TextChanged
+    Private Sub TxtSecret_TextChanged(sender As Object, e As EventArgs) Handles txtSecret.TextChanged
         If Not txtSecret.Text.Equals("Required") Then txtSecret.ForeColor = Color.Black
         btnCreateTOTPQRCode.Enabled = Not txtServiceName.Text.Equals("ex: Microsoft") And Not txtSecret.Text.Equals("Required") And Not String.IsNullOrWhiteSpace(txtServiceName.Text) And Not String.IsNullOrWhiteSpace(txtSecret.Text)
     End Sub
 
-    Private Sub btnCreateTOTPQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateTOTPQRCode.Click
+    Private Sub BtnCreateTOTPQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateTOTPQRCode.Click
         If txtSecret.Text.Equals("Required", StringComparison.OrdinalIgnoreCase) Then
             MsgBox("You must provide a secret, that's what is used to generate the digits required for your authenticator.", MsgBoxStyle.Critical, Me.Text)
             Exit Sub
@@ -127,29 +127,29 @@
             Exit Sub
         End If
 
-        strQRCodeData = "otpauth://"
-        strQRCodeData &= If(radHOTP.Checked, "hotp", "totp") & "/" & txtServiceName.Text.Trim
+        StrQRCodeData = "otpauth://"
+        StrQRCodeData &= If(radHOTP.Checked, "hotp", "totp") & "/" & txtServiceName.Text.Trim
 
-        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then strQRCodeData = String.Concat(strQRCodeData, ":", txtAccountName.Text.Trim)
-        strQRCodeData = String.Concat(strQRCodeData, "?secret=", txtSecret.Text.Trim)
-        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then strQRCodeData = String.Concat(strQRCodeData, "&issuer=", txtIssuer.Text.Trim)
+        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then StrQRCodeData = String.Concat(StrQRCodeData, ":", txtAccountName.Text.Trim)
+        StrQRCodeData = String.Concat(StrQRCodeData, "?secret=", txtSecret.Text.Trim)
+        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then StrQRCodeData = String.Concat(StrQRCodeData, "&issuer=", txtIssuer.Text.Trim)
 
         If radTOTP.Checked And period <> 30 Then
-            strQRCodeData = String.Concat(strQRCodeData, "&period=", period.ToString)
+            StrQRCodeData = String.Concat(StrQRCodeData, "&period=", period.ToString)
         End If
 
-        If digits <> 6 Then strQRCodeData = String.Concat(strQRCodeData, "&digits=", digits.ToString)
+        If digits <> 6 Then StrQRCodeData = String.Concat(StrQRCodeData, "&digits=", digits.ToString)
 
         Me.Close()
     End Sub
 
-    Private Sub btnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
+    Private Sub BtnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
         If radioNone.Checked Then
-            strQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", txtSSID.Text.Trim)
+            StrQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", txtSSID.Text.Trim)
         ElseIf radioWEP.Checked Then
-            strQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
+            StrQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
         ElseIf radioWPA.Checked Then
-            strQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
+            StrQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
         End If
 
         Me.Close()
@@ -163,15 +163,15 @@
         End If
     End Sub
 
-    Private Sub txtSSID_TextChanged(sender As Object, e As EventArgs) Handles txtSSID.TextChanged
-        doNetworkSettingsValidation()
+    Private Sub TxtSSID_TextChanged(sender As Object, e As EventArgs) Handles txtSSID.TextChanged
+        DoNetworkSettingsValidation()
     End Sub
 
-    Private Sub txtNetworkPassword_TextChanged(sender As Object, e As EventArgs) Handles txtNetworkPassword.TextChanged
-        doNetworkSettingsValidation()
+    Private Sub TxtNetworkPassword_TextChanged(sender As Object, e As EventArgs) Handles txtNetworkPassword.TextChanged
+        DoNetworkSettingsValidation()
     End Sub
 
-    Private Sub doNetworkSettingsValidation()
+    Private Sub DoNetworkSettingsValidation()
         btnCreateWiFiQRCode.Enabled = True
 
         If String.IsNullOrWhiteSpace(txtSSID.Text) Then

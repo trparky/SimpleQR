@@ -5,7 +5,7 @@
         Media.SystemSounds.Exclamation.Play()
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
+    Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         My.Settings.boolShowScreenshotTip = If(chkDontShowTipAgain.Checked, False, True)
         Me.Close()
     End Sub

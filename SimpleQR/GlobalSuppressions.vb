@@ -4,6 +4,5 @@
 ' Project-level suppressions either have no target or are given 
 ' a specific target and scoped to a namespace, type, member, etc.
 
-<Assembly: CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles")>
 <Assembly: CodeAnalysis.SuppressMessage("Style", "IDE0037:Use inferred member name")>
-<Assembly: CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification:="<Pending>", Scope:="member", Target:="~M:SimpleQR.bigImage.generateImage")>
+<Assembly: CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification:="<Pending>", Scope:="member", Target:="~M:SimpleQR.BigImage.GenerateImage")>
