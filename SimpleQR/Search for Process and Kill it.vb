@@ -4,7 +4,7 @@ Imports System.Management
 Module Search_for_Process_and_Kill_it
     Private Function DoesPIDExist(PID As Integer) As Boolean
         Using searcher As New ManagementObjectSearcher("root\CIMV2", String.Format("SELECT * FROM Win32_Process WHERE ProcessId={0}", PID))
-            Return If(searcher.Get.Count = 0, False, True)
+            Return searcher.Get.Count <> 0
         End Using
     End Function
 

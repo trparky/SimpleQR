@@ -1,12 +1,12 @@
 ﻿Public Class Tip
     Private Sub Tip_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        chkDontShowTipAgain.Checked = If(My.Settings.boolShowScreenshotTip, False, True)
+        chkDontShowTipAgain.Checked = Not My.Settings.boolShowScreenshotTip
         PictureBox1.Image = SystemIcons.Exclamation.ToBitmap()
         Media.SystemSounds.Exclamation.Play()
     End Sub
 
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        My.Settings.boolShowScreenshotTip = If(chkDontShowTipAgain.Checked, False, True)
+        My.Settings.boolShowScreenshotTip = Not chkDontShowTipAgain.Checked
         Me.Close()
     End Sub
 End Class
