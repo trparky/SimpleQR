@@ -2,6 +2,8 @@
 Imports System.Text
 
 Public Class Form1
+    Private Const StrOK As String = "OK"
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
@@ -28,7 +30,7 @@ Public Class Form1
             qrCodeImage.Image = ResizeImage(writer.Write(text), 200, 200)
             btnClipboard.Enabled = True
         Catch ex As ZXing.WriterException
-            MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, Me.Text)
+            WPFCustomMessageBox.CustomMessageBox.ShowOK("QRCode encoding error detected.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
         End Try
     End Sub
 
@@ -89,7 +91,7 @@ Public Class Form1
                     btnSave.Enabled = True
                 End If
             Catch ex As IndexOutOfRangeException
-                MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, Me.Text)
+                WPFCustomMessageBox.CustomMessageBox.ShowOK("Error generating QRCode Image.  Perhaps you entered too much data.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
             End Try
         End If
     End Sub
@@ -116,7 +118,7 @@ Public Class Form1
             ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".wmf") Then
                 fileFormat = Imaging.ImageFormat.Wmf
             Else
-                MsgBox("Invalid file type.", MsgBoxStyle.Critical, Me.Text)
+                WPFCustomMessageBox.CustomMessageBox.ShowOK("Invalid file type.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
                 Exit Sub
             End If
 
@@ -129,7 +131,7 @@ Public Class Form1
                 .Format = ZXing.BarcodeFormat.QR_CODE
                 .Write(txtTextToEncode.Text).Save(SaveFileDialog1.FileName, fileFormat)
             End With
-            MsgBox("Image Saved.", MsgBoxStyle.Information, "Image Saved")
+            WPFCustomMessageBox.CustomMessageBox.ShowOK("Image Saved.", Me.Text, StrOK, Windows.MessageBoxImage.Information)
         End If
     End Sub
 
@@ -156,7 +158,7 @@ Public Class Form1
             .AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
         End With
 
-        MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, "About")
+        WPFCustomMessageBox.CustomMessageBox.ShowOK(stringBuilder.ToString.Trim, "About " & Me.Text, StrOK, Windows.MessageBoxImage.Information)
     End Sub
 
     Private Sub BtnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
@@ -204,7 +206,7 @@ Public Class Form1
             Dim result As ZXing.Result = decoder.Decode(imgScreenShot)
 
             If result Is Nothing Then
-                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+                WPFCustomMessageBox.CustomMessageBox.ShowOK("There was an error while decoding your selected QRCode image.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
             Else
                 Dim results As New frmDecoded With {.Icon = Me.Icon}
                 With results
@@ -264,7 +266,7 @@ Public Class Form1
             Dim result As ZXing.Result = decoder.Decode(image)
 
             If result Is Nothing Then
-                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+                WPFCustomMessageBox.CustomMessageBox.ShowOK("There was an error while decoding your selected QRCode image.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
             Else
                 Dim results As New frmDecoded With {.Icon = Me.Icon}
 

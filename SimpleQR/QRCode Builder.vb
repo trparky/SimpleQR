@@ -1,5 +1,6 @@
 ﻿Public Class QRCode_Builder
     Public Property StrQRCodeData As String = Nothing
+    Private Const StrOK As String = "OK"
 
     Private Sub TxtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
@@ -108,7 +109,7 @@
 
     Private Sub BtnCreateTOTPQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateTOTPQRCode.Click
         If txtSecret.Text.Equals("Required", StringComparison.OrdinalIgnoreCase) Then
-            MsgBox("You must provide a secret, that's what is used to generate the digits required for your authenticator.", MsgBoxStyle.Critical, Me.Text)
+            WPFCustomMessageBox.CustomMessageBox.ShowOK("You must provide a secret, that's what is used to generate the digits required for your authenticator.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
             Exit Sub
         End If
 
@@ -119,11 +120,11 @@
         Dim period, digits As Short
 
         If Not Short.TryParse(txtPeriod.Text, period) Then
-            MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+            WPFCustomMessageBox.CustomMessageBox.ShowOK("The period entry field must contain a numerical value.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
             Exit Sub
         End If
         If Not Short.TryParse(txtDigits.Text, digits) Then
-            MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+            WPFCustomMessageBox.CustomMessageBox.ShowOK("The digits entry field must contain a numerical value.", Me.Text, StrOK, Windows.MessageBoxImage.Error)
             Exit Sub
         End If
 
