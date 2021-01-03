@@ -9,10 +9,6 @@ Module Check_for_Update_Stuff_Module
     Public Const strProgramName As String = "SimpleQR"
     Private Const strZipFileName As String = "SimpleQR.zip"
 
-    Public Const strNo As String = "No"
-    Public Const strYes As String = "Yes"
-    Public Const strOK As String = "OK"
-
     Public Sub DoUpdateAtStartup()
         If File.Exists(strZipFileName) Then File.Delete(strZipFileName)
         Dim currentProcessFileName As String = New FileInfo(Application.ExecutablePath).Name

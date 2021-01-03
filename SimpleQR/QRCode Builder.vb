@@ -1,6 +1,5 @@
 ﻿Public Class QRCode_Builder
     Public Property StrQRCodeData As String = Nothing
-    Private Const StrOK As String = "OK"
 
     Private Sub TxtServiceName_Click(sender As Object, e As EventArgs) Handles txtServiceName.Click
         If txtServiceName.Text.Equals("ex: Microsoft") Then
