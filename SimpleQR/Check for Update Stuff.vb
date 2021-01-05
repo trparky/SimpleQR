@@ -155,7 +155,7 @@ Class Check_for_Update_Stuff
         httpHelper.SetURLPreProcessor = Function(ByVal strURLInput As String) As String
                                             Try
                                                 If Not strURLInput.Trim.ToLower.StartsWith("http") Then
-                                                    Return If(My.Settings.useSSL, "https://", "http://") & strURLInput
+                                                    Return "https://" & strURLInput
                                                 Else
                                                     Return strURLInput
                                                 End If

@@ -12,7 +12,6 @@ Public Class Form1
             newFileDeleterThread.Start()
         End If
 
-        chkUseSSL.Checked = My.Settings.useSSL
         Me.Size = My.Settings.windowSize
     End Sub
 
@@ -180,10 +179,6 @@ Public Class Form1
 
     Private Sub Form1_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
         My.Settings.windowSize = Me.Size
-    End Sub
-
-    Private Sub ChkUseSSL_Click(sender As Object, e As EventArgs) Handles chkUseSSL.Click
-        My.Settings.useSSL = chkUseSSL.Checked
     End Sub
 
     Private Sub BtnDecodeFromScreenShot_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click

@@ -37,7 +37,6 @@ Partial Class Form1
         Me.menuItemShowBiggerImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.btnClipboard = New System.Windows.Forms.Button()
-        Me.chkUseSSL = New System.Windows.Forms.CheckBox()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
         Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
         Me.btnDecodeFromClipboard = New System.Windows.Forms.Button()
@@ -81,7 +80,7 @@ Partial Class Form1
         Me.btnDecode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnDecode.Image = Global.SimpleQR.My.Resources.Resources.Browse
         Me.btnDecode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDecode.Location = New System.Drawing.Point(216, 236)
+        Me.btnDecode.Location = New System.Drawing.Point(216, 271)
         Me.btnDecode.Name = "btnDecode"
         Me.btnDecode.Size = New System.Drawing.Size(148, 23)
         Me.btnDecode.TabIndex = 9
@@ -94,7 +93,7 @@ Partial Class Form1
         Me.btnAbout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAbout.Image = Global.SimpleQR.My.Resources.Resources.info_blue
         Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAbout.Location = New System.Drawing.Point(437, 294)
+        Me.btnAbout.Location = New System.Drawing.Point(437, 329)
         Me.btnAbout.Name = "btnAbout"
         Me.btnAbout.Size = New System.Drawing.Size(61, 23)
         Me.btnAbout.TabIndex = 8
@@ -107,7 +106,7 @@ Partial Class Form1
         Me.btnCheckForUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnCheckForUpdates.Image = Global.SimpleQR.My.Resources.Resources.refresh
         Me.btnCheckForUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCheckForUpdates.Location = New System.Drawing.Point(311, 294)
+        Me.btnCheckForUpdates.Location = New System.Drawing.Point(311, 329)
         Me.btnCheckForUpdates.Name = "btnCheckForUpdates"
         Me.btnCheckForUpdates.Size = New System.Drawing.Size(120, 23)
         Me.btnCheckForUpdates.TabIndex = 7
@@ -121,7 +120,7 @@ Partial Class Form1
         Me.btnSave.Enabled = False
         Me.btnSave.Image = Global.SimpleQR.My.Resources.Resources.save
         Me.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSave.Location = New System.Drawing.Point(216, 294)
+        Me.btnSave.Location = New System.Drawing.Point(216, 329)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(89, 23)
         Me.btnSave.TabIndex = 6
@@ -160,28 +159,17 @@ Partial Class Form1
         '
         Me.btnClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnClipboard.Enabled = False
-        Me.btnClipboard.Location = New System.Drawing.Point(216, 265)
+        Me.btnClipboard.Location = New System.Drawing.Point(216, 300)
         Me.btnClipboard.Name = "btnClipboard"
         Me.btnClipboard.Size = New System.Drawing.Size(195, 23)
         Me.btnClipboard.TabIndex = 10
         Me.btnClipboard.Text = "Copy Image to Windows Clipboard"
         Me.btnClipboard.UseVisualStyleBackColor = True
         '
-        'chkUseSSL
-        '
-        Me.chkUseSSL.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.chkUseSSL.AutoSize = True
-        Me.chkUseSSL.Location = New System.Drawing.Point(218, 323)
-        Me.chkUseSSL.Name = "chkUseSSL"
-        Me.chkUseSSL.Size = New System.Drawing.Size(280, 30)
-        Me.chkUseSSL.TabIndex = 12
-        Me.chkUseSSL.Text = "Use SSL to check for and download program updates" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Recommended)"
-        Me.chkUseSSL.UseVisualStyleBackColor = True
-        '
         'btnDecodeFromScreenShot
         '
         Me.btnDecodeFromScreenShot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(370, 236)
+        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(370, 271)
         Me.btnDecodeFromScreenShot.Name = "btnDecodeFromScreenShot"
         Me.btnDecodeFromScreenShot.Size = New System.Drawing.Size(146, 23)
         Me.btnDecodeFromScreenShot.TabIndex = 13
@@ -191,7 +179,7 @@ Partial Class Form1
         'btnQRCodeBuilder
         '
         Me.btnQRCodeBuilder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(417, 265)
+        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(417, 300)
         Me.btnQRCodeBuilder.Name = "btnQRCodeBuilder"
         Me.btnQRCodeBuilder.Size = New System.Drawing.Size(99, 23)
         Me.btnQRCodeBuilder.TabIndex = 16
@@ -201,7 +189,7 @@ Partial Class Form1
         'btnDecodeFromClipboard
         '
         Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(216, 207)
+        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(216, 242)
         Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
         Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(300, 23)
         Me.btnDecodeFromClipboard.TabIndex = 17
@@ -214,7 +202,6 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(527, 365)
         Me.Controls.Add(Me.btnDecodeFromScreenShot)
-        Me.Controls.Add(Me.chkUseSSL)
         Me.Controls.Add(Me.btnClipboard)
         Me.Controls.Add(Me.btnDecode)
         Me.Controls.Add(Me.btnAbout)
@@ -248,7 +235,6 @@ Partial Class Form1
     Friend WithEvents btnDecode As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents btnClipboard As System.Windows.Forms.Button
-    Friend WithEvents chkUseSSL As CheckBox
     Friend WithEvents btnDecodeFromScreenShot As Button
     Friend WithEvents btnQRCodeBuilder As Button
     Friend Shadows WithEvents ContextMenuStrip As ContextMenuStrip
