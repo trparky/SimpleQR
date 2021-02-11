@@ -141,11 +141,11 @@
 
     Private Sub BtnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
         If radioNone.Checked Then
-            StrQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", txtSSID.Text.Trim)
+            StrQRCodeData = String.Format("WIFI:S:{0};T:nopass;P:;;", Uri.EscapeUriString(txtSSID.Text.Trim))
         ElseIf radioWEP.Checked Then
-            StrQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
+            StrQRCodeData = String.Format("WIFI:S:{0};T:WEP;P:{1};;", Uri.EscapeUriString(txtSSID.Text.Trim), txtNetworkPassword.Text.Trim)
         ElseIf radioWPA.Checked Then
-            StrQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", txtSSID.Text.Trim, txtNetworkPassword.Text.Trim)
+            StrQRCodeData = String.Format("WIFI:S:{0};T:WPA;P:{1};;", Uri.EscapeUriString(txtSSID.Text.Trim), txtNetworkPassword.Text.Trim)
         End If
 
         Me.Close()
