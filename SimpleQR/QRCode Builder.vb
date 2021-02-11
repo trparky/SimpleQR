@@ -130,15 +130,11 @@
         StrQRCodeData = "otpauth://"
         StrQRCodeData &= If(radHOTP.Checked, "hotp", "totp") & "/" & Uri.EscapeUriString(txtServiceName.Text.Trim)
 
-        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then StrQRCodeData = String.Concat(StrQRCodeData, ":", Uri.EscapeUriString(txtAccountName.Text.Trim))
-        StrQRCodeData = String.Concat(StrQRCodeData, "?secret=", txtSecret.Text.Trim)
-        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then StrQRCodeData = String.Concat(StrQRCodeData, "&issuer=", Uri.EscapeUriString(txtIssuer.Text.Trim))
-
-        If radTOTP.Checked And period <> 30 Then
-            StrQRCodeData = String.Concat(StrQRCodeData, "&period=", period.ToString)
-        End If
-
-        If digits <> 6 Then StrQRCodeData = String.Concat(StrQRCodeData, "&digits=", digits.ToString)
+        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then StrQRCodeData &= ":" & Uri.EscapeUriString(txtAccountName.Text.Trim)
+        StrQRCodeData &= "?secret=" & txtSecret.Text.Trim
+        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then StrQRCodeData &= "&issuer=" & Uri.EscapeUriString(txtIssuer.Text.Trim)
+        If radTOTP.Checked And period <> 30 Then StrQRCodeData &= "&period=" & period.ToString
+        If digits <> 6 Then StrQRCodeData &= "&digits=" & digits.ToString
 
         Me.Close()
     End Sub
