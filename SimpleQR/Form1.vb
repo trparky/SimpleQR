@@ -6,7 +6,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
-                                                                 SearchForProcessAndKillIt(Application.ExecutablePath & ".new.exe")
+                                                                 SearchForProcessAndKillIt(Application.ExecutablePath & ".new.exe", True)
                                                                  IO.File.Delete(Application.ExecutablePath & ".new.exe")
                                                              End Sub)
             newFileDeleterThread.Start()
