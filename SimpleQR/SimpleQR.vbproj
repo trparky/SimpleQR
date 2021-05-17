@@ -101,6 +101,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Check for Update Stuff.vb" />
+    <Compile Include="NativeMethod.vb" />
     <Compile Include="Decoded QRCode Image Results.Designer.vb">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
     </Compile>
