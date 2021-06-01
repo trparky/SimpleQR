@@ -30,7 +30,7 @@ Module Check_for_Update_Stuff_Module
     End Sub
 End Module
 
-Class Check_for_Update_Stuff
+Class CheckForUpdatesClass
     Private Const programZipFileURL = "www.toms-world.org/download/SimpleQR.zip"
     Private Const programZipFileSHA256URL = "www.toms-world.org/download/SimpleQR.zip.sha2"
     Private Const programFileNameInZIP As String = "SimpleQR.exe"

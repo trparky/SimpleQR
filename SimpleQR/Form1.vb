@@ -135,7 +135,7 @@ Public Class Form1
 
     Private Sub BtnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
         Dim userInitiatedCheckForUpdatesThread As New Threading.Thread(Sub()
-                                                                           Dim g As New Check_for_Update_Stuff(Me)
+                                                                           Dim g As New CheckForUpdatesClass(Me)
                                                                            g.CheckForUpdates()
                                                                        End Sub) With {
             .Name = "User Initiated Check For Updates Thread",
