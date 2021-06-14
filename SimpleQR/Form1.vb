@@ -81,12 +81,10 @@ Public Class Form1
         If txtTextToEncode.TextLength = 0 Then
             qrCodeImage.Image = Nothing
             btnClipboard.Enabled = False
-            btnSave.Enabled = False
         Else
             Try
                 If Not String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
                     GenerateQRCodeImage(txtTextToEncode.Text)
-                    btnSave.Enabled = True
                 End If
             Catch ex As IndexOutOfRangeException
                 MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, Me.Text)
@@ -94,7 +92,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveImageToolStripMenuItem.Click
         With SaveFileDialog1
             .Title = "Save QRCode Image to File"
             .Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"

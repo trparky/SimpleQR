@@ -31,10 +31,10 @@ Partial Class Form1
         Me.btnDecode = New System.Windows.Forms.Button()
         Me.btnAbout = New System.Windows.Forms.Button()
         Me.btnCheckForUpdates = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
         Me.qrCodeImage = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.menuItemShowBiggerImage = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.btnClipboard = New System.Windows.Forms.Button()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
@@ -93,7 +93,7 @@ Partial Class Form1
         Me.btnAbout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAbout.Image = Global.SimpleQR.My.Resources.Resources.info_blue
         Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAbout.Location = New System.Drawing.Point(437, 329)
+        Me.btnAbout.Location = New System.Drawing.Point(344, 330)
         Me.btnAbout.Name = "btnAbout"
         Me.btnAbout.Size = New System.Drawing.Size(61, 23)
         Me.btnAbout.TabIndex = 8
@@ -106,27 +106,13 @@ Partial Class Form1
         Me.btnCheckForUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnCheckForUpdates.Image = Global.SimpleQR.My.Resources.Resources.refresh
         Me.btnCheckForUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCheckForUpdates.Location = New System.Drawing.Point(311, 329)
+        Me.btnCheckForUpdates.Location = New System.Drawing.Point(218, 330)
         Me.btnCheckForUpdates.Name = "btnCheckForUpdates"
         Me.btnCheckForUpdates.Size = New System.Drawing.Size(120, 23)
         Me.btnCheckForUpdates.TabIndex = 7
         Me.btnCheckForUpdates.Text = "Check for Updates"
         Me.btnCheckForUpdates.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnCheckForUpdates.UseVisualStyleBackColor = True
-        '
-        'btnSave
-        '
-        Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnSave.Enabled = False
-        Me.btnSave.Image = Global.SimpleQR.My.Resources.Resources.save
-        Me.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSave.Location = New System.Drawing.Point(216, 329)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(89, 23)
-        Me.btnSave.TabIndex = 6
-        Me.btnSave.Text = "Save Image"
-        Me.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnSave.UseVisualStyleBackColor = True
         '
         'qrCodeImage
         '
@@ -141,15 +127,22 @@ Partial Class Form1
         '
         'ContextMenuStrip
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemShowBiggerImage})
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemShowBiggerImage, Me.SaveImageToolStripMenuItem})
         Me.ContextMenuStrip.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(177, 26)
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(177, 48)
         '
         'menuItemShowBiggerImage
         '
         Me.menuItemShowBiggerImage.Name = "menuItemShowBiggerImage"
         Me.menuItemShowBiggerImage.Size = New System.Drawing.Size(176, 22)
-        Me.menuItemShowBiggerImage.Text = "&Show Bigger Image"
+        Me.menuItemShowBiggerImage.Text = "Show &Bigger Image"
+        '
+        'SaveImageToolStripMenuItem
+        '
+        Me.SaveImageToolStripMenuItem.Image = Global.SimpleQR.My.Resources.Resources.save
+        Me.SaveImageToolStripMenuItem.Name = "SaveImageToolStripMenuItem"
+        Me.SaveImageToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SaveImageToolStripMenuItem.Text = "&Save Image"
         '
         'OpenFileDialog1
         '
@@ -206,7 +199,6 @@ Partial Class Form1
         Me.Controls.Add(Me.btnDecode)
         Me.Controls.Add(Me.btnAbout)
         Me.Controls.Add(Me.btnCheckForUpdates)
-        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.lblLength)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtTextToEncode)
@@ -228,7 +220,6 @@ Partial Class Form1
     Friend WithEvents txtTextToEncode As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents lblLength As System.Windows.Forms.Label
-    Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
     Friend WithEvents btnCheckForUpdates As System.Windows.Forms.Button
     Friend WithEvents btnAbout As System.Windows.Forms.Button
@@ -240,4 +231,5 @@ Partial Class Form1
     Friend Shadows WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents menuItemShowBiggerImage As ToolStripMenuItem
     Friend WithEvents btnDecodeFromClipboard As Button
+    Friend WithEvents SaveImageToolStripMenuItem As ToolStripMenuItem
 End Class
