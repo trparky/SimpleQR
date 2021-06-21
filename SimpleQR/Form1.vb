@@ -26,7 +26,6 @@ Public Class Form1
                 .Format = ZXing.BarcodeFormat.QR_CODE
             End With
             qrCodeImage.Image = ResizeImage(writer.Write(text), 200, 200)
-            btnClipboard.Enabled = True
         Catch ex As ZXing.WriterException
             MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, Me.Text)
         End Try
@@ -80,7 +79,6 @@ Public Class Form1
 
         If txtTextToEncode.TextLength = 0 Then
             qrCodeImage.Image = Nothing
-            btnClipboard.Enabled = False
         Else
             Try
                 If Not String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
@@ -92,7 +90,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub SaveImageToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveImageToolStripMenuItem.Click
+    Private Sub MenuItemSaveImage_Click(sender As Object, e As EventArgs) Handles menuItemSaveImage.Click
         With SaveFileDialog1
             .Title = "Save QRCode Image to File"
             .Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp|GIF Image|*.gif|Windows Meta Image File|*.wmf"
@@ -171,7 +169,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub BtnClipboard_Click(sender As Object, e As EventArgs) Handles btnClipboard.Click
+    Private Sub MenuItemCopyImageToWindowsClipboard_Click(sender As Object, e As EventArgs) Handles menuItemCopyImageToWindowsClipboard.Click
         Clipboard.SetImage(qrCodeImage.Image)
     End Sub
 

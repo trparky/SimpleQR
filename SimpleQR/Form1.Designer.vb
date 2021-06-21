@@ -34,12 +34,12 @@ Partial Class Form1
         Me.qrCodeImage = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.menuItemShowBiggerImage = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuItemSaveImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.btnClipboard = New System.Windows.Forms.Button()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
         Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
         Me.btnDecodeFromClipboard = New System.Windows.Forms.Button()
+        Me.menuItemCopyImageToWindowsClipboard = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -80,7 +80,7 @@ Partial Class Form1
         Me.btnDecode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnDecode.Image = Global.SimpleQR.My.Resources.Resources.Browse
         Me.btnDecode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDecode.Location = New System.Drawing.Point(216, 271)
+        Me.btnDecode.Location = New System.Drawing.Point(218, 303)
         Me.btnDecode.Name = "btnDecode"
         Me.btnDecode.Size = New System.Drawing.Size(148, 23)
         Me.btnDecode.TabIndex = 9
@@ -93,7 +93,7 @@ Partial Class Form1
         Me.btnAbout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAbout.Image = Global.SimpleQR.My.Resources.Resources.info_blue
         Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAbout.Location = New System.Drawing.Point(344, 330)
+        Me.btnAbout.Location = New System.Drawing.Point(457, 330)
         Me.btnAbout.Name = "btnAbout"
         Me.btnAbout.Size = New System.Drawing.Size(61, 23)
         Me.btnAbout.TabIndex = 8
@@ -106,7 +106,7 @@ Partial Class Form1
         Me.btnCheckForUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnCheckForUpdates.Image = Global.SimpleQR.My.Resources.Resources.refresh
         Me.btnCheckForUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCheckForUpdates.Location = New System.Drawing.Point(218, 330)
+        Me.btnCheckForUpdates.Location = New System.Drawing.Point(331, 330)
         Me.btnCheckForUpdates.Name = "btnCheckForUpdates"
         Me.btnCheckForUpdates.Size = New System.Drawing.Size(120, 23)
         Me.btnCheckForUpdates.TabIndex = 7
@@ -127,42 +127,31 @@ Partial Class Form1
         '
         'ContextMenuStrip
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemShowBiggerImage, Me.SaveImageToolStripMenuItem})
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemShowBiggerImage, Me.menuItemSaveImage, Me.menuItemCopyImageToWindowsClipboard})
         Me.ContextMenuStrip.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(177, 48)
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(260, 92)
         '
         'menuItemShowBiggerImage
         '
         Me.menuItemShowBiggerImage.Name = "menuItemShowBiggerImage"
-        Me.menuItemShowBiggerImage.Size = New System.Drawing.Size(176, 22)
+        Me.menuItemShowBiggerImage.Size = New System.Drawing.Size(259, 22)
         Me.menuItemShowBiggerImage.Text = "Show &Bigger Image"
         '
-        'SaveImageToolStripMenuItem
+        'menuItemSaveImage
         '
-        Me.SaveImageToolStripMenuItem.Image = Global.SimpleQR.My.Resources.Resources.save
-        Me.SaveImageToolStripMenuItem.Name = "SaveImageToolStripMenuItem"
-        Me.SaveImageToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.SaveImageToolStripMenuItem.Text = "&Save Image"
+        Me.menuItemSaveImage.Image = Global.SimpleQR.My.Resources.Resources.save
+        Me.menuItemSaveImage.Name = "menuItemSaveImage"
+        Me.menuItemSaveImage.Size = New System.Drawing.Size(259, 22)
+        Me.menuItemSaveImage.Text = "&Save Image to Disk"
         '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'btnClipboard
-        '
-        Me.btnClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnClipboard.Enabled = False
-        Me.btnClipboard.Location = New System.Drawing.Point(216, 300)
-        Me.btnClipboard.Name = "btnClipboard"
-        Me.btnClipboard.Size = New System.Drawing.Size(195, 23)
-        Me.btnClipboard.TabIndex = 10
-        Me.btnClipboard.Text = "Copy Image to Windows Clipboard"
-        Me.btnClipboard.UseVisualStyleBackColor = True
-        '
         'btnDecodeFromScreenShot
         '
         Me.btnDecodeFromScreenShot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(370, 271)
+        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(372, 303)
         Me.btnDecodeFromScreenShot.Name = "btnDecodeFromScreenShot"
         Me.btnDecodeFromScreenShot.Size = New System.Drawing.Size(146, 23)
         Me.btnDecodeFromScreenShot.TabIndex = 13
@@ -172,9 +161,9 @@ Partial Class Form1
         'btnQRCodeBuilder
         '
         Me.btnQRCodeBuilder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(417, 300)
+        Me.btnQRCodeBuilder.Location = New System.Drawing.Point(218, 330)
         Me.btnQRCodeBuilder.Name = "btnQRCodeBuilder"
-        Me.btnQRCodeBuilder.Size = New System.Drawing.Size(99, 23)
+        Me.btnQRCodeBuilder.Size = New System.Drawing.Size(107, 23)
         Me.btnQRCodeBuilder.TabIndex = 16
         Me.btnQRCodeBuilder.Text = "QRCode Builder"
         Me.btnQRCodeBuilder.UseVisualStyleBackColor = True
@@ -182,12 +171,18 @@ Partial Class Form1
         'btnDecodeFromClipboard
         '
         Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(216, 242)
+        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(218, 274)
         Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
         Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(300, 23)
         Me.btnDecodeFromClipboard.TabIndex = 17
         Me.btnDecodeFromClipboard.Text = "Decode QRCode Image from Windows Clipboard"
         Me.btnDecodeFromClipboard.UseVisualStyleBackColor = True
+        '
+        'menuItemCopyImageToWindowsClipboard
+        '
+        Me.menuItemCopyImageToWindowsClipboard.Name = "menuItemCopyImageToWindowsClipboard"
+        Me.menuItemCopyImageToWindowsClipboard.Size = New System.Drawing.Size(259, 22)
+        Me.menuItemCopyImageToWindowsClipboard.Text = "Copy Image to Windows Clipboard"
         '
         'Form1
         '
@@ -195,7 +190,6 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(527, 365)
         Me.Controls.Add(Me.btnDecodeFromScreenShot)
-        Me.Controls.Add(Me.btnClipboard)
         Me.Controls.Add(Me.btnDecode)
         Me.Controls.Add(Me.btnAbout)
         Me.Controls.Add(Me.btnCheckForUpdates)
@@ -225,11 +219,11 @@ Partial Class Form1
     Friend WithEvents btnAbout As System.Windows.Forms.Button
     Friend WithEvents btnDecode As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents btnClipboard As System.Windows.Forms.Button
     Friend WithEvents btnDecodeFromScreenShot As Button
     Friend WithEvents btnQRCodeBuilder As Button
     Friend Shadows WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents menuItemShowBiggerImage As ToolStripMenuItem
     Friend WithEvents btnDecodeFromClipboard As Button
-    Friend WithEvents SaveImageToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents menuItemSaveImage As ToolStripMenuItem
+    Friend WithEvents menuItemCopyImageToWindowsClipboard As ToolStripMenuItem
 End Class
