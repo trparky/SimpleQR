@@ -2,6 +2,7 @@
 Imports System.Text
 
 Public Class Form1
+    Private Const strMessageBoxTitle As String = "SimpleQR"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
@@ -27,7 +28,7 @@ Public Class Form1
             End With
             qrCodeImage.Image = ResizeImage(writer.Write(text), 200, 200)
         Catch ex As ZXing.WriterException
-            MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, Me.Text)
+            MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, strMessageBoxTitle)
         End Try
     End Sub
 
@@ -85,7 +86,7 @@ Public Class Form1
                     GenerateQRCodeImage(txtTextToEncode.Text)
                 End If
             Catch ex As IndexOutOfRangeException
-                MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, Me.Text)
+                MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, strMessageBoxTitle)
             End Try
         End If
     End Sub
@@ -112,7 +113,7 @@ Public Class Form1
             ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".wmf") Then
                 fileFormat = Imaging.ImageFormat.Wmf
             Else
-                MsgBox("Invalid file type.", MsgBoxStyle.Critical, Me.Text)
+                MsgBox("Invalid file type.", MsgBoxStyle.Critical, strMessageBoxTitle)
                 Exit Sub
             End If
 
@@ -125,7 +126,7 @@ Public Class Form1
                 .Format = ZXing.BarcodeFormat.QR_CODE
                 .Write(txtTextToEncode.Text).Save(SaveFileDialog1.FileName, fileFormat)
             End With
-            MsgBox("Image Saved.", MsgBoxStyle.Information, Me.Text)
+            MsgBox("Image Saved.", MsgBoxStyle.Information, strMessageBoxTitle)
         End If
     End Sub
 
@@ -196,7 +197,7 @@ Public Class Form1
             Dim result As ZXing.Result = decoder.Decode(imgScreenShot)
 
             If result Is Nothing Then
-                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             Else
                 Dim results As New frmDecoded With {.Icon = Me.Icon}
                 With results
@@ -239,7 +240,7 @@ Public Class Form1
             If possibleQRCodeImage IsNot Nothing Then
                 DecodeFromImage(possibleQRCodeImage)
             Else
-                MsgBox("Invalid data on Windows clipboard. Make sure you have an image on your clipboard.", MsgBoxStyle.Information, Me.Text)
+                MsgBox("Invalid data on Windows clipboard. Make sure you have an image on your clipboard.", MsgBoxStyle.Information, strMessageBoxTitle)
             End If
         End Using
     End Sub
@@ -260,7 +261,7 @@ Public Class Form1
             Dim result As ZXing.Result = decoder.Decode(image)
 
             If result Is Nothing Then
-                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, Me.Text)
+                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             Else
                 Dim results As New frmDecoded With {.Icon = Me.Icon}
 
