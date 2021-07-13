@@ -236,7 +236,11 @@ Public Class Form1
 
     Private Sub BtnDecodeFromClipboard_Click(sender As Object, e As EventArgs) Handles btnDecodeFromClipboard.Click
         Using possibleQRCodeImage As Image = Clipboard.GetImage()
-            If possibleQRCodeImage IsNot Nothing Then DecodeFromImage(possibleQRCodeImage)
+            If possibleQRCodeImage IsNot Nothing Then
+                DecodeFromImage(possibleQRCodeImage)
+            Else
+                MsgBox("Invalid data on Windows clipboard. Make sure you have an image on your clipboard.", MsgBoxStyle.Information, Me.Text)
+            End If
         End Using
     End Sub
 
