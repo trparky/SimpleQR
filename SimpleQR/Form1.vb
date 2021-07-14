@@ -86,7 +86,7 @@ Public Class Form1
                     GenerateQRCodeImage(txtTextToEncode.Text)
                 End If
             Catch ex As IndexOutOfRangeException
-                MsgBox("Error generating QRCode Image.  Perhaps you entered too much data.", MsgBoxStyle.Critical, strMessageBoxTitle)
+                MsgBox("Error generating QRCode Image. Perhaps you entered too much data.", MsgBoxStyle.Critical, strMessageBoxTitle)
             End Try
         End If
     End Sub
