@@ -68,13 +68,13 @@ Public Class Form1
             Try
                 Dim writer As New ZXing.BarcodeWriter
                 With writer
-                    .Options.Width = 500
-                    .Options.Height = 500
+                    .Options.Width = 200
+                    .Options.Height = 200
                     .Options.PureBarcode = True
                     .Options.Margin = 0
                     .Format = ZXing.BarcodeFormat.QR_CODE
                 End With
-                qrCodeImage.Image = ResizeImage(writer.Write(txtTextToEncode.Text), 200, 200)
+                qrCodeImage.Image = writer.Write(txtTextToEncode.Text)
             Catch ex As ZXing.WriterException
                 MsgBox("An error occurred while generating a QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             End Try
