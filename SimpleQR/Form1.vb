@@ -74,7 +74,7 @@ Public Class Form1
                     .Options.Margin = 0
                     .Format = ZXing.BarcodeFormat.QR_CODE
                 End With
-                qrCodeImage.Image = ResizeImage(writer.Write(lblLength.Text), 200, 200)
+                qrCodeImage.Image = ResizeImage(writer.Write(txtTextToEncode.Text), 200, 200)
             Catch ex As ZXing.WriterException
                 MsgBox("An error occurred while generating a QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             End Try
