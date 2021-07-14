@@ -16,22 +16,6 @@ Public Class Form1
         Me.Size = My.Settings.windowSize
     End Sub
 
-    Sub GenerateQRCodeImage(text As String)
-        Try
-            Dim writer As New ZXing.BarcodeWriter
-            With writer
-                .Options.Width = 500
-                .Options.Height = 500
-                .Options.PureBarcode = True
-                .Options.Margin = 0
-                .Format = ZXing.BarcodeFormat.QR_CODE
-            End With
-            qrCodeImage.Image = ResizeImage(writer.Write(text), 200, 200)
-        Catch ex As ZXing.WriterException
-            MsgBox("QRCode encoding error detected.", MsgBoxStyle.Critical, strMessageBoxTitle)
-        End Try
-    End Sub
-
     Public Overloads Shared Function ResizeImage(SourceImage As Image, TargetWidth As Integer, TargetHeight As Integer) As Bitmap
         Dim bmSource As New Bitmap(SourceImage)
         Return ResizeImage(bmSource, TargetWidth, TargetHeight)
@@ -78,15 +62,21 @@ Public Class Form1
     Private Sub TxtTextToEncode_TextChanged(sender As Object, e As EventArgs) Handles txtTextToEncode.TextChanged
         lblLength.Text = "Length: " & txtTextToEncode.TextLength
 
-        If txtTextToEncode.TextLength = 0 Then
+        If String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
             qrCodeImage.Image = Nothing
         Else
             Try
-                If Not String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
-                    GenerateQRCodeImage(txtTextToEncode.Text)
-                End If
-            Catch ex As IndexOutOfRangeException
-                MsgBox("Error generating QRCode Image. Perhaps you entered too much data.", MsgBoxStyle.Critical, strMessageBoxTitle)
+                Dim writer As New ZXing.BarcodeWriter
+                With writer
+                    .Options.Width = 500
+                    .Options.Height = 500
+                    .Options.PureBarcode = True
+                    .Options.Margin = 0
+                    .Format = ZXing.BarcodeFormat.QR_CODE
+                End With
+                qrCodeImage.Image = ResizeImage(writer.Write(lblLength.Text), 200, 200)
+            Catch ex As ZXing.WriterException
+                MsgBox("An error occurred while generating a QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             End Try
         End If
     End Sub
