@@ -29,4 +29,8 @@
     Private Sub BigImage_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
         My.Settings.biggerWindowSize = Me.Size
     End Sub
+
+    Private Sub CopyImageToWindowsClipboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToWindowsClipboardToolStripMenuItem.Click
+        Clipboard.SetImage(qrCodeImage.Image)
+    End Sub
 End Class

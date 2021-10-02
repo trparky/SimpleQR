@@ -22,8 +22,12 @@ Partial Class BigImage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.qrCodeImage = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyImageToWindowsClipboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'qrCodeImage
@@ -31,11 +35,24 @@ Partial Class BigImage
         Me.qrCodeImage.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.qrCodeImage.ContextMenuStrip = Me.ContextMenuStrip
         Me.qrCodeImage.Location = New System.Drawing.Point(12, 12)
         Me.qrCodeImage.Name = "qrCodeImage"
         Me.qrCodeImage.Size = New System.Drawing.Size(392, 367)
         Me.qrCodeImage.TabIndex = 1
         Me.qrCodeImage.TabStop = False
+        '
+        'ContextMenuStrip
+        '
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyImageToWindowsClipboardToolStripMenuItem})
+        Me.ContextMenuStrip.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(260, 48)
+        '
+        'CopyImageToWindowsClipboardToolStripMenuItem
+        '
+        Me.CopyImageToWindowsClipboardToolStripMenuItem.Name = "CopyImageToWindowsClipboardToolStripMenuItem"
+        Me.CopyImageToWindowsClipboardToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
+        Me.CopyImageToWindowsClipboardToolStripMenuItem.Text = "Copy Image to Windows Clipboard"
         '
         'bigImage
         '
@@ -48,9 +65,12 @@ Partial Class BigImage
         Me.Name = "bigImage"
         Me.Text = "Bigger QRCode Image"
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents qrCodeImage As PictureBox
+    Shadows WithEvents ContextMenuStrip As ContextMenuStrip
+    Friend WithEvents CopyImageToWindowsClipboardToolStripMenuItem As ToolStripMenuItem
 End Class
