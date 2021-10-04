@@ -26,6 +26,8 @@ Partial Class BigImage
         Me.qrCodeImage = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CopyImageToWindowsClipboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveImageToDiskToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -44,7 +46,7 @@ Partial Class BigImage
         '
         'ContextMenuStrip
         '
-        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyImageToWindowsClipboardToolStripMenuItem})
+        Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyImageToWindowsClipboardToolStripMenuItem, Me.SaveImageToDiskToolStripMenuItem})
         Me.ContextMenuStrip.Name = "ContextMenuStrip"
         Me.ContextMenuStrip.Size = New System.Drawing.Size(260, 48)
         '
@@ -53,6 +55,13 @@ Partial Class BigImage
         Me.CopyImageToWindowsClipboardToolStripMenuItem.Name = "CopyImageToWindowsClipboardToolStripMenuItem"
         Me.CopyImageToWindowsClipboardToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
         Me.CopyImageToWindowsClipboardToolStripMenuItem.Text = "Copy Image to Windows Clipboard"
+        '
+        'SaveImageToDiskToolStripMenuItem
+        '
+        Me.SaveImageToDiskToolStripMenuItem.Image = Global.SimpleQR.My.Resources.Resources.save
+        Me.SaveImageToDiskToolStripMenuItem.Name = "SaveImageToDiskToolStripMenuItem"
+        Me.SaveImageToDiskToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
+        Me.SaveImageToDiskToolStripMenuItem.Text = "Save Image to Disk"
         '
         'bigImage
         '
@@ -73,4 +82,6 @@ Partial Class BigImage
     Friend WithEvents qrCodeImage As PictureBox
     Shadows WithEvents ContextMenuStrip As ContextMenuStrip
     Friend WithEvents CopyImageToWindowsClipboardToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveImageToDiskToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveFileDialog As SaveFileDialog
 End Class
