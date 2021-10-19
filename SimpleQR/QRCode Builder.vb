@@ -153,9 +153,9 @@
 
     Private Sub TabControl1_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles TabControl1.Selecting
         If e.TabPageIndex = 0 Then
-            Size = New Size(335, 297)
+            Size = New Size(335, 308)
         ElseIf e.TabPageIndex = 1 Then
-            Size = New Size(335, 365)
+            Size = New Size(335, 374)
         End If
     End Sub
 
