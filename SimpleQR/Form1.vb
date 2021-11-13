@@ -160,6 +160,27 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Form1_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
+        If DirectCast(e.Data.GetData(DataFormats.FileDrop), String()).Length > 1 Then
+            Exit Sub
+        End If
+        For Each strFileName As String In e.Data.GetData(DataFormats.FileDrop)
+            If IO.File.Exists(strFileName) Then
+                Dim strFileExtension As String = New IO.FileInfo(strFileName).Extension
+
+                If strFileExtension.Equals(".png", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".bmp", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".gif", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".wmf", StringComparison.OrdinalIgnoreCase) Then
+                    Using bitMap As New Bitmap(strFileName)
+                        DecodeFromImage(bitMap)
+                    End Using
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Sub Form1_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
+        e.Effect = If(e.Data.GetDataPresent(DataFormats.FileDrop), DragDropEffects.All, DragDropEffects.None)
+    End Sub
+
     Private Sub MenuItemCopyImageToWindowsClipboard_Click(sender As Object, e As EventArgs) Handles menuItemCopyImageToWindowsClipboard.Click
         Clipboard.SetImage(qrCodeImage.Image)
     End Sub
