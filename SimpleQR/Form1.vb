@@ -280,7 +280,7 @@ Public Class Form1
                     .StartPosition = FormStartPosition.CenterParent
                 End With
 
-                results.ShowDialog()
+                results.ShowDialog(Me)
             End If
         End If
     End Sub
