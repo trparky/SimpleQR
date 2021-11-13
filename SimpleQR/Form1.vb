@@ -161,10 +161,11 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
-        If DirectCast(e.Data.GetData(DataFormats.FileDrop), String()).Length > 1 Then
-            Exit Sub
-        End If
-        For Each strFileName As String In e.Data.GetData(DataFormats.FileDrop)
+        Dim incomingDataArray As String() = DirectCast(e.Data.GetData(DataFormats.FileDrop), String())
+
+        If incomingDataArray.Length = 1 Then
+            Dim strFileName As String = incomingDataArray(0)
+
             If IO.File.Exists(strFileName) Then
                 Dim strFileExtension As String = New IO.FileInfo(strFileName).Extension
 
@@ -174,7 +175,10 @@ Public Class Form1
                     End Using
                 End If
             End If
-        Next
+        Else
+            MsgBox("Invalid data provided via Drag Drop event.", MsgBoxStyle.Critical, strMessageBoxTitle)
+            Exit Sub
+        End If
     End Sub
 
     Private Sub Form1_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
