@@ -173,6 +173,8 @@ Public Class Form1
                     Using bitMap As New Bitmap(strFileName)
                         DecodeFromImage(bitMap)
                     End Using
+                Else
+                    MsgBox("Invalid file type provided via Drag Drop event." & vbCrLf & vbCrLf & "The only supported file types are PNG, JPG/JPEG, BMP, GIF, and WMF file types.", MsgBoxStyle.Critical, strMessageBoxTitle)
                 End If
             End If
         Else
