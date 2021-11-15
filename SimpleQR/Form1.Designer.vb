@@ -204,6 +204,7 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(543, 404)
         Me.Name = "Form1"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         Me.Text = "SimpleQR"
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip.ResumeLayout(False)
