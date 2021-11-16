@@ -77,7 +77,7 @@ Partial Class Form1
         '
         'btnDecode
         '
-        Me.btnDecode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnDecode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDecode.Image = Global.SimpleQR.My.Resources.Resources.Browse
         Me.btnDecode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDecode.Location = New System.Drawing.Point(218, 303)
@@ -90,7 +90,7 @@ Partial Class Form1
         '
         'btnAbout
         '
-        Me.btnAbout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAbout.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAbout.Image = Global.SimpleQR.My.Resources.Resources.info_blue
         Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnAbout.Location = New System.Drawing.Point(457, 330)
@@ -103,7 +103,7 @@ Partial Class Form1
         '
         'btnCheckForUpdates
         '
-        Me.btnCheckForUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnCheckForUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCheckForUpdates.Image = Global.SimpleQR.My.Resources.Resources.refresh
         Me.btnCheckForUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCheckForUpdates.Location = New System.Drawing.Point(331, 330)
@@ -116,7 +116,7 @@ Partial Class Form1
         '
         'qrCodeImage
         '
-        Me.qrCodeImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.qrCodeImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.qrCodeImage.ContextMenuStrip = Me.ContextMenuStrip
         Me.qrCodeImage.Location = New System.Drawing.Point(12, 152)
         Me.qrCodeImage.Name = "qrCodeImage"
@@ -150,7 +150,7 @@ Partial Class Form1
         '
         'btnDecodeFromScreenShot
         '
-        Me.btnDecodeFromScreenShot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnDecodeFromScreenShot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(372, 303)
         Me.btnDecodeFromScreenShot.Name = "btnDecodeFromScreenShot"
         Me.btnDecodeFromScreenShot.Size = New System.Drawing.Size(146, 23)
@@ -160,7 +160,7 @@ Partial Class Form1
         '
         'btnQRCodeBuilder
         '
-        Me.btnQRCodeBuilder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnQRCodeBuilder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnQRCodeBuilder.Location = New System.Drawing.Point(218, 330)
         Me.btnQRCodeBuilder.Name = "btnQRCodeBuilder"
         Me.btnQRCodeBuilder.Size = New System.Drawing.Size(107, 23)
@@ -170,7 +170,7 @@ Partial Class Form1
         '
         'btnDecodeFromClipboard
         '
-        Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(218, 274)
         Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
         Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(300, 23)
