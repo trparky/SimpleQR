@@ -200,6 +200,10 @@ Public Class Form1
         My.Settings.windowSize = Me.Size
     End Sub
 
+    Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Width <> 543 Then Width = 543
+    End Sub
+
     Private Sub BtnDecodeFromScreenShot_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
         If My.Settings.boolShowScreenshotTip Then
             Dim tipWindow As New Tip With {.Icon = Me.Icon, .StartPosition = FormStartPosition.CenterScreen}
