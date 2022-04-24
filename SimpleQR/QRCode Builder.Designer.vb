@@ -53,6 +53,7 @@ Partial Class QRCode_Builder
         Me.txtServiceName = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
+        Me.chkHidden = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -91,6 +92,7 @@ Partial Class QRCode_Builder
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage1.Controls.Add(Me.chkHidden)
         Me.TabPage1.Controls.Add(Me.txtNetworkPassword)
         Me.TabPage1.Controls.Add(Me.btnCreateWiFiQRCode)
         Me.TabPage1.Controls.Add(Me.lblNetworkPassword)
@@ -351,6 +353,17 @@ Partial Class QRCode_Builder
         Me.Label9.TabIndex = 16
         Me.Label9.Text = "Service Name:"
         '
+        'chkHidden
+        '
+        Me.chkHidden.AutoSize = True
+        Me.chkHidden.Location = New System.Drawing.Point(195, 74)
+        Me.chkHidden.Name = "chkHidden"
+        Me.chkHidden.Size = New System.Drawing.Size(109, 17)
+        Me.chkHidden.TabIndex = 18
+        Me.chkHidden.Text = "Hidden Network?"
+        Me.ToolTip.SetToolTip(Me.chkHidden, "Check this box if the SSID is hidden when scanning for WiFi networks.")
+        Me.chkHidden.UseVisualStyleBackColor = True
+        '
         'QRCode_Builder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -402,4 +415,5 @@ Partial Class QRCode_Builder
     Friend WithEvents txtServiceName As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents ToolTip As ToolTip
+    Friend WithEvents chkHidden As CheckBox
 End Class
