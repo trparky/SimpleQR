@@ -72,11 +72,11 @@
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
-    <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net48\zxing.dll</HintPath>
+    <Reference Include="zxing, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.8\lib\net48\zxing.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.presentation, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
-      <HintPath>..\packages\ZXing.Net.0.16.6\lib\net48\zxing.presentation.dll</HintPath>
+    <Reference Include="zxing.presentation, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.8\lib\net48\zxing.presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
