@@ -138,7 +138,7 @@ Public Class Form1
         With stringBuilder
             .AppendLine(Me.Text)
             .AppendLine("Written By Tom Parkison")
-            .AppendLine("Copyright Thomas Parkison 2012-2015.")
+            .AppendLine("Copyright Thomas Parkison 2012-2023.")
             .AppendLine()
             .AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
         End With
