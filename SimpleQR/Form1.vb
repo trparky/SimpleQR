@@ -215,7 +215,7 @@ Public Class Form1
         Dim decoder As New ZXing.BarcodeReader
         With decoder
             .Options.TryHarder = True
-            .TryInverted = True
+            .Options.TryInverted = True
             .AutoRotate = True
         End With
 
@@ -278,7 +278,7 @@ Public Class Form1
             .Options.TryHarder = True
             .Options.UseCode39ExtendedMode = True
             .Options.UseCode39RelaxedExtendedMode = True
-            .TryInverted = True
+            .Options.TryInverted = True
             .AutoRotate = True
         End With
 
