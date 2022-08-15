@@ -17,7 +17,7 @@
         End Using
     End Function
 
-    Public Sub New(ByVal screenShot As Image)
+    Public Sub New(screenShot As Image)
         Me.BackgroundImage = screenShot
         Me.ShowInTaskbar = False
         Me.FormBorderStyle = FormBorderStyle.None
@@ -29,14 +29,14 @@
     Private rcSelect As Rectangle = New Rectangle()
     Private pntStart As Point
 
-    Protected Overrides Sub OnMouseDown(ByVal e As MouseEventArgs)
+    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
         If e.Button <> MouseButtons.Left Then Return
         pntStart = e.Location
         rcSelect = New Rectangle(e.Location, New Size(0, 0))
         Me.Invalidate()
     End Sub
 
-    Protected Overrides Sub OnMouseMove(ByVal e As MouseEventArgs)
+    Protected Overrides Sub OnMouseMove(e As MouseEventArgs)
         If e.Button <> MouseButtons.Left Then Return
         Dim x1 As Integer = Math.Min(e.X, pntStart.X)
         Dim y1 As Integer = Math.Min(e.Y, pntStart.Y)
@@ -46,7 +46,7 @@
         Me.Invalidate()
     End Sub
 
-    Protected Overrides Sub OnMouseUp(ByVal e As MouseEventArgs)
+    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
         If rcSelect.Width <= 0 OrElse rcSelect.Height <= 0 Then Return
         Image = New Bitmap(rcSelect.Width, rcSelect.Height)
         Using gr As Graphics = Graphics.FromImage(Image)
@@ -56,7 +56,7 @@
         DialogResult = DialogResult.OK
     End Sub
 
-    Protected Overrides Sub OnPaint(ByVal e As PaintEventArgs)
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
         Using br As Brush = New SolidBrush(Color.FromArgb(120, Color.White))
             Dim x1 As Integer = rcSelect.X
             Dim x2 As Integer = rcSelect.X + rcSelect.Width
@@ -73,7 +73,7 @@
         End Using
     End Sub
 
-    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, ByVal keyData As Keys) As Boolean
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
         If keyData = Keys.Escape Then Me.DialogResult = DialogResult.Cancel
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function

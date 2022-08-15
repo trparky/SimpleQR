@@ -4,12 +4,12 @@
     Private val As Integer = 0                     ' Current progress
     Private barColor As Color = Color.LightGreen   ' Color of progress meter
 
-    Protected Overrides Sub OnResize(ByVal e As EventArgs)
+    Protected Overrides Sub OnResize(e As EventArgs)
         ' Invalidate the control to get a repaint.
         Me.Invalidate()
     End Sub
 
-    Protected Overrides Sub OnPaint(ByVal e As PaintEventArgs)
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
         Dim g As Graphics = e.Graphics
         Dim brush As SolidBrush = New SolidBrush(barColor)
         Dim percent As Decimal = (val - min) / (max - min)
@@ -34,7 +34,7 @@
             Return min
         End Get
 
-        Set(ByVal Value As Integer)
+        Set(Value As Integer)
             ' Prevent a negative value.
             If (Value < 0) Then
                 min = 0
@@ -61,7 +61,7 @@
             Return max
         End Get
 
-        Set(ByVal Value As Integer)
+        Set(Value As Integer)
             ' Make sure that the maximum value is never set lower than the minimum value.
             If (Value < min) Then
                 min = Value
@@ -84,7 +84,7 @@
             Return val
         End Get
 
-        Set(ByVal Value As Integer)
+        Set(Value As Integer)
             Dim oldValue As Integer = val
 
             ' Make sure that the value does not stray outside the valid range.
@@ -132,7 +132,7 @@
             Return barColor
         End Get
 
-        Set(ByVal Value As Color)
+        Set(Value As Color)
             barColor = Value
 
             ' Invalidate the control to get a repaint.
@@ -140,7 +140,7 @@
         End Set
     End Property
 
-    Private Sub Draw3DBorder(ByVal g As Graphics)
+    Private Sub Draw3DBorder(g As Graphics)
         Dim PenWidth As Integer = Pens.White.Width
 
         g.DrawLine(Pens.DarkGray, New Point(Me.ClientRectangle.Left, Me.ClientRectangle.Top), New Point(Me.ClientRectangle.Width - PenWidth, Me.ClientRectangle.Top))
