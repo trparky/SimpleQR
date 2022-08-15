@@ -60,7 +60,7 @@ Class CheckForUpdatesClass
         End Try
     End Function
 
-    Enum ProcessUpdateXMLResponse As Short
+    Enum ProcessUpdateXMLResponse As Byte
         noUpdateNeeded
         newVersion
         newerVersionThanWebSite
