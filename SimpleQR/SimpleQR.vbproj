@@ -144,12 +144,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Program Modules\Search for Process and Kill it.vb" />
-    <Compile Include="SmoothProgressBar.designer.vb">
-      <DependentUpon>SmoothProgressBar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SmoothProgressBar.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Tip.Designer.vb">
       <DependentUpon>Tip.vb</DependentUpon>
     </Compile>
@@ -178,9 +172,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SmoothProgressBar.resx">
-      <DependentUpon>SmoothProgressBar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tip.resx">
       <DependentUpon>Tip.vb</DependentUpon>
