@@ -100,8 +100,8 @@
     <Compile Include="Bigger QRCode Image.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Check for Update Stuff.vb" />
-    <Compile Include="NativeMethod.vb" />
+    <Compile Include="Program Modules\Check for Update Stuff.vb" />
+    <Compile Include="Program Modules\NativeMethod.vb" />
     <Compile Include="Decoded QRCode Image Results.Designer.vb">
       <DependentUpon>Decoded QRCode Image Results.vb</DependentUpon>
     </Compile>
@@ -115,9 +115,9 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GlobalSuppressions.vb" />
-    <Compile Include="HTTPHelper.vb" />
-    <Compile Include="StringExtensions.vb" />
+    <Compile Include="Program Modules\GlobalSuppressions.vb" />
+    <Compile Include="Program Modules\HTTPHelper.vb" />
+    <Compile Include="Program Modules\StringExtensions.vb" />
     <Compile Include="QRCode Builder.Designer.vb">
       <DependentUpon>QRCode Builder.vb</DependentUpon>
     </Compile>
@@ -143,13 +143,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Search for Process and Kill it.vb" />
-    <Compile Include="SmoothProgressBar.designer.vb">
-      <DependentUpon>SmoothProgressBar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="SmoothProgressBar.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Program Modules\Search for Process and Kill it.vb" />
     <Compile Include="Tip.Designer.vb">
       <DependentUpon>Tip.vb</DependentUpon>
     </Compile>
@@ -178,9 +172,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SmoothProgressBar.resx">
-      <DependentUpon>SmoothProgressBar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tip.resx">
       <DependentUpon>Tip.vb</DependentUpon>
