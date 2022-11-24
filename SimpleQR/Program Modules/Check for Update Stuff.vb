@@ -163,7 +163,7 @@ Class CheckForUpdatesClass
         httpHelper.SetURLPreProcessor = Function(strURLInput As String) As String
                                             Try
                                                 If Not strURLInput.Trim.StartsWith("http", StringComparison.OrdinalIgnoreCase) Then
-                                                    Return "https://" & strURLInput
+                                                    Return $"https://{strURLInput}"
                                                 Else
                                                     Return strURLInput
                                                 End If
@@ -230,7 +230,7 @@ Class CheckForUpdatesClass
     End Function
 
     Private Sub DownloadAndPerformUpdate()
-        Dim newExecutableName As String = New FileInfo(Application.ExecutablePath).Name & ".new.exe"
+        Dim newExecutableName As String = $"{New FileInfo(Application.ExecutablePath).Name}.new.exe"
         Dim httpHelper As HttpHelper = CreateNewHTTPHelperObject()
 
         Using memoryStream As New MemoryStream()
@@ -276,7 +276,7 @@ Class CheckForUpdatesClass
         Try
             Dim intOSMajorVersion As Integer = Environment.OSVersion.Version.Major
             Dim intOSMinorVersion As Integer = Environment.OSVersion.Version.Minor
-            Dim dblDOTNETVersion As Double = Double.Parse(Environment.Version.Major & "." & Environment.Version.Minor)
+            Dim dblDOTNETVersion As Double = Double.Parse($"{Environment.Version.Major}.{Environment.Version.Minor}")
             Dim strOSName As String
 
             If intOSMajorVersion = 5 And intOSMinorVersion = 0 Then
@@ -302,7 +302,7 @@ Class CheckForUpdatesClass
             Return String.Format("{0} {2}-bit (Microsoft .NET {1})", strOSName, dblDOTNETVersion, If(Environment.Is64BitOperatingSystem, "64", "32"))
         Catch ex As Exception
             Try
-                Return "Unknown Windows Operating System (" & Environment.OSVersion.VersionString & ")"
+                Return $"Unknown Windows Operating System ({Environment.OSVersion.VersionString})"
             Catch ex2 As Exception
                 Return "Unknown Windows Operating System"
             End Try

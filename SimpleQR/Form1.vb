@@ -5,10 +5,10 @@ Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If IO.File.Exists(Application.ExecutablePath & ".new.exe") Then
+        If IO.File.Exists($"{Application.ExecutablePath}.new.exe") Then
             Dim newFileDeleterThread As New Threading.Thread(Sub()
-                                                                 SearchForProcessAndKillIt(Application.ExecutablePath & ".new.exe", True)
-                                                                 IO.File.Delete(Application.ExecutablePath & ".new.exe")
+                                                                 SearchForProcessAndKillIt($"{Application.ExecutablePath}.new.exe", True)
+                                                                 IO.File.Delete($"{Application.ExecutablePath}.new.exe")
                                                              End Sub)
             newFileDeleterThread.Start()
         End If
@@ -60,7 +60,7 @@ Public Class Form1
     End Function
 
     Private Sub TxtTextToEncode_TextChanged(sender As Object, e As EventArgs) Handles txtTextToEncode.TextChanged
-        lblLength.Text = "Length: " & txtTextToEncode.TextLength
+        lblLength.Text = $"Length: {txtTextToEncode.TextLength}"
 
         If String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
             qrCodeImage.Image = Nothing
@@ -143,7 +143,7 @@ Public Class Form1
             .AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
         End With
 
-        MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, "About " & Me.Text)
+        MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, $"About {Text}")
     End Sub
 
     Private Sub BtnDecode_Click(sender As Object, e As EventArgs) Handles btnDecode.Click
@@ -179,7 +179,7 @@ Public Class Form1
                         DecodeFromImage(bitMap)
                     End Using
                 Else
-                    MsgBox("Invalid file type provided via Drag Drop event." & vbCrLf & vbCrLf & "The only supported file types are PNG, JPG/JPEG, BMP, GIF, and WMF file types.", MsgBoxStyle.Critical, strMessageBoxTitle)
+                    MsgBox($"Invalid file type provided via Drag Drop event.{vbCrLf}{vbCrLf}The only supported file types are PNG, JPG/JPEG, BMP, GIF, and WMF file types.", MsgBoxStyle.Critical, strMessageBoxTitle)
                 End If
             End If
         Else

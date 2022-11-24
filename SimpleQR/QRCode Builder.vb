@@ -128,24 +128,24 @@
         End If
 
         StrQRCodeData = "otpauth://"
-        StrQRCodeData &= If(radHOTP.Checked, "hotp", "totp") & "/" & Uri.EscapeUriString(txtServiceName.Text.Trim)
+        StrQRCodeData &= $"{If(radHOTP.Checked, "hotp", "totp")}/{Uri.EscapeUriString(txtServiceName.Text.Trim)}"
 
-        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then StrQRCodeData &= ":" & Uri.EscapeUriString(txtAccountName.Text.Trim)
-        StrQRCodeData &= "?secret=" & txtSecret.Text.Trim
-        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then StrQRCodeData &= "&issuer=" & Uri.EscapeUriString(txtIssuer.Text.Trim)
-        If radTOTP.Checked And period <> 30 Then StrQRCodeData &= "&period=" & period.ToString
-        If digits <> 6 Then StrQRCodeData &= "&digits=" & digits.ToString
+        If Not String.IsNullOrWhiteSpace(txtAccountName.Text.Trim) Then StrQRCodeData &= $":{Uri.EscapeUriString(txtAccountName.Text.Trim)}"
+        StrQRCodeData &= $"?secret={txtSecret.Text.Trim}"
+        If Not String.IsNullOrWhiteSpace(txtIssuer.Text.Trim) Then StrQRCodeData &= $"&issuer={Uri.EscapeUriString(txtIssuer.Text.Trim)}"
+        If radTOTP.Checked And period <> 30 Then StrQRCodeData &= $"&period={period}"
+        If digits <> 6 Then StrQRCodeData &= $"&digits={digits}"
 
         Me.Close()
     End Sub
 
     Private Sub BtnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
         If radioNone.Checked Then
-            StrQRCodeData = String.Format("WIFI:T:nopass;S:{0};P:;H:{1};", Uri.EscapeUriString(txtSSID.Text.Trim), If(chkHidden.Checked, "true", "false"))
+            StrQRCodeData = $"WIFI:T:nopass;S:{Uri.EscapeUriString(txtSSID.Text.Trim)};P:;H:{If(chkHidden.Checked, "true", "false")};"
         ElseIf radioWEP.Checked Then
-            StrQRCodeData = String.Format("WIFI:T:WEP;S:{0};P:{1};H:{2};", Uri.EscapeUriString(txtSSID.Text.Trim), txtNetworkPassword.Text.Trim, If(chkHidden.Checked, "true", "false"))
+            StrQRCodeData = $"WIFI:T:WEP;S:{Uri.EscapeUriString(txtSSID.Text.Trim)};P:{txtNetworkPassword.Text.Trim};H:{If(chkHidden.Checked, "true", "false")};"
         ElseIf radioWPA.Checked Then
-            StrQRCodeData = String.Format("WIFI:T:WPA;S:{0};P:{1};H:{2};", Uri.EscapeUriString(txtSSID.Text.Trim), txtNetworkPassword.Text.Trim, If(chkHidden.Checked, "true", "false"))
+            StrQRCodeData = $"WIFI:T:WPA;S:{Uri.EscapeUriString(txtSSID.Text.Trim)};P:{txtNetworkPassword.Text.Trim};H:{If(chkHidden.Checked, "true", "false")};"
         End If
 
         Me.Close()
