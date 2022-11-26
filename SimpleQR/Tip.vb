@@ -7,6 +7,6 @@
 
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         My.Settings.boolShowScreenshotTip = Not chkDontShowTipAgain.Checked
-        Me.Close()
+        Close()
     End Sub
 End Class
