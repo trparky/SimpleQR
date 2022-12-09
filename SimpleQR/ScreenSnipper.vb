@@ -18,11 +18,11 @@
     End Function
 
     Public Sub New(screenShot As Image)
-        Me.BackgroundImage = screenShot
-        Me.ShowInTaskbar = False
-        Me.FormBorderStyle = FormBorderStyle.None
-        Me.WindowState = FormWindowState.Maximized
-        Me.DoubleBuffered = True
+        BackgroundImage = screenShot
+        ShowInTaskbar = False
+        FormBorderStyle = FormBorderStyle.None
+        WindowState = FormWindowState.Maximized
+        DoubleBuffered = True
     End Sub
 
     Public Property Image As Image
@@ -33,7 +33,7 @@
         If e.Button <> MouseButtons.Left Then Return
         pntStart = e.Location
         rcSelect = New Rectangle(e.Location, New Size(0, 0))
-        Me.Invalidate()
+        Invalidate()
     End Sub
 
     Protected Overrides Sub OnMouseMove(e As MouseEventArgs)
@@ -43,14 +43,14 @@
         Dim x2 As Integer = Math.Max(e.X, pntStart.X)
         Dim y2 As Integer = Math.Max(e.Y, pntStart.Y)
         rcSelect = New Rectangle(x1, y1, x2 - x1, y2 - y1)
-        Me.Invalidate()
+        Invalidate()
     End Sub
 
     Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
         If rcSelect.Width <= 0 OrElse rcSelect.Height <= 0 Then Return
         Image = New Bitmap(rcSelect.Width, rcSelect.Height)
         Using gr As Graphics = Graphics.FromImage(Image)
-            gr.DrawImage(Me.BackgroundImage, New Rectangle(0, 0, Image.Width, Image.Height), rcSelect, GraphicsUnit.Pixel)
+            gr.DrawImage(BackgroundImage, New Rectangle(0, 0, Image.Width, Image.Height), rcSelect, GraphicsUnit.Pixel)
         End Using
 
         DialogResult = DialogResult.OK
@@ -62,10 +62,10 @@
             Dim x2 As Integer = rcSelect.X + rcSelect.Width
             Dim y1 As Integer = rcSelect.Y
             Dim y2 As Integer = rcSelect.Y + rcSelect.Height
-            e.Graphics.FillRectangle(br, New Rectangle(0, 0, x1, Me.Height))
-            e.Graphics.FillRectangle(br, New Rectangle(x2, 0, Me.Width - x2, Me.Height))
+            e.Graphics.FillRectangle(br, New Rectangle(0, 0, x1, Height))
+            e.Graphics.FillRectangle(br, New Rectangle(x2, 0, Width - x2, Height))
             e.Graphics.FillRectangle(br, New Rectangle(x1, 0, x2 - x1, y1))
-            e.Graphics.FillRectangle(br, New Rectangle(x1, y2, x2 - x1, Me.Height - y2))
+            e.Graphics.FillRectangle(br, New Rectangle(x1, y2, x2 - x1, Height - y2))
         End Using
 
         Using pen As Pen = New Pen(Color.Red, 3)
@@ -74,7 +74,7 @@
     End Sub
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
-        If keyData = Keys.Escape Then Me.DialogResult = DialogResult.Cancel
+        If keyData = Keys.Escape Then DialogResult = DialogResult.Cancel
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
 End Class

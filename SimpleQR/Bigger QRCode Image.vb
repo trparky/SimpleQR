@@ -18,7 +18,7 @@
     End Sub
 
     Private Sub BigImage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Size = My.Settings.biggerWindowSize
+        Size = My.Settings.biggerWindowSize
         GenerateImage()
     End Sub
 
@@ -27,7 +27,7 @@
     End Sub
 
     Private Sub BigImage_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
-        My.Settings.biggerWindowSize = Me.Size
+        My.Settings.biggerWindowSize = Size
     End Sub
 
     Private Sub CopyImageToWindowsClipboardToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyImageToWindowsClipboardToolStripMenuItem.Click

@@ -13,7 +13,7 @@ Public Class Form1
             newFileDeleterThread.Start()
         End If
 
-        Me.Size = My.Settings.windowSize
+        Size = My.Settings.windowSize
     End Sub
 
     Public Overloads Shared Function ResizeImage(SourceImage As Image, TargetWidth As Integer, TargetHeight As Integer) As Bitmap
@@ -136,7 +136,7 @@ Public Class Form1
         Dim stringBuilder As New StringBuilder
 
         With stringBuilder
-            .AppendLine(Me.Text)
+            .AppendLine(Text)
             .AppendLine("Written By Tom Parkison")
             .AppendLine("Copyright Thomas Parkison 2012-2023.")
             .AppendLine()
@@ -197,7 +197,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
-        My.Settings.windowSize = Me.Size
+        My.Settings.windowSize = Size
     End Sub
 
     Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -206,7 +206,7 @@ Public Class Form1
 
     Private Sub BtnDecodeFromScreenShot_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
         If My.Settings.boolShowScreenshotTip Then
-            Dim tipWindow As New Tip With {.Icon = Me.Icon, .StartPosition = FormStartPosition.CenterScreen}
+            Dim tipWindow As New Tip With {.Icon = Icon, .StartPosition = FormStartPosition.CenterScreen}
             tipWindow.ShowDialog()
         End If
 
@@ -225,7 +225,7 @@ Public Class Form1
             If result Is Nothing Then
                 MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             Else
-                Dim results As New frmDecoded With {.Icon = Me.Icon}
+                Dim results As New frmDecoded With {.Icon = Icon}
                 With results
                     .txtResults.Text = result.Text
                     .StartPosition = FormStartPosition.CenterParent
@@ -238,7 +238,7 @@ Public Class Form1
     End Sub
 
     Private Sub BtnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
-        Using QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Me.Icon}
+        Using QRCodeBuilderInstance As New QRCode_Builder With {.StartPosition = FormStartPosition.CenterParent, .Icon = Icon}
             QRCodeBuilderInstance.ShowDialog()
             If Not String.IsNullOrWhiteSpace(QRCodeBuilderInstance.StrQRCodeData) Then txtTextToEncode.Text = QRCodeBuilderInstance.StrQRCodeData
         End Using
@@ -252,7 +252,7 @@ Public Class Form1
     End Sub
 
     Private Sub MenuItemShowBiggerImage_Click(sender As Object, e As EventArgs) Handles menuItemShowBiggerImage.Click
-        Using biggerImage As New BigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Me.Icon}
+        Using biggerImage As New BigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Icon}
             biggerImage.ShowDialog()
         End Using
     End Sub
@@ -288,7 +288,7 @@ Public Class Form1
             If result Is Nothing Then
                 MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             Else
-                Dim results As New frmDecoded With {.Icon = Me.Icon}
+                Dim results As New frmDecoded With {.Icon = Icon}
 
                 With results
                     .txtResults.Text = result.Text

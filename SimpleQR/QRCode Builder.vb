@@ -108,7 +108,7 @@
 
     Private Sub BtnCreateTOTPQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateTOTPQRCode.Click
         If txtSecret.Text.Equals("Required", StringComparison.OrdinalIgnoreCase) Then
-            MsgBox("You must provide a secret, that's what is used to generate the digits required for your authenticator.", MsgBoxStyle.Critical, Me.Text)
+            MsgBox("You must provide a secret, that's what is used to generate the digits required for your authenticator.", MsgBoxStyle.Critical, Text)
             Exit Sub
         End If
 
@@ -119,11 +119,11 @@
         Dim period, digits As Short
 
         If Not Short.TryParse(txtPeriod.Text, period) Then
-            MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+            MsgBox("The period entry field must contain a numerical value.", MsgBoxStyle.Critical, Text)
             Exit Sub
         End If
         If Not Short.TryParse(txtDigits.Text, digits) Then
-            MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Me.Text)
+            MsgBox("The digits entry field must contain a numerical value.", MsgBoxStyle.Critical, Text)
             Exit Sub
         End If
 
@@ -136,7 +136,7 @@
         If radTOTP.Checked And period <> 30 Then StrQRCodeData &= $"&period={period}"
         If digits <> 6 Then StrQRCodeData &= $"&digits={digits}"
 
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub BtnCreateWiFiQRCode_Click(sender As Object, e As EventArgs) Handles btnCreateWiFiQRCode.Click
@@ -148,7 +148,7 @@
             StrQRCodeData = $"WIFI:T:WPA;S:{Uri.EscapeUriString(txtSSID.Text.Trim)};P:{txtNetworkPassword.Text.Trim};H:{If(chkHidden.Checked, "true", "false")};"
         End If
 
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub TabControl1_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles TabControl1.Selecting
