@@ -1,5 +1,4 @@
-﻿Imports System.Text.RegularExpressions
-Imports System.Text
+﻿Imports System.Text
 
 Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
