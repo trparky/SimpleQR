@@ -6,11 +6,10 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists($"{Application.ExecutablePath}.new.exe") Then
-            Dim newFileDeleterThread As New Threading.Thread(Sub()
-                                                                 SearchForProcessAndKillIt($"{Application.ExecutablePath}.new.exe", True)
-                                                                 IO.File.Delete($"{Application.ExecutablePath}.new.exe")
-                                                             End Sub)
-            newFileDeleterThread.Start()
+            Threading.ThreadPool.QueueUserWorkItem(Sub()
+                                                       SearchForProcessAndKillIt($"{Application.ExecutablePath}.new.exe", True)
+                                                       IO.File.Delete($"{Application.ExecutablePath}.new.exe")
+                                                   End Sub)
         End If
 
         Size = My.Settings.windowSize
@@ -121,14 +120,10 @@ Public Class Form1
     End Sub
 
     Private Sub BtnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
-        Dim userInitiatedCheckForUpdatesThread As New Threading.Thread(Sub()
-                                                                           Dim g As New CheckForUpdatesClass(Me)
-                                                                           g.CheckForUpdates()
-                                                                       End Sub) With {
-            .Name = "User Initiated Check For Updates Thread",
-            .Priority = Threading.ThreadPriority.Lowest
-        }
-        userInitiatedCheckForUpdatesThread.Start()
+        Threading.ThreadPool.QueueUserWorkItem(Sub()
+                                                   Dim g As New CheckForUpdatesClass(Me)
+                                                   g.CheckForUpdates()
+                                               End Sub)
     End Sub
 
     Private Sub BtnAbout_Click(sender As Object, e As EventArgs) Handles btnAbout.Click
