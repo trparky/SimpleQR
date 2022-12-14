@@ -90,15 +90,15 @@ Public Class Form1
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
             Dim fileFormat As Imaging.ImageFormat
 
-            If SaveFileDialog1.FileName.ToLower.EndsWith(".png") Then
+            If SaveFileDialog1.FileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Png
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".jpg") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Jpeg
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".bmp") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Bmp
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".gif") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Gif
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".wmf") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".wmf", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Wmf
             Else
                 MsgBox("Invalid file type.", MsgBoxStyle.Critical, strMessageBoxTitle)
