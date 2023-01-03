@@ -190,6 +190,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\green_dollar.png" />
     <None Include="packages.config" />
     <None Include="Resources\Browse.png" />
     <None Include="Resources\save.png" />

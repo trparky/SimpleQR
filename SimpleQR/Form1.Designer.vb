@@ -40,6 +40,7 @@ Partial Class Form1
         Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
         Me.btnDecodeFromClipboard = New System.Windows.Forms.Button()
         Me.menuItemCopyImageToWindowsClipboard = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnDonate = New System.Windows.Forms.Button()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -80,7 +81,7 @@ Partial Class Form1
         Me.btnDecode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDecode.Image = Global.SimpleQR.My.Resources.Resources.Browse
         Me.btnDecode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDecode.Location = New System.Drawing.Point(218, 303)
+        Me.btnDecode.Location = New System.Drawing.Point(218, 272)
         Me.btnDecode.Name = "btnDecode"
         Me.btnDecode.Size = New System.Drawing.Size(148, 23)
         Me.btnDecode.TabIndex = 9
@@ -151,7 +152,7 @@ Partial Class Form1
         'btnDecodeFromScreenShot
         '
         Me.btnDecodeFromScreenShot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(372, 303)
+        Me.btnDecodeFromScreenShot.Location = New System.Drawing.Point(372, 272)
         Me.btnDecodeFromScreenShot.Name = "btnDecodeFromScreenShot"
         Me.btnDecodeFromScreenShot.Size = New System.Drawing.Size(146, 23)
         Me.btnDecodeFromScreenShot.TabIndex = 13
@@ -171,7 +172,7 @@ Partial Class Form1
         'btnDecodeFromClipboard
         '
         Me.btnDecodeFromClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(218, 274)
+        Me.btnDecodeFromClipboard.Location = New System.Drawing.Point(218, 243)
         Me.btnDecodeFromClipboard.Name = "btnDecodeFromClipboard"
         Me.btnDecodeFromClipboard.Size = New System.Drawing.Size(300, 23)
         Me.btnDecodeFromClipboard.TabIndex = 17
@@ -183,6 +184,18 @@ Partial Class Form1
         Me.menuItemCopyImageToWindowsClipboard.Name = "menuItemCopyImageToWindowsClipboard"
         Me.menuItemCopyImageToWindowsClipboard.Size = New System.Drawing.Size(259, 22)
         Me.menuItemCopyImageToWindowsClipboard.Text = "Copy Image to Windows Clipboard"
+        '
+        'btnDonate
+        '
+        Me.btnDonate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDonate.Image = Global.SimpleQR.My.Resources.Resources.green_dollar
+        Me.btnDonate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnDonate.Location = New System.Drawing.Point(218, 301)
+        Me.btnDonate.Name = "btnDonate"
+        Me.btnDonate.Size = New System.Drawing.Size(300, 23)
+        Me.btnDonate.TabIndex = 18
+        Me.btnDonate.Text = "Donate to the Developer"
+        Me.btnDonate.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -200,6 +213,7 @@ Partial Class Form1
         Me.Controls.Add(Me.qrCodeImage)
         Me.Controls.Add(Me.btnQRCodeBuilder)
         Me.Controls.Add(Me.btnDecodeFromClipboard)
+        Me.Controls.Add(Me.btnDonate)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(543, 404)
@@ -228,4 +242,5 @@ Partial Class Form1
     Friend WithEvents btnDecodeFromClipboard As Button
     Friend WithEvents menuItemSaveImage As ToolStripMenuItem
     Friend WithEvents menuItemCopyImageToWindowsClipboard As ToolStripMenuItem
+    Friend WithEvents btnDonate As Button
 End Class

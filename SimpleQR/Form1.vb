@@ -2,6 +2,7 @@
 
 Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
+    Private Const strPayPal As String = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HQL3AC96XKM42&lc=US&no_note=1&no_shipping=1&rm=1&return=http%3a%2f%2fwww%2etoms%2dworld%2eorg%2fblog%2fthank%2dyou%2dfor%2dyour%2ddonation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists($"{Application.ExecutablePath}.new.exe") Then
@@ -300,5 +301,30 @@ Public Class Form1
             NativeMethod.NativeMethods.keybd_event(NativeMethod.NativeMethods.ESC, 0, 0, 0)
             NativeMethod.NativeMethods.keybd_event(NativeMethod.NativeMethods.ESC, 0, NativeMethod.NativeMethods.UP, 0)
         End If
+    End Sub
+
+    Private Sub LaunchURLInWebBrowser(url As String, Optional errorMessage As String = "An error occurred when trying the URL In your Default browser. The URL has been copied to your Windows Clipboard for you to paste into the address bar in the web browser of your choice.")
+        If Not url.Trim.StartsWith("http", StringComparison.OrdinalIgnoreCase) Then url = $"https://{url}"
+
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            CopyTextToWindowsClipboard(url)
+            MsgBox(errorMessage, MsgBoxStyle.Critical, strMessageBoxTitleText)
+        End Try
+    End Sub
+
+    Private Shared Function CopyTextToWindowsClipboard(strTextToBeCopiedToClipboard As String) As Boolean
+        Try
+            Clipboard.SetDataObject(strTextToBeCopiedToClipboard, True, 5, 200)
+            Return True
+        Catch ex As Exception
+            MsgBox("Unable to open Windows Clipboard to copy text to it.", MsgBoxStyle.Critical, strMessageBoxTitleText)
+            Return False
+        End Try
+    End Function
+
+    Private Sub BtnDonate_Click(sender As Object, e As EventArgs) Handles btnDonate.Click
+        LaunchURLInWebBrowser(strPayPal)
     End Sub
 End Class
