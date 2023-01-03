@@ -1,16 +1,15 @@
-﻿Imports System.Text.RegularExpressions
-Imports System.Text
+﻿Imports System.Text
 
 Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
+    Private Const strPayPal As String = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HQL3AC96XKM42&lc=US&no_note=1&no_shipping=1&rm=1&return=http%3a%2f%2fwww%2etoms%2dworld%2eorg%2fblog%2fthank%2dyou%2dfor%2dyour%2ddonation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists($"{Application.ExecutablePath}.new.exe") Then
-            Dim newFileDeleterThread As New Threading.Thread(Sub()
-                                                                 SearchForProcessAndKillIt($"{Application.ExecutablePath}.new.exe", True)
-                                                                 IO.File.Delete($"{Application.ExecutablePath}.new.exe")
-                                                             End Sub)
-            newFileDeleterThread.Start()
+            Threading.ThreadPool.QueueUserWorkItem(Sub()
+                                                       SearchForProcessAndKillIt($"{Application.ExecutablePath}.new.exe", True)
+                                                       IO.File.Delete($"{Application.ExecutablePath}.new.exe")
+                                                   End Sub)
         End If
 
         Size = My.Settings.windowSize
@@ -92,15 +91,15 @@ Public Class Form1
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
             Dim fileFormat As Imaging.ImageFormat
 
-            If SaveFileDialog1.FileName.ToLower.EndsWith(".png") Then
+            If SaveFileDialog1.FileName.EndsWith(".png", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Png
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".jpg") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Jpeg
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".bmp") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Bmp
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".gif") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Gif
-            ElseIf SaveFileDialog1.FileName.ToLower.EndsWith(".wmf") Then
+            ElseIf SaveFileDialog1.FileName.EndsWith(".wmf", StringComparison.OrdinalIgnoreCase) Then
                 fileFormat = Imaging.ImageFormat.Wmf
             Else
                 MsgBox("Invalid file type.", MsgBoxStyle.Critical, strMessageBoxTitle)
@@ -121,14 +120,10 @@ Public Class Form1
     End Sub
 
     Private Sub BtnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
-        Dim userInitiatedCheckForUpdatesThread As New Threading.Thread(Sub()
-                                                                           Dim g As New CheckForUpdatesClass(Me)
-                                                                           g.CheckForUpdates()
-                                                                       End Sub) With {
-            .Name = "User Initiated Check For Updates Thread",
-            .Priority = Threading.ThreadPriority.Lowest
-        }
-        userInitiatedCheckForUpdatesThread.Start()
+        Threading.ThreadPool.QueueUserWorkItem(Sub()
+                                                   Dim g As New CheckForUpdatesClass(Me)
+                                                   g.CheckForUpdates()
+                                               End Sub)
     End Sub
 
     Private Sub BtnAbout_Click(sender As Object, e As EventArgs) Handles btnAbout.Click
@@ -306,5 +301,30 @@ Public Class Form1
             NativeMethod.NativeMethods.keybd_event(NativeMethod.NativeMethods.ESC, 0, 0, 0)
             NativeMethod.NativeMethods.keybd_event(NativeMethod.NativeMethods.ESC, 0, NativeMethod.NativeMethods.UP, 0)
         End If
+    End Sub
+
+    Private Sub LaunchURLInWebBrowser(url As String, Optional errorMessage As String = "An error occurred when trying the URL In your Default browser. The URL has been copied to your Windows Clipboard for you to paste into the address bar in the web browser of your choice.")
+        If Not url.Trim.StartsWith("http", StringComparison.OrdinalIgnoreCase) Then url = $"https://{url}"
+
+        Try
+            Process.Start(url)
+        Catch ex As Exception
+            CopyTextToWindowsClipboard(url)
+            MsgBox(errorMessage, MsgBoxStyle.Critical, strMessageBoxTitleText)
+        End Try
+    End Sub
+
+    Private Shared Function CopyTextToWindowsClipboard(strTextToBeCopiedToClipboard As String) As Boolean
+        Try
+            Clipboard.SetDataObject(strTextToBeCopiedToClipboard, True, 5, 200)
+            Return True
+        Catch ex As Exception
+            MsgBox("Unable to open Windows Clipboard to copy text to it.", MsgBoxStyle.Critical, strMessageBoxTitleText)
+            Return False
+        End Try
+    End Function
+
+    Private Sub BtnDonate_Click(sender As Object, e As EventArgs) Handles btnDonate.Click
+        LaunchURLInWebBrowser(strPayPal)
     End Sub
 End Class
