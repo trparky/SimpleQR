@@ -14,7 +14,7 @@ Module Check_for_Update_Stuff_Module
         Dim currentProcessFileName As String = New FileInfo(Application.ExecutablePath).Name
 
         If currentProcessFileName.CaseInsensitiveContains(".new.exe") Then
-            Dim mainEXEName As String = currentProcessFileName.CaseInsensitiveReplace(".new.exe", "")
+            Dim mainEXEName As String = currentProcessFileName.CaseInsensitiveReplace(".new.exe", "", StringComparison.OrdinalIgnoreCase)
 
             SearchForProcessAndKillIt(mainEXEName, False)
 
