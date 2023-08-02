@@ -121,7 +121,7 @@ Public Class Form1
 
     Private Sub BtnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
         Threading.ThreadPool.QueueUserWorkItem(Sub()
-                                                   Dim g As New CheckForUpdatesClass(Me)
+                                                   Dim g As New checkForUpdates.CheckForUpdatesClass(Me)
                                                    g.CheckForUpdates()
                                                End Sub)
     End Sub
@@ -307,7 +307,7 @@ Public Class Form1
             Process.Start(url)
         Catch ex As Exception
             CopyTextToWindowsClipboard(url)
-            MsgBox(errorMessage, MsgBoxStyle.Critical, strMessageBoxTitleText)
+            MsgBox(errorMessage, MsgBoxStyle.Critical, checkForUpdates.strMessageBoxTitleText)
         End Try
     End Sub
 
@@ -316,7 +316,7 @@ Public Class Form1
             Clipboard.SetDataObject(strTextToBeCopiedToClipboard, True, 5, 200)
             Return True
         Catch ex As Exception
-            MsgBox("Unable to open Windows Clipboard to copy text to it.", MsgBoxStyle.Critical, strMessageBoxTitleText)
+            MsgBox("Unable to open Windows Clipboard to copy text to it.", MsgBoxStyle.Critical, checkForUpdates.strMessageBoxTitleText)
             Return False
         End Try
     End Function

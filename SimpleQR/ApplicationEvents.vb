@@ -11,7 +11,7 @@ Namespace My
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-            If Application.CommandLineArgs.Count = 1 AndAlso Application.CommandLineArgs(0).Trim.Equals("-update", StringComparison.OrdinalIgnoreCase) Then DoUpdateAtStartup()
+            If Application.CommandLineArgs.Count = 1 AndAlso Application.CommandLineArgs(0).Trim.Equals("-update", StringComparison.OrdinalIgnoreCase) Then checkForUpdates.DoUpdateAtStartup()
         End Sub
     End Class
 End Namespace
