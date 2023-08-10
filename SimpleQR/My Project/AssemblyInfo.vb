@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("SimpleQR")> 
-<Assembly: AssemblyCopyright("Copyright ©  2014")> 
+<Assembly: AssemblyCopyright("Copyright Thomas Parkison © 2023-2024")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
