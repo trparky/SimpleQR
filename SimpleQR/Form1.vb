@@ -1,4 +1,5 @@
-﻿Imports System.Text
+﻿Imports System.IO
+Imports System.Text
 
 Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
@@ -135,7 +136,11 @@ Public Class Form1
             .AppendLine("Written By Tom Parkison")
             .AppendLine("Copyright Thomas Parkison 2012-2024.")
             .AppendLine()
-            .AppendFormat("Version {0}.{1} Build {2}", version(0), version(1), version(2))
+            If File.Exists("tom") Then
+                .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)} (Revision {version(3)})")
+            Else
+                .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)}")
+            End If
         End With
 
         MsgBox(stringBuilder.ToString.Trim, MsgBoxStyle.Information, $"About {Text}")
