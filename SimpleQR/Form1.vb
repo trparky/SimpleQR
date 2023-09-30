@@ -137,7 +137,7 @@ Public Class Form1
             .AppendLine("Copyright Thomas Parkison 2012-2024.")
             .AppendLine()
             If File.Exists("tom") Then
-                .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)} (Revision {version(3)})")
+                .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)} (Update {version(3)})")
             Else
                 .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)}")
             End If
