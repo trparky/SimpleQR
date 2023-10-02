@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
+Imports SimpleQR.checkForUpdates
 
 Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
@@ -122,7 +123,7 @@ Public Class Form1
 
     Private Sub BtnCheckForUpdates_Click(sender As Object, e As EventArgs) Handles btnCheckForUpdates.Click
         Threading.ThreadPool.QueueUserWorkItem(Sub()
-                                                   Dim g As New checkForUpdates.CheckForUpdatesClass(Me)
+                                                   Dim g As New CheckForUpdatesClass(Me)
                                                    g.CheckForUpdates()
                                                End Sub)
     End Sub
@@ -137,9 +138,9 @@ Public Class Form1
             .AppendLine("Copyright Thomas Parkison 2012-2024.")
             .AppendLine()
             If File.Exists("tom") Then
-                .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)} (Update {version(3)})")
+                .AppendLine($"Version {version(VersionPieces.major)}.{version(VersionPieces.minor)} Build {version(VersionPieces.build)} (Update {version(VersionPieces.revision)})")
             Else
-                .AppendLine($"Version {version(0)}.{version(1)} Build {version(2)}")
+                .AppendLine($"Version {version(VersionPieces.major)}.{version(VersionPieces.minor)} Build {version(VersionPieces.build)}")
             End If
         End With
 
