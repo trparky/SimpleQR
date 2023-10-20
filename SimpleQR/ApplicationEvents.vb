@@ -1,5 +1,4 @@
-﻿Imports System.Text.RegularExpressions
-Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports Microsoft.VisualBasic.ApplicationServices
 
 Namespace My
     ' The following events are available for MyApplication:
@@ -11,7 +10,7 @@ Namespace My
     ' NetworkAvailabilityChanged: Raised when the network connection is connected or disconnected.
     Partial Friend Class MyApplication
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-            If Application.CommandLineArgs.Count = 1 AndAlso Application.CommandLineArgs(0).Trim.Equals("-update", StringComparison.OrdinalIgnoreCase) Then checkForUpdates.DoUpdateAtStartup()
+            If IO.File.Exists("updater.exe") Then IO.File.Delete("updater.exe")
         End Sub
     End Class
 End Namespace
