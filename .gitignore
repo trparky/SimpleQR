@@ -368,3 +368,4 @@ FodyWeavers.xsd
 /Compile, package, and upload this thing!.bat
 /Compile Private Beta.ps1
 /Compile, package, and upload this thing!.ps1
+/Do GIT GC.ps1
