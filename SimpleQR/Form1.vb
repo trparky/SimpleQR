@@ -207,8 +207,9 @@ Public Class Form1
 
     Private Sub BtnDecodeFromScreenShot_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
         If My.Settings.boolShowScreenshotTip Then
-            Dim tipWindow As New Tip With {.Icon = Icon, .StartPosition = FormStartPosition.CenterScreen}
-            tipWindow.ShowDialog()
+            Using tipWindow As New Tip With {.Icon = Icon, .StartPosition = FormStartPosition.CenterScreen}
+                tipWindow.ShowDialog()
+            End Using
             Threading.Thread.Sleep(500)
         End If
 
