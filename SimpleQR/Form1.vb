@@ -214,25 +214,25 @@ Public Class Form1
         End If
 
         Using imgScreenShot As Image = SnippingTool.Snip()
-        Dim decoder As New ZXing.BarcodeReader
-        With decoder
-            .Options.TryHarder = True
-            .Options.TryInverted = True
-            .AutoRotate = True
-        End With
+            Dim decoder As New ZXing.BarcodeReader
+            With decoder
+                .Options.TryHarder = True
+                .Options.TryInverted = True
+                .AutoRotate = True
+            End With
 
-        If imgScreenShot IsNot Nothing Then
-            Dim result As ZXing.Result = decoder.Decode(imgScreenShot)
+            If imgScreenShot IsNot Nothing Then
+                Dim result As ZXing.Result = decoder.Decode(imgScreenShot)
 
-            If result Is Nothing Then
-                MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
-            Else
-                Using results As New frmDecoded With {.Icon = Icon, .StartPosition = FormStartPosition.CenterParent}
-                    results.txtResults.Text = result.Text
-                    results.ShowDialog()
-                End Using
+                If result Is Nothing Then
+                    MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
+                Else
+                    Using results As New frmDecoded With {.Icon = Icon, .StartPosition = FormStartPosition.CenterParent}
+                        results.txtResults.Text = result.Text
+                        results.ShowDialog()
+                    End Using
+                End If
             End If
-        End If
         End Using
     End Sub
 
@@ -289,7 +289,7 @@ Public Class Form1
             Else
                 Using results As New frmDecoded With {.Icon = Icon, .StartPosition = FormStartPosition.CenterParent}
                     results.txtResults.Text = result.Text
-                results.ShowDialog(Me)
+                    results.ShowDialog(Me)
                 End Using
             End If
         End If
