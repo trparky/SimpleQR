@@ -170,12 +170,7 @@ Public Class Form1
             If IO.File.Exists(strFileName) Then
                 Dim strFileExtension As String = New IO.FileInfo(strFileName).Extension
 
-                If strFileExtension.Equals(".png", StringComparison.OrdinalIgnoreCase) Or
-                strFileExtension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) Or
-                strFileExtension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) Or
-                strFileExtension.Equals(".bmp", StringComparison.OrdinalIgnoreCase) Or
-                strFileExtension.Equals(".gif", StringComparison.OrdinalIgnoreCase) Or
-                strFileExtension.Equals(".wmf", StringComparison.OrdinalIgnoreCase) Then
+                If strFileExtension.Equals(".png", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".bmp", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".gif", StringComparison.OrdinalIgnoreCase) Or strFileExtension.Equals(".wmf", StringComparison.OrdinalIgnoreCase) Then
                     Using bitMap As New Bitmap(strFileName)
                         DecodeFromImage(bitMap)
                     End Using
