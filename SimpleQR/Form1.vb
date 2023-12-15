@@ -228,12 +228,10 @@ Public Class Form1
             If result Is Nothing Then
                 MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             Else
-                Dim results As New frmDecoded With {.Icon = Icon}
-                With results
-                    .txtResults.Text = result.Text
-                    .StartPosition = FormStartPosition.CenterParent
-                End With
-                results.ShowDialog()
+                Using results As New frmDecoded With {.Icon = Icon, .StartPosition = FormStartPosition.CenterParent}
+                    results.txtResults.Text = result.Text
+                    results.ShowDialog()
+                End Using
             End If
 
             imgScreenShot.Dispose()
@@ -291,14 +289,10 @@ Public Class Form1
             If result Is Nothing Then
                 MsgBox("There was an error while decoding your selected QRCode image.", MsgBoxStyle.Critical, strMessageBoxTitle)
             Else
-                Dim results As New frmDecoded With {.Icon = Icon}
-
-                With results
-                    .txtResults.Text = result.Text
-                    .StartPosition = FormStartPosition.CenterParent
-                End With
-
+                Using results As New frmDecoded With {.Icon = Icon, .StartPosition = FormStartPosition.CenterParent}
+                    results.txtResults.Text = result.Text
                 results.ShowDialog(Me)
+                End Using
             End If
         End If
     End Sub
