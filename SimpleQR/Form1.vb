@@ -209,6 +209,7 @@ Public Class Form1
         If My.Settings.boolShowScreenshotTip Then
             Dim tipWindow As New Tip With {.Icon = Icon, .StartPosition = FormStartPosition.CenterScreen}
             tipWindow.ShowDialog()
+            Threading.Thread.Sleep(500)
         End If
 
         Dim imgScreenShot As Image = SnippingTool.Snip()
