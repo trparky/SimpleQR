@@ -213,8 +213,7 @@ Public Class Form1
             Threading.Thread.Sleep(500)
         End If
 
-        Dim imgScreenShot As Image = SnippingTool.Snip()
-
+        Using imgScreenShot As Image = SnippingTool.Snip()
         Dim decoder As New ZXing.BarcodeReader
         With decoder
             .Options.TryHarder = True
@@ -233,9 +232,8 @@ Public Class Form1
                     results.ShowDialog()
                 End Using
             End If
-
-            imgScreenShot.Dispose()
         End If
+        End Using
     End Sub
 
     Private Sub BtnQRCodeBuilder_Click(sender As Object, e As EventArgs) Handles btnQRCodeBuilder.Click
