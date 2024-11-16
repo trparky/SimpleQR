@@ -154,9 +154,9 @@ Partial Class QRCode_Builder
         Me.radioWPA.AutoSize = True
         Me.radioWPA.Location = New System.Drawing.Point(195, 45)
         Me.radioWPA.Name = "radioWPA"
-        Me.radioWPA.Size = New System.Drawing.Size(86, 17)
+        Me.radioWPA.Size = New System.Drawing.Size(122, 17)
         Me.radioWPA.TabIndex = 13
-        Me.radioWPA.Text = "WPA/WPA2"
+        Me.radioWPA.Text = "WPA/WPA2/WPA3"
         Me.ToolTip.SetToolTip(Me.radioWPA, "Highly Recommended!!!")
         Me.radioWPA.UseVisualStyleBackColor = True
         '
