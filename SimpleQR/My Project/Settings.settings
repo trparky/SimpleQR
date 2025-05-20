@@ -8,8 +8,5 @@
     <Setting Name="biggerWindowSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">424, 424</Value>
     </Setting>
-    <Setting Name="boolShowScreenshotTip" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

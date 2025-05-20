@@ -2,14 +2,15 @@
     Inherits Form
 
     Public Shared Function Snip() As Image
-        Dim rc As Rectangle = Screen.PrimaryScreen.Bounds
+        Dim rc As Rectangle = SystemInformation.VirtualScreen
 
-        Using bmp As Bitmap = New Bitmap(rc.Width, rc.Height, Imaging.PixelFormat.Format32bppPArgb)
+        Using bmp As New Bitmap(rc.Width, rc.Height, Imaging.PixelFormat.Format32bppPArgb)
             Using gr As Graphics = Graphics.FromImage(bmp)
-                gr.CopyFromScreen(0, 0, 0, 0, bmp.Size)
+                ' Correctly offset the screen capture for multi-monitor
+                gr.CopyFromScreen(rc.X, rc.Y, 0, 0, bmp.Size)
             End Using
 
-            Using snipper = New SnippingTool(bmp)
+            Using snipper = New SnippingTool(bmp, rc)
                 If snipper.ShowDialog() = DialogResult.OK Then Return snipper.Image
             End Using
 
@@ -17,17 +18,21 @@
         End Using
     End Function
 
-    Public Sub New(screenShot As Image)
+
+    Public Sub New(screenShot As Image, virtualBounds As Rectangle)
         BackgroundImage = screenShot
         ShowInTaskbar = False
         FormBorderStyle = FormBorderStyle.None
-        WindowState = FormWindowState.Maximized
+        StartPosition = FormStartPosition.Manual
+        Bounds = virtualBounds
+        screenOffset = New Point(virtualBounds.X, virtualBounds.Y)
         DoubleBuffered = True
     End Sub
 
     Public Property Image As Image
     Private rcSelect As Rectangle = New Rectangle()
     Private pntStart As Point
+    Private screenOffset As Point
 
     Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
         If e.Button <> MouseButtons.Left Then Return
