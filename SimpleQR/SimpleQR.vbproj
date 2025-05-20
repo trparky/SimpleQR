@@ -134,12 +134,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Program Modules\Search for Process and Kill it.vb" />
-    <Compile Include="Tip.Designer.vb">
-      <DependentUpon>Tip.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Tip.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Bigger QRCode Image.resx">
@@ -162,9 +156,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tip.resx">
-      <DependentUpon>Tip.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

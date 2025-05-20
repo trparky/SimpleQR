@@ -201,13 +201,6 @@ Public Class Form1
     End Sub
 
     Private Sub BtnDecodeFromScreenShot_Click(sender As Object, e As EventArgs) Handles btnDecodeFromScreenShot.Click
-        If My.Settings.boolShowScreenshotTip Then
-            Using tipWindow As New Tip With {.Icon = Icon, .StartPosition = FormStartPosition.CenterScreen}
-                tipWindow.ShowDialog()
-            End Using
-            Threading.Thread.Sleep(500)
-        End If
-
         Using imgScreenShot As Image = SnippingTool.Snip()
             Dim decoder As New ZXing.BarcodeReader
             With decoder
