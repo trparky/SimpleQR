@@ -41,6 +41,8 @@ Partial Class Form1
         Me.btnDecodeFromClipboard = New System.Windows.Forms.Button()
         Me.menuItemCopyImageToWindowsClipboard = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnDonate = New System.Windows.Forms.Button()
+        Me.ErrorCorrection = New System.Windows.Forms.DomainUpDown()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -197,12 +199,35 @@ Partial Class Form1
         Me.btnDonate.Text = "Donate to the Developer"
         Me.btnDonate.UseVisualStyleBackColor = True
         '
+        'ErrorCorrection
+        '
+        Me.ErrorCorrection.Items.Add("Basic")
+        Me.ErrorCorrection.Items.Add("Standard")
+        Me.ErrorCorrection.Items.Add("Enhanced")
+        Me.ErrorCorrection.Items.Add("Maximum")
+        Me.ErrorCorrection.Location = New System.Drawing.Point(304, 152)
+        Me.ErrorCorrection.Name = "ErrorCorrection"
+        Me.ErrorCorrection.Size = New System.Drawing.Size(120, 20)
+        Me.ErrorCorrection.TabIndex = 19
+        Me.ErrorCorrection.Text = "Standard"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(218, 154)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 13)
+        Me.Label2.TabIndex = 20
+        Me.Label2.Text = "Error Correction"
+        '
         'Form1
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(527, 365)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.ErrorCorrection)
         Me.Controls.Add(Me.btnDecodeFromScreenShot)
         Me.Controls.Add(Me.btnDecode)
         Me.Controls.Add(Me.btnAbout)
@@ -243,4 +268,6 @@ Partial Class Form1
     Friend WithEvents menuItemSaveImage As ToolStripMenuItem
     Friend WithEvents menuItemCopyImageToWindowsClipboard As ToolStripMenuItem
     Friend WithEvents btnDonate As Button
+    Friend WithEvents ErrorCorrection As DomainUpDown
+    Friend WithEvents Label2 As Label
 End Class

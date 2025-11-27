@@ -1,20 +1,29 @@
 ﻿Public Class BigImage
     Public textToEncode As String
+    Public errorCorrection As ZXing.QrCode.Internal.ErrorCorrectionLevel
 
     Sub GenerateImage()
-        Try
-            Dim writer As New ZXing.BarcodeWriter
-            With writer
-                .Options.Width = qrCodeImage.Size.Width
-                .Options.Height = qrCodeImage.Size.Height
-                .Options.PureBarcode = True
-                .Options.Margin = 0
-                .Format = ZXing.BarcodeFormat.QR_CODE
-                qrCodeImage.Image = .Write(textToEncode)
-            End With
-        Catch ex As ArgumentException
-        Catch ex As Exception
-        End Try
+        If Not String.IsNullOrWhiteSpace(textToEncode) AndAlso errorCorrection IsNot Nothing Then
+            Try
+                Dim writer As New ZXing.BarcodeWriter
+                With writer
+                    .Options.Width = qrCodeImage.Size.Width
+                    .Options.Height = qrCodeImage.Size.Height
+                    .Options.PureBarcode = True
+                    .Options.Margin = 0
+                    .Format = ZXing.BarcodeFormat.QR_CODE
+                    .Options = New ZXing.QrCode.QrCodeEncodingOptions With {
+                        .Width = qrCodeImage.Size.Width,
+                        .Height = qrCodeImage.Size.Height,
+                        .Margin = 1,
+                        .ErrorCorrection = errorCorrection
+                    }
+                    qrCodeImage.Image = .Write(textToEncode)
+                End With
+            Catch ex As ArgumentException
+            Catch ex As Exception
+            End Try
+        End If
     End Sub
 
     Private Sub BigImage_Load(sender As Object, e As EventArgs) Handles MyBase.Load

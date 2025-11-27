@@ -5,6 +5,12 @@ Imports SimpleQR.checkForUpdates
 Public Class Form1
     Private Const strMessageBoxTitle As String = "SimpleQR"
     Private Const strPayPal As String = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=HQL3AC96XKM42&lc=US&no_note=1&no_shipping=1&rm=1&return=http%3a%2f%2fwww%2etoms%2dworld%2eorg%2fblog%2fthank%2dyou%2dfor%2dyour%2ddonation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"
+    Private Const strTopLabelText As String = "The text to encode can be anything you would like.  It can be some simple text or even a URL.
+If you want a URL QRCode Image, be sure to start the text with ""http://"" or ""https://"".
+
+To generate a QRCode Image simply start typing... It's that simple!
+
+Text to Encode (Max: {0})"
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If IO.File.Exists($"{Application.ExecutablePath}.new.exe") Then
@@ -15,6 +21,44 @@ Public Class Form1
         End If
 
         Size = My.Settings.windowSize
+
+        Label1.Text = String.Format(strTopLabelText, "2,335")
+        txtTextToEncode.MaxLength = 2335
+    End Sub
+
+    Private Function GetErrorCorrectionLevel() As ZXing.QrCode.Internal.ErrorCorrectionLevel
+        If ErrorCorrection.Text.Equals("Basic", StringComparison.OrdinalIgnoreCase) Then
+            Return ZXing.QrCode.Internal.ErrorCorrectionLevel.L
+        ElseIf ErrorCorrection.Text.Equals("Standard", StringComparison.OrdinalIgnoreCase) Then
+            Return ZXing.QrCode.Internal.ErrorCorrectionLevel.M
+        ElseIf ErrorCorrection.Text.Equals("Enhanced", StringComparison.OrdinalIgnoreCase) Then
+            Return ZXing.QrCode.Internal.ErrorCorrectionLevel.Q
+        ElseIf ErrorCorrection.Text.Equals("Maximum", StringComparison.OrdinalIgnoreCase) Then
+            Return ZXing.QrCode.Internal.ErrorCorrectionLevel.H
+        Else
+            Return ZXing.QrCode.Internal.ErrorCorrectionLevel.M
+        End If
+    End Function
+
+    Private Sub ErrorCorrection_TextChanged(sender As Object, e As EventArgs) Handles ErrorCorrection.TextChanged
+        If ErrorCorrection.Text.Equals("Basic", StringComparison.OrdinalIgnoreCase) Then
+            Label1.Text = String.Format(strTopLabelText, "2,953")
+            txtTextToEncode.MaxLength = 2953
+        ElseIf ErrorCorrection.Text.Equals("Standard", StringComparison.OrdinalIgnoreCase) Then
+            Label1.Text = String.Format(strTopLabelText, "2,335")
+            txtTextToEncode.MaxLength = 2335
+        ElseIf ErrorCorrection.Text.Equals("Enhanced", StringComparison.OrdinalIgnoreCase) Then
+            Label1.Text = String.Format(strTopLabelText, "1,637")
+            txtTextToEncode.MaxLength = 1637
+        ElseIf ErrorCorrection.Text.Equals("Maximum", StringComparison.OrdinalIgnoreCase) Then
+            Label1.Text = String.Format(strTopLabelText, "1,273")
+            txtTextToEncode.MaxLength = 1273
+        Else
+            Label1.Text = String.Format(strTopLabelText, "1,273")
+            txtTextToEncode.MaxLength = 1273
+        End If
+
+        ProcessInputText()
     End Sub
 
     Public Overloads Shared Function ResizeImage(SourceImage As Image, TargetWidth As Integer, TargetHeight As Integer) As Bitmap
@@ -61,6 +105,10 @@ Public Class Form1
     End Function
 
     Private Sub TxtTextToEncode_TextChanged(sender As Object, e As EventArgs) Handles txtTextToEncode.TextChanged
+        ProcessInputText()
+    End Sub
+
+    Private Sub ProcessInputText()
         lblLength.Text = $"Length: {txtTextToEncode.TextLength}"
 
         If String.IsNullOrWhiteSpace(txtTextToEncode.Text) Then
@@ -74,6 +122,12 @@ Public Class Form1
                     .Options.PureBarcode = True
                     .Options.Margin = 0
                     .Format = ZXing.BarcodeFormat.QR_CODE
+                    .Options = New ZXing.QrCode.QrCodeEncodingOptions With {
+                        .Width = 200,
+                        .Height = 200,
+                        .Margin = 1,
+                        .ErrorCorrection = GetErrorCorrectionLevel()
+                    }
                 End With
                 qrCodeImage.Image = writer.Write(txtTextToEncode.Text)
             Catch ex As ZXing.WriterException
@@ -115,6 +169,12 @@ Public Class Form1
                 .Options.Width = 500
                 .Options.Height = 500
                 .Format = ZXing.BarcodeFormat.QR_CODE
+                .Options = New ZXing.QrCode.QrCodeEncodingOptions With {
+                    .Width = 200,
+                    .Height = 200,
+                    .Margin = 1,
+                    .ErrorCorrection = GetErrorCorrectionLevel()
+                }
                 .Write(txtTextToEncode.Text).Save(SaveFileDialog1.FileName, fileFormat)
             End With
             MsgBox("Image Saved.", MsgBoxStyle.Information, strMessageBoxTitle)
@@ -239,7 +299,8 @@ Public Class Form1
     End Sub
 
     Private Sub MenuItemShowBiggerImage_Click(sender As Object, e As EventArgs) Handles menuItemShowBiggerImage.Click
-        Using biggerImage As New BigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Icon}
+        Dim errorCorrectionLevel As ZXing.QrCode.Internal.ErrorCorrectionLevel = GetErrorCorrectionLevel()
+        Using biggerImage As New BigImage With {.textToEncode = txtTextToEncode.Text, .Icon = Icon, .errorCorrection = errorCorrectionLevel}
             biggerImage.ShowDialog()
         End Using
     End Sub

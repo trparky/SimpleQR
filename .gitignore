@@ -362,10 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-/simpleqr_update.xml.lnk
-/AssemblyInfo.vb.lnk
-/Compile Private Beta.bat
-/Compile, package, and upload this thing!.bat
-/Compile Private Beta.ps1
-/Compile, package, and upload this thing!.ps1
-/Do GIT GC.ps1
+# Begin my stuff
+*.bat
+*.lnk
+*.ps1
+*.txt
