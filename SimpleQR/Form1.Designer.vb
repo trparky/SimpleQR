@@ -201,6 +201,7 @@ Partial Class Form1
         '
         'ErrorCorrection
         '
+        Me.ErrorCorrection.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ErrorCorrection.BackColor = System.Drawing.SystemColors.Window
         Me.ErrorCorrection.Items.Add("Basic")
         Me.ErrorCorrection.Items.Add("Standard")
@@ -215,6 +216,7 @@ Partial Class Form1
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(218, 154)
         Me.Label2.Name = "Label2"
