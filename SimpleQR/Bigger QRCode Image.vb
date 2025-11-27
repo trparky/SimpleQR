@@ -1,8 +1,9 @@
 ﻿Public Class BigImage
     Public textToEncode As String
+    Public errorCorrection As ZXing.QrCode.Internal.ErrorCorrectionLevel
 
     Sub GenerateImage()
-        If Not String.IsNullOrWhiteSpace(textToEncode) Then
+        If Not String.IsNullOrWhiteSpace(textToEncode) AndAlso errorCorrection IsNot Nothing Then
             Try
                 Dim writer As New ZXing.BarcodeWriter
                 With writer
@@ -11,6 +12,12 @@
                     .Options.PureBarcode = True
                     .Options.Margin = 0
                     .Format = ZXing.BarcodeFormat.QR_CODE
+                    .Options = New ZXing.QrCode.QrCodeEncodingOptions With {
+                        .Width = qrCodeImage.Size.Width,
+                        .Height = qrCodeImage.Size.Height,
+                        .Margin = 1,
+                        .ErrorCorrection = errorCorrection
+                    }
                     qrCodeImage.Image = .Write(textToEncode)
                 End With
             Catch ex As ArgumentException
