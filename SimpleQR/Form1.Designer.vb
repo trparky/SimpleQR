@@ -201,12 +201,14 @@ Partial Class Form1
         '
         'ErrorCorrection
         '
+        Me.ErrorCorrection.BackColor = System.Drawing.SystemColors.Window
         Me.ErrorCorrection.Items.Add("Basic")
         Me.ErrorCorrection.Items.Add("Standard")
         Me.ErrorCorrection.Items.Add("Enhanced")
         Me.ErrorCorrection.Items.Add("Maximum")
         Me.ErrorCorrection.Location = New System.Drawing.Point(304, 152)
         Me.ErrorCorrection.Name = "ErrorCorrection"
+        Me.ErrorCorrection.ReadOnly = True
         Me.ErrorCorrection.Size = New System.Drawing.Size(120, 20)
         Me.ErrorCorrection.TabIndex = 19
         Me.ErrorCorrection.Text = "Standard"
