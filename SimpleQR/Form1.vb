@@ -195,7 +195,7 @@ Text to Encode (Max: {0})"
         With stringBuilder
             .AppendLine(Text)
             .AppendLine("Written By Tom Parkison")
-            .AppendLine("Copyright Thomas Parkison 2012-2024.")
+            .AppendLine("Copyright Thomas Parkison 2012-2030.")
             .AppendLine()
             If File.Exists("tom") Then
                 .AppendLine($"Version {version(VersionPieces.major)}.{version(VersionPieces.minor)} Build {version(VersionPieces.build)} (Update {version(VersionPieces.revision)})")
