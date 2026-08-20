@@ -35,11 +35,11 @@ Partial Class Form1
         Me.ContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.menuItemShowBiggerImage = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuItemSaveImage = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuItemCopyImageToWindowsClipboard = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.btnDecodeFromScreenShot = New System.Windows.Forms.Button()
         Me.btnQRCodeBuilder = New System.Windows.Forms.Button()
         Me.btnDecodeFromClipboard = New System.Windows.Forms.Button()
-        Me.menuItemCopyImageToWindowsClipboard = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnDonate = New System.Windows.Forms.Button()
         Me.ErrorCorrection = New System.Windows.Forms.DomainUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -132,7 +132,7 @@ Partial Class Form1
         '
         Me.ContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemShowBiggerImage, Me.menuItemSaveImage, Me.menuItemCopyImageToWindowsClipboard})
         Me.ContextMenuStrip.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip.Size = New System.Drawing.Size(260, 92)
+        Me.ContextMenuStrip.Size = New System.Drawing.Size(260, 70)
         '
         'menuItemShowBiggerImage
         '
@@ -146,6 +146,12 @@ Partial Class Form1
         Me.menuItemSaveImage.Name = "menuItemSaveImage"
         Me.menuItemSaveImage.Size = New System.Drawing.Size(259, 22)
         Me.menuItemSaveImage.Text = "&Save Image to Disk"
+        '
+        'menuItemCopyImageToWindowsClipboard
+        '
+        Me.menuItemCopyImageToWindowsClipboard.Name = "menuItemCopyImageToWindowsClipboard"
+        Me.menuItemCopyImageToWindowsClipboard.Size = New System.Drawing.Size(259, 22)
+        Me.menuItemCopyImageToWindowsClipboard.Text = "Copy Image to Windows Clipboard"
         '
         'OpenFileDialog1
         '
@@ -180,12 +186,6 @@ Partial Class Form1
         Me.btnDecodeFromClipboard.TabIndex = 17
         Me.btnDecodeFromClipboard.Text = "Decode QRCode Image from Windows Clipboard"
         Me.btnDecodeFromClipboard.UseVisualStyleBackColor = True
-        '
-        'menuItemCopyImageToWindowsClipboard
-        '
-        Me.menuItemCopyImageToWindowsClipboard.Name = "menuItemCopyImageToWindowsClipboard"
-        Me.menuItemCopyImageToWindowsClipboard.Size = New System.Drawing.Size(259, 22)
-        Me.menuItemCopyImageToWindowsClipboard.Text = "Copy Image to Windows Clipboard"
         '
         'btnDonate
         '
