@@ -63,7 +63,7 @@ Partial Class BigImage
         Me.SaveImageToDiskToolStripMenuItem.Size = New System.Drawing.Size(259, 22)
         Me.SaveImageToDiskToolStripMenuItem.Text = "Save Image to Disk"
         '
-        'bigImage
+        'BigImage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -71,7 +71,7 @@ Partial Class BigImage
         Me.Controls.Add(Me.qrCodeImage)
         Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(424, 424)
-        Me.Name = "bigImage"
+        Me.Name = "BigImage"
         Me.Text = "Bigger QRCode Image"
         CType(Me.qrCodeImage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip.ResumeLayout(False)
